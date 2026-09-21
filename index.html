@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Indoor Plant Bible</title>
+<meta name="description" content="A room-by-room indoor plant bible with light, watering, pot size, mature size, seasonal growing, A–Z plant index and propagation guide.">
+<style>
+:root{
+  --bg:#f4f1e8; --paper:#fffdf7; --ink:#243128; --muted:#6b756b;
+  --green:#355b43; --sage:#8da58e; --leaf:#dce8d6; --gold:#c99a45;
+  --line:#d9ded2; --shadow:0 12px 35px rgba(37,50,39,.10);
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,select{font:inherit}
+.hero{background:linear-gradient(135deg,#284735,#56745a);color:white;padding:58px 22px 46px}
+.hero-inner{max-width:1180px;margin:auto}
+.eyebrow{letter-spacing:.14em;text-transform:uppercase;font-size:12px;opacity:.8}
+h1{font-family:Georgia,serif;font-size:clamp(40px,6vw,72px);line-height:1;margin:10px 0 15px;font-weight:500}
+.hero p{max-width:720px;font-size:18px;opacity:.9}
+.nav{position:sticky;top:0;z-index:10;background:rgba(255,253,247,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.nav-inner{max-width:1180px;margin:auto;display:flex;gap:6px;overflow:auto;padding:8px 12px}
+.nav button{border:0;background:transparent;padding:9px 12px;border-radius:999px;color:var(--green);cursor:pointer;white-space:nowrap}
+.nav button:hover,.nav button.active{background:var(--leaf)}
+main{max-width:1180px;margin:auto;padding:30px 18px 80px}
+.section{display:none}.section.active{display:block}
+h2{font:500 36px Georgia,serif;margin:15px 0 8px}
+h3{margin:0 0 6px}
+.lead{color:var(--muted);max-width:800px}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow);margin:20px 0}
+.filters{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.field label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:5px}
+select,input{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:12px;background:white;color:var(--ink)}
+.result-count{margin:18px 0 10px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 8px 25px rgba(37,50,39,.06)}
+.card-img{height:190px;background-size:cover;background-position:center;position:relative}.photo{background-color:#e8eee4;background-size:cover;background-position:center}.az-photo{height:130px;border-radius:10px;margin-bottom:10px;background-size:cover;background-position:center}
+.inspo-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.inspo-tabs button{border:1px solid var(--line);background:white;border-radius:999px;padding:9px 13px;cursor:pointer;color:var(--green)}
+.inspo-tabs button.active,.inspo-tabs button:hover{background:var(--leaf)}
+.inspo-room{margin:28px 0 42px}
+.inspo-room-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:12px}
+.inspo-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.inspo-shot{min-height:245px;border-radius:17px;background:#e8eee4 center/cover no-repeat;position:relative;overflow:hidden;box-shadow:0 8px 25px rgba(37,50,39,.08)}
+.inspo-shot:after{content:"";position:absolute;inset:auto 0 0;background:linear-gradient(transparent,rgba(0,0,0,.68));height:55%}
+.inspo-caption{position:absolute;z-index:2;left:14px;right:14px;bottom:12px;color:white;font-size:13px}
+.inspo-caption b{display:block;font-size:15px}
+@media(max-width:850px){.inspo-gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:550px){.inspo-gallery{grid-template-columns:1fr}}
+.badge{position:absolute;left:12px;top:12px;background:rgba(255,253,247,.92);padding:5px 9px;border-radius:999px;font-size:12px;color:var(--green)}
+.card-body{padding:16px}.latin{font-style:italic;color:var(--muted);font-size:13px}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.meta div{background:#f0f3eb;border-radius:10px;padding:8px}
+.meta b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.tag{background:var(--leaf);border-radius:999px;padding:4px 8px;font-size:11px}
+.room-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.room{padding:18px;border:1px solid var(--line);border-radius:17px;background:var(--paper);cursor:pointer;transition:.15s}
+.room:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.room-icon{font-size:30px}.room small{color:var(--muted)}
+.az-controls{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.az button{border:1px solid var(--line);background:white;border-radius:9px;padding:7px 10px;cursor:pointer}
+.az button:hover{background:var(--leaf)}
+.az-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.plant-row{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px}
+.plant-row strong{font-size:17px}.plant-row .small{color:var(--muted);font-size:13px}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.season{border-radius:16px;padding:18px;background:var(--leaf)}
+.season h3{font-family:Georgia,serif}
+.steps{counter-reset:step}.step{display:grid;grid-template-columns:45px 1fr;gap:15px;padding:18px 0;border-bottom:1px solid var(--line)}
+.step:before{counter-increment:step;content:counter(step);width:38px;height:38px;border-radius:50%;background:var(--green);color:white;display:grid;place-items:center;font-weight:700}
+.tip{border-left:4px solid var(--gold);background:#fbf3df;padding:13px 16px;border-radius:0 12px 12px 0}
+table{width:100%;border-collapse:collapse;background:var(--paper);border-radius:15px;overflow:hidden}
+th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#edf1e8;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+.note{font-size:12px;color:var(--muted)}
+footer{max-width:1180px;margin:auto;padding:0 18px 50px;color:var(--muted);font-size:12px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.room-grid{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}.timeline{grid-template-columns:1fr 1fr}}
+@media(max-width:550px){.grid,.az-grid{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.room-grid{grid-template-columns:1fr 1fr}h2{font-size:30px}}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="hero-inner">
+<div class="eyebrow">The first-home plant project</div>
+<h1>The Indoor Plant Bible</h1>
+<p>Pick a room. Tell the bible whether it gets direct sun. Then discover plants that actually fit the space — with watering, pot size, mature size, seasons and propagation all in one place.</p>
+</div>
+</header>
+
+<nav class="nav"><div class="nav-inner">
+<button class="active" data-tab="finder">🌿 Plant Finder</button>
+<button data-tab="az">🔤 A–Z Bible</button>
+<button data-tab="inspiration">✨ Room Inspiration</button>
+<button data-tab="seasons">☀️ Australian Seasons</button>
+<button data-tab="propagation">✂️ Propagation</button>
+<button data-tab="lawn">🌱 Lawn & Garden</button>
+<button data-tab="doctor">🩺 Plant Doctor</button>
+<button data-tab="watering">💧 Watering Bible</button>
+<button data-tab="care">🪴 Care Guide</button>
+</div></nav>
+
+<main>
+<section id="finder" class="section active">
+<h2>Find a plant for your room</h2>
+<p class="lead">Start with the room and the light. “Direct sun” means the plant will receive actual sunbeams through a window. Bright indirect light is different — the room can be bright without sun hitting the leaves.</p>
+<div class="panel">
+<div class="filters">
+<div class="field"><label>Room</label><select id="roomFilter"><option value="all">Any room</option></select></div>
+<div class="field"><label>Direct sun?</label><select id="sunFilter"><option value="all">Either</option><option value="yes">Yes</option><option value="no">No</option></select></div>
+<div class="field"><label>Watering</label><select id="waterFilter"><option value="all">Any</option><option value="low">Low maintenance</option><option value="medium">Moderate</option><option value="high">Frequent</option></select></div>
+<div class="field"><label>Search</label><input id="search" placeholder="e.g. fern, herb, palm"></div>
+</div>
+</div>
+<div class="result-count" id="count"></div>
+<div class="grid" id="cards"></div>
+</section>
+
+<section id="az" class="section">
+<h2>A–Z Plant Bible</h2>
+<p class="lead">A broader reference including houseplants plus herbs, vegetables, fruit and useful garden plants. Indoor growing is not equally practical for every entry — use the notes as a reality check.</p>
+<div class="panel">
+<input id="azSearch" placeholder="Search the A–Z list...">
+<div class="az-controls" id="letters"></div>
+</div>
+<div class="az-grid" id="azGrid"></div>
+</section>
+
+
+<section id="inspiration" class="section">
+<h2>Room-by-room plant inspiration</h2>
+<p class="lead">See plants in a real indoor context before choosing them. <b>Internet access is required for the inspiration photography.</b> Every room in the Plant Finder is included below, with several layout ideas and suggested plants. The photos in this section deliberately search for <b>plants styled inside the room</b>, rather than isolated nursery specimens.</p>
+<div class="panel">
+<h3>Choose a room</h3>
+<div class="inspo-tabs" id="inspoTabs"></div>
+<div class="tip">Use these images for placement and styling inspiration, then use the Plant Finder to check whether the plant actually matches the light in your own room. A beautiful dark corner is still a dark corner.</div>
+</div>
+<div id="inspirationRooms"></div>
+</section>
+
+<section id="seasons" class="section">
+<h2>Growing through the Australian seasons</h2>
+<p class="lead">These are broad Southern Hemisphere guidelines. Your indoor microclimate matters: Melbourne winter light and temperature are very different from a warm Queensland room.</p>
+<div class="timeline">
+<div class="season"><h3>🌱 Spring</h3><p>Sep–Nov</p><b>Best for:</b><br>Propagation, repotting, new growth, herbs, seedlings and gradually increasing watering.</div>
+<div class="season"><h3>☀️ Summer</h3><p>Dec–Feb</p><b>Best for:</b><br>Fast growth, tropical plants, cuttings and outdoor sun-loving crops if you have suitable space.</div>
+<div class="season"><h3>🍂 Autumn</h3><p>Mar–May</p><b>Best for:</b><br>Reducing watering as growth slows, harvesting herbs and bringing sensitive plants away from cold windows.</div>
+<div class="season"><h3>❄️ Winter</h3><p>Jun–Aug</p><b>Best for:</b><br>Bright windows, careful watering and avoiding cold drafts. Many plants need less water than summer.</div>
+</div>
+<div class="panel">
+<h3>What “survive all seasons” means</h3>
+<p>A plant marked <b>Yes</b> in the A–Z section can generally remain indoors year-round in a normal home if its light, temperature and watering needs are met. It does <em>not</em> mean it grows at the same speed all year.</p>
+<div class="tip">Rule of thumb: don't water because the calendar says it is watering day. Check the pot/soil first. Many houseplants suffer more from excess water than from a slightly late drink.</div>
+</div>
+</section>
+
+<section id="propagation" class="section">
+<h2>How to make new plants from old plants</h2>
+<p class="lead">Propagation is one of the best parts of owning plants: one healthy plant can become a collection, gifts for friends, or plants for every room.</p>
+<div class="steps">
+<div class="step"><div><h3>Choose healthy material</h3><p>Pick a healthy, pest-free stem. For stem cuttings, a piece around 8–10 cm with 2–3 leaves is a useful starting point. Clean your scissors or secateurs first.</p></div></div>
+<div class="step"><div><h3>Cut just below a node</h3><p>The node is where a leaf joins the stem. Remove the lower leaves so the node can sit in water or propagation mix.</p></div></div>
+<div class="step"><div><h3>Root it in water or mix</h3><p>Easy plants such as pothos, tradescantia and many philodendrons can root in water. Alternatively use a free-draining propagation mix.</p></div></div>
+<div class="step"><div><h3>Bright, warm, but not scorching</h3><p>Place cuttings in bright indirect light. Avoid strong direct sun while roots are forming. Keep the medium moist, not saturated.</p></div></div>
+<div class="step"><div><h3>Wait for roots</h3><p>Many easy stem cuttings can root in roughly 3–4 weeks, though species vary. Water-rooted cuttings should have a useful root system before potting up.</p></div></div>
+<div class="step"><div><h3>Pot into a small container</h3><p>Use a small pot with drainage. Don't jump straight into a huge pot: excess wet mix around a small root system can encourage rot.</p></div></div>
+</div>
+<div class="panel">
+<h3>Propagation cheat sheet</h3>
+<table><tr><th>Plant</th><th>Method</th><th>Beginner tip</th></tr>
+<tr><td>Pothos</td><td>Stem cutting</td><td>Water-root a node, then pot up.</td></tr>
+<tr><td>Monstera</td><td>Stem cutting</td><td>Each cutting needs a node; a leaf alone won't make a new vine.</td></tr>
+<tr><td>Spider plant</td><td>Plantlets</td><td>Root the baby plants produced on runners.</td></tr>
+<tr><td>Snake plant</td><td>Leaf cutting / division</td><td>Let leaf sections callus before planting; division is faster.</td></tr>
+<tr><td>Succulents</td><td>Leaf / stem</td><td>Allow fresh cuts to callus before placing in mix.</td></tr>
+<tr><td>Herbs</td><td>Stem cuttings</td><td>Basil, mint and rosemary can be propagated from suitable fresh growth.</td></tr>
+</table>
+</div>
+</section>
+
+<section id="lawn" class="section">
+<h2>🌱 Lawn & Garden Care</h2>
+<p class="lead">A new-house section for getting the lawn established and keeping the garden healthy through the year. The exact mowing and watering rhythm depends on your grass species, soil, drainage and Melbourne weather.</p>
+<div class="panel"><h3>First identify your lawn</h3><p>Common warm-season lawns include <b>buffalo, couch and kikuyu</b>. Cool-season grasses such as <b>fescue and ryegrass</b> behave differently. If you are unsure, take a close photo of the blades and use a plant-identification app or nursery/garden-centre advice before changing fertiliser or watering.</p></div>
+<div class="grid">
+<article class="card"><div class="card-img lawn-img photo" data-query="buffalo grass lawn"></div><div class="card-body"><h3>Buffalo</h3><p>Generally broad-bladed, shade-tolerant compared with many warm-season grasses. Mow high rather than scalping it.</p><div class="meta"><div><b>Sun</b>Full sun–part shade</div><div><b>Water</b>Deeply, then allow surface to dry</div><div><b>Mow</b>Keep a healthy leaf height</div><div><b>Best use</b>Family lawns / moderate shade</div></div></div></article>
+<article class="card"><div class="card-img lawn-img photo" data-query="kikuyu grass lawn"></div><div class="card-body"><h3>Kikuyu</h3><p>Fast-growing warm-season grass. It can recover quickly but needs regular mowing in active growth.</p><div class="meta"><div><b>Sun</b>Full sun preferred</div><div><b>Water</b>Deep watering when needed</div><div><b>Mow</b>Regularly during growth</div><div><b>Best use</b>Hard-wearing lawns</div></div></div></article>
+<article class="card"><div class="card-img lawn-img photo" data-query="couch grass lawn"></div><div class="card-body"><h3>Couch</h3><p>Fine-textured warm-season grass that likes strong sunlight and can form a dense lawn when actively growing.</p><div class="meta"><div><b>Sun</b>Full sun</div><div><b>Water</b>Deeply rather than little-and-often</div><div><b>Mow</b>Regularly</div><div><b>Best use</b>Sunny lawns</div></div></div></article>
+</div>
+<div class="panel"><h3>Seasonal lawn calendar — Melbourne</h3><table><tr><th>Season</th><th>What to do</th></tr><tr><td>🌱 Spring</td><td>Increase mowing as growth returns. Repair thin areas, check irrigation and consider fertilising according to your grass type and soil test.</td></tr><tr><td>☀️ Summer</td><td>Prioritise deep watering when needed rather than frequent shallow watering. Mow without removing too much leaf at once. Watch for heat stress and pests.</td></tr><tr><td>🍂 Autumn</td><td>Growth usually slows. Reduce mowing frequency, remove excessive leaf litter and repair damaged patches while conditions remain suitable.</td></tr><tr><td>❄️ Winter</td><td>Warm-season grasses can become dormant or slow considerably. Avoid unnecessary watering and mowing when the lawn is wet.</td></tr></table></div>
+<div class="panel"><h3>Simple lawn checklist</h3><div class="steps"><div class="step"><div><h3>Check the soil</h3><p>Compacted soil, poor drainage and unsuitable pH can cause problems that fertiliser will not fix. A soil test is useful before major amendments.</p></div></div><div class="step"><div><h3>Water deeply</h3><p>Watering should encourage a useful root system rather than keeping the top few millimetres permanently wet. Follow local water restrictions and your grass's needs.</p></div></div><div class="step"><div><h3>Mow little and often</h3><p>Avoid removing a huge amount of leaf in one cut. Sharp blades give a cleaner cut and reduce ragged leaf damage.</p></div></div><div class="step"><div><h3>Feed based on need</h3><p>Use a fertiliser appropriate to the grass and season. More fertiliser is not automatically better; excessive nutrients can cause weak growth and runoff.</p></div></div><div class="step"><div><h3>Repair bare spots</h3><p>Find the cause first — shade, traffic, drainage, pests or poor soil — then seed, patch or re-turf at the appropriate time for your grass.</p></div></div></div></div>
+<div class="tip">For a Melbourne home, the next useful upgrade would be a dedicated lawn diagnostic: enter your grass type, lawn size, hours of sun and irrigation setup, and the bible can generate a seasonal mowing/watering/feeding checklist.</div>
+</section>
+
+
+<section id="doctor" class="section">
+<h2>What is wrong with my plant?</h2>
+<p class="lead">Choose the symptom you can see. The Plant Doctor will give you the most common causes, what to check next, and the safest first actions. Symptoms can have more than one cause, so diagnose before automatically adding water or fertiliser.</p>
+
+<div class="panel">
+<div class="filters">
+<div class="field"><label>Plant</label>
+<select id="doctorPlant"><option value="general">Any / not sure</option></select></div>
+<div class="field"><label>Symptom</label>
+<select id="doctorSymptom">
+<option value="yellow">Yellow leaves</option>
+<option value="brown">Brown/crispy tips</option>
+<option value="droop">Drooping/wilting</option>
+<option value="curl">Curling leaves</option>
+<option value="spots">Brown/black spots</option>
+<option value="drop">Leaves falling off</option>
+<option value="nogrowth">No new growth</option>
+<option value="mould">Mould on soil</option>
+<option value="gnats">Tiny flies / fungus gnats</option>
+<option value="webs">Fine webs / tiny mites</option>
+<option value="sticky">Sticky leaves / bumps</option>
+<option value="pale">Pale or washed-out leaves</option>
+</select></div>
+<div class="field"><label>Soil right now</label>
+<select id="doctorSoil"><option value="unknown">Not sure</option><option value="wet">Wet / stays wet</option><option value="moist">Moist</option><option value="dry">Dry</option></select></div>
+<div class="field"><label>Light</label>
+<select id="doctorLight"><option value="unknown">Not sure</option><option value="low">Low light</option><option value="indirect">Bright indirect</option><option value="direct">Direct sun</option></select></div>
+</div>
+<button onclick="diagnosePlant()" style="margin-top:16px;border:0;background:var(--green);color:white;padding:12px 18px;border-radius:999px;cursor:pointer">Diagnose my plant</button>
+</div>
+<div id="doctorResult"></div>
+
+<div class="panel">
+<h3>🚨 Check these first</h3>
+<table>
+<tr><th>Clue</th><th>Possible problem</th><th>What to do first</th></tr>
+<tr><td>Yellow + wet soil</td><td>Too much water / poor drainage</td><td>Stop watering, check drainage and let the mix dry appropriately.</td></tr>
+<tr><td>Droopy + bone-dry soil</td><td>Thirst</td><td>Water thoroughly and let excess drain.</td></tr>
+<tr><td>Brown crispy edges</td><td>Dryness, hot sun, low humidity or salt build-up</td><td>Check soil moisture and whether leaves are being scorched.</td></tr>
+<tr><td>Long weak growth</td><td>Insufficient light</td><td>Move gradually to brighter appropriate light.</td></tr>
+<tr><td>Fine webbing</td><td>Spider mites</td><td>Isolate the plant and inspect leaf undersides.</td></tr>
+<tr><td>Sticky leaves / bumps</td><td>Scale or other sap-sucking pest</td><td>Isolate and inspect stems and leaf undersides closely.</td></tr>
+</table>
+</div>
+</section>
+
+<section id="watering" class="section">
+<h2>The Watering Bible</h2>
+<p class="lead">The best watering schedule is usually not a schedule. Light, temperature, pot size, pot material, soil mix, plant size and season all change how quickly a plant drinks. Use the calendar as a reminder to <em>check</em> the plant.</p>
+
+<div class="panel">
+<h3>💧 The 5-step watering method</h3>
+<div class="steps">
+<div class="step"><div><h3>Check before watering</h3><p>Push a finger into the potting mix. For many tropical foliage plants, check roughly the upper 2–5 cm. Succulents and drought-tolerant plants generally need substantially more drying between drinks.</p></div></div>
+<div class="step"><div><h3>Learn the pot's weight</h3><p>Lift smaller pots after watering and again when dry. A dry pot can be dramatically lighter. Over time this becomes one of the quickest moisture tests.</p></div></div>
+<div class="step"><div><h3>Water the whole root ball</h3><p>Pour slowly over the growing medium rather than giving a tiny splash. Aim to evenly moisten the root zone.</p></div></div>
+<div class="step"><div><h3>Let excess water escape</h3><p>Use drainage holes. Let excess water run out, then empty the saucer or decorative outer pot so roots are not sitting in water.</p></div></div>
+<div class="step"><div><h3>Check again — don't automatically repeat</h3><p>A reminder saying “water Monstera” should really mean “check Monstera”. If the mix is still appropriately moist, wait.</p></div></div>
+</div>
+</div>
+
+<div class="panel">
+<h3>Watering by plant type</h3>
+<table>
+<tr><th>Plant group</th><th>When to consider watering</th><th>Typical mistake</th></tr>
+<tr><td>Tropical foliage<br><span class="note">Monstera, philodendron, pothos</span></td><td>When the upper layer has dried; don't keep permanently saturated.</td><td>Watering every few days regardless of soil.</td></tr>
+<tr><td>Moisture lovers<br><span class="note">Ferns, calathea</span></td><td>Before the root ball becomes completely dry; aim for more even moisture.</td><td>Letting them repeatedly become bone dry.</td></tr>
+<tr><td>Drought tolerant<br><span class="note">Snake plant, ZZ</span></td><td>Allow substantial drying before watering again.</td><td>Treating them like tropical ferns.</td></tr>
+<tr><td>Succulents & cacti</td><td>Let the growing medium dry well between drinks.</td><td>Small, frequent splashes.</td></tr>
+<tr><td>Indoor herbs</td><td>Check frequently because small sunny pots can dry quickly.</td><td>Allowing leafy herbs such as basil to repeatedly wilt badly.</td></tr>
+<tr><td>Citrus in containers</td><td>Check moisture regularly in warm weather; water thoroughly when needed.</td><td>Either permanent wetness or letting the entire root ball repeatedly dry out.</td></tr>
+</table>
+</div>
+
+<div class="panel">
+<h3>🧠 Useful watering tricks</h3>
+<div class="room-grid">
+<div class="room"><div class="room-icon">☝️</div><h3>Finger test</h3><small>Feel below the surface rather than judging by the colour of the top alone.</small></div>
+<div class="room"><div class="room-icon">🏋️</div><h3>Lift test</h3><small>Learn how heavy the pot feels wet versus dry.</small></div>
+<div class="room"><div class="room-icon">🥢</div><h3>Wooden skewer</h3><small>For deeper pots, insert a clean wooden skewer into the mix. Damp mix tends to leave the skewer darker or with particles attached.</small></div>
+<div class="room"><div class="room-icon">🚿</div><h3>Sink or shower</h3><small>For manageable pots, water thoroughly in a sink or shower and allow them to drain before returning them to their decorative pot.</small></div>
+<div class="room"><div class="room-icon">🪴</div><h3>Drainage holes</h3><small>Keep plants in draining nursery pots inside decorative cachepots if the decorative pot has no hole.</small></div>
+<div class="room"><div class="room-icon">🌧️</div><h3>Season matters</h3><small>Cooler, darker winter conditions often mean slower drying than bright summer conditions.</small></div>
+<div class="room"><div class="room-icon">☀️</div><h3>Window matters</h3><small>A sunny, warm window can dry a pot much faster than the same plant across the room.</small></div>
+<div class="room"><div class="room-icon">📓</div><h3>Track observations</h3><small>Write down when you checked and watered. You'll quickly learn each plant's rhythm without blindly following dates.</small></div>
+</div>
+</div>
+
+<div class="panel">
+<h3>Signs you may be watering too much vs too little</h3>
+<table>
+<tr><th>Too much water / too little oxygen around roots</th><th>Too little water</th></tr>
+<tr><td>Mix remains wet for a long time; yellowing; soft tissue; musty smell; declining roots.</td><td>Very dry/light pot; wilting; crispy edges; shrinking or pulling-away potting mix.</td></tr>
+<tr><td colspan="2"><b>Important:</b> some symptoms overlap. Always check the soil/root zone instead of diagnosing from leaf colour alone.</td></tr>
+</table>
+</div>
+
+<div class="tip"><b>Best rule in the whole Bible:</b> don't give a thirsty-looking plant water until you've checked whether its root zone is actually dry. A plant with damaged, waterlogged roots can wilt even while sitting in wet soil.</div>
+</section>
+
+<section id="care" class="section">
+<h2>The houseplant survival guide</h2>
+<div class="panel">
+<h3>Light</h3>
+<p><b>Full/direct sun:</b> several hours of actual sun on leaves. Great for many succulents and some herbs/fruiting plants.</p>
+<p><b>Bright indirect:</b> lots of daylight but no harsh beam on the leaves. This suits a huge range of foliage plants.</p>
+<p><b>Low light:</b> a bright room away from windows. “Low light” does not mean darkness. No plant can thrive indefinitely in a completely windowless room without suitable grow lighting.</p>
+</div>
+<div class="panel">
+<h3>Water</h3>
+<p>Check the growing medium before watering. Water thoroughly until some drains from the bottom, then empty standing water. Plants in cool rooms generally need less water than plants in warm, bright rooms.</p>
+<div class="tip">Yellow leaves do not automatically mean “needs water”. Overwatering can also cause yellowing, leaf drop and root problems.</div>
+</div>
+<div class="panel">
+<h3>Pot size</h3>
+<p>Choose a pot with a drainage hole. A useful beginner approach is to pot up only modestly — often one pot size larger when the roots have filled the existing container. Decorative cachepots are fine, but don't let the inner pot sit permanently in water.</p>
+</div>
+<div class="panel">
+<h3>Room-by-room logic</h3>
+<div class="room-grid" id="roomGuide"></div>
+</div>
+</section>
+</main>
+
+<footer>Built as a first-home plant reference. Plant sizes and watering intervals are estimates; cultivar, potting mix, light, temperature, humidity and season can change them. Always check the individual plant when buying.</footer>
+
+<script>
+const img = {
+  monstera:"https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=900&q=80",
+  pothos:"https://images.unsplash.com/photo-1614594895305-fe619b8f9b9f?auto=format&fit=crop&w=900&q=80",
+  snake:"https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?auto=format&fit=crop&w=900&q=80",
+  zz:"https://images.unsplash.com/photo-1614594895305-fe619b8f9b9f?auto=format&fit=crop&w=900&q=80",
+  fern:"https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=900&q=80",
+  peace:"https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?auto=format&fit=crop&w=900&q=80",
+  herb:"https://images.unsplash.com/photo-1603905179139-db12ab5350ba?auto=format&fit=crop&w=900&q=80",
+  succulent:"https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=900&q=80"
+};
+const rooms = {
+ "Living room":"Bright/medium light, often good floor space. Choose plants based on window distance.",
+ "Bedroom":"Prioritise plants that tolerate steady indoor conditions and don't require constantly wet soil.",
+ "Study":"Usually ideal for compact desk plants; light is the deciding factor.",
+ "Bathroom":"Humidity can suit tropical foliage, but a window or grow light is still needed.",
+ "Basement":"Only suitable if there is meaningful daylight or a grow light.",
+ "Kitchen":"Excellent for herbs near a bright window; humidity is often higher.",
+ "Dining room":"Good for statement plants if there is enough indirect light.",
+ "Laundry":"Humidity can be helpful, but low light can be the limiting factor.",
+ "Balcony":"Not truly indoor; use this for plants needing much stronger direct light."
+};
+const plants = [
+{name:"Monstera deliciosa",latin:"Monstera deliciosa",rooms:["Living room","Study","Dining room","Bathroom"],sun:"no",water:"medium",freq:"Every 1–2 weeks",pot:"20–30 cm starter",height:"1.5–3 m indoors",girth:"0.8–1.5 m spread",light:"Bright indirect; tolerates gentle morning sun",season:"Yes",type:"Foliage",image:"monstera"},
+{name:"Golden pothos",latin:"Epipremnum aureum",rooms:["Living room","Bedroom","Study","Bathroom","Kitchen","Laundry"],sun:"no",water:"low",freq:"Every 1–2 weeks",pot:"12–20 cm",height:"1–3 m vine",girth:"30–100+ cm trailing",light:"Low to bright indirect",season:"Yes",type:"Foliage",image:"pothos"},
+{name:"Snake plant",latin:"Dracaena trifasciata",rooms:["Living room","Bedroom","Study","Basement","Dining room"],sun:"no",water:"low",freq:"Every 2–4 weeks",pot:"15–25 cm",height:"0.4–1.2 m",girth:"30–60 cm",light:"Low to bright; some direct sun",season:"Yes",type:"Succulent foliage",image:"snake"},
+{name:"ZZ plant",latin:"Zamioculcas zamiifolia",rooms:["Living room","Bedroom","Study","Basement","Dining room"],sun:"no",water:"low",freq:"Every 2–3 weeks",pot:"15–25 cm",height:"0.5–1.2 m",girth:"40–80 cm",light:"Low to bright indirect",season:"Yes",type:"Foliage",image:"zz"},
+{name:"Peace lily",latin:"Spathiphyllum",rooms:["Bathroom","Bedroom","Living room","Study"],sun:"no",water:"high",freq:"About weekly; check soil",pot:"15–25 cm",height:"0.4–1 m",girth:"40–80 cm",light:"Medium to bright indirect",season:"Yes",type:"Flowering foliage",image:"peace"},
+{name:"Boston fern",latin:"Nephrolepis exaltata",rooms:["Bathroom","Laundry","Kitchen"],sun:"no",water:"high",freq:"1–2 times weekly in warm periods",pot:"15–25 cm hanging",height:"0.4–0.9 m",girth:"0.6–1.2 m",light:"Bright indirect",season:"Yes indoors",type:"Fern",image:"fern"},
+{name:"Spider plant",latin:"Chlorophytum comosum",rooms:["Bedroom","Bathroom","Kitchen","Study","Living room"],sun:"no",water:"medium",freq:"Every 1–2 weeks",pot:"12–20 cm",height:"30–60 cm",girth:"50–90 cm",light:"Bright indirect to medium",season:"Yes",type:"Foliage",image:"fern"},
+{name:"Rubber plant",latin:"Ficus elastica",rooms:["Living room","Study","Dining room"],sun:"no",water:"medium",freq:"Every 1–2 weeks",pot:"20–30 cm",height:"1.5–3 m indoors",girth:"0.8–1.5 m",light:"Bright indirect; gentle direct sun",season:"Yes",type:"Tree/foliage",image:"monstera"},
+{name:"Bird of paradise",latin:"Strelitzia reginae",rooms:["Living room","Dining room","Study"],sun:"yes",water:"medium",freq:"About weekly in active growth",pot:"25–35 cm",height:"1.5–3 m indoors",girth:"1–2 m",light:"Very bright; several hours sun",season:"Yes indoors",type:"Tropical",image:"monstera"},
+{name:"Jade plant",latin:"Crassula ovata",rooms:["Study","Living room","Kitchen","Dining room"],sun:"yes",water:"low",freq:"Every 2–4 weeks",pot:"12–25 cm",height:"0.3–1.5 m",girth:"0.3–1 m",light:"Several hours direct sun preferred",season:"Yes indoors",type:"Succulent",image:"succulent"},
+{name:"Aloe vera",latin:"Aloe vera",rooms:["Kitchen","Study","Living room"],sun:"yes",water:"low",freq:"Every 2–4 weeks",pot:"15–25 cm",height:"30–60 cm",girth:"30–60 cm",light:"Bright light, some direct sun",season:"Yes indoors",type:"Succulent",image:"succulent"},
+{name:"Basil",latin:"Ocimum basilicum",rooms:["Kitchen"],sun:"yes",water:"high",freq:"When surface dries; often every few days",pot:"15–20 cm",height:"30–60 cm",girth:"20–40 cm",light:"6+ hours bright sun ideal",season:"No — annual; can grow indoors while warm",type:"Herb",image:"herb"},
+{name:"Mint",latin:"Mentha spp.",rooms:["Kitchen"],sun:"yes",water:"high",freq:"Every few days when warm",pot:"15–25 cm",height:"30–60 cm",girth:"30–60 cm",light:"4–6+ hours bright light",season:"Yes; may slow in winter",type:"Herb",image:"herb"},
+{name:"Rosemary",latin:"Salvia rosmarinus",rooms:["Kitchen","Study","Balcony"],sun:"yes",water:"low",freq:"When mix dries",pot:"20–30 cm",height:"0.5–1.5 m",girth:"0.5–1 m",light:"6+ hours direct sun",season:"Yes",type:"Herb",image:"herb"},
+{name:"Thyme",latin:"Thymus vulgaris",rooms:["Kitchen","Balcony"],sun:"yes",water:"low",freq:"When mix dries",pot:"15–20 cm",height:"15–30 cm",girth:"20–40 cm",light:"6+ hours direct sun",season:"Yes",type:"Herb",image:"herb"},
+{name:"Lavender",latin:"Lavandula spp.",rooms:["Kitchen","Balcony","Living room"],sun:"yes",water:"low",freq:"When dry",pot:"20–30 cm",height:"30–80 cm indoors",girth:"30–80 cm",light:"6+ hours direct sun",season:"Yes, but best with strong light and airflow",type:"Herb/flower",image:"herb"},
+{name:"Calathea",latin:"Goeppertia spp.",rooms:["Bathroom","Bedroom"],sun:"no",water:"high",freq:"About weekly; keep evenly moist",pot:"15–25 cm",height:"30–90 cm",girth:"30–70 cm",light:"Medium to bright indirect",season:"Yes indoors",type:"Tropical foliage",image:"fern"},
+{name:"Philodendron",latin:"Philodendron spp.",rooms:["Living room","Bedroom","Study","Bathroom"],sun:"no",water:"medium",freq:"Every 1–2 weeks",pot:"15–25 cm",height:"0.5–2 m+",girth:"0.5–1.5 m",light:"Low to bright indirect",season:"Yes",type:"Foliage",image:"pothos"},
+{name:"Chinese money plant",latin:"Pilea peperomioides",rooms:["Study","Bedroom","Kitchen","Living room"],sun:"no",water:"medium",freq:"About weekly to fortnightly",pot:"12–20 cm",height:"30–45 cm",girth:"30–45 cm",light:"Bright indirect",season:"Yes",type:"Foliage",image:"pothos"},
+{name:"Peperomia",latin:"Peperomia spp.",rooms:["Study","Bedroom","Kitchen","Bathroom"],sun:"no",water:"low",freq:"Every 1–2 weeks",pot:"10–15 cm",height:"15–40 cm",girth:"20–40 cm",light:"Bright indirect",season:"Yes",type:"Foliage",image:"succulent"},
+{name:"String of pearls",latin:"Curio rowleyanus",rooms:["Study","Living room"],sun:"yes",water:"low",freq:"Every 2–3 weeks",pot:"10–15 cm hanging",height:"10–20 cm",girth:"60–120+ cm trailing",light:"Bright light with some sun",season:"Yes indoors",type:"Succulent",image:"succulent"},
+{name:"Orchid",latin:"Phalaenopsis",rooms:["Bathroom","Bedroom","Living room"],sun:"no",water:"medium",freq:"About weekly; allow roots/mix to approach dry",pot:"12–15 cm",height:"30–60 cm",girth:"30–50 cm",light:"Bright indirect",season:"Yes indoors",type:"Flowering",image:"peace"},
+{name:"African violet",latin:"Streptocarpus sect. Saintpaulia",rooms:["Bedroom","Study","Kitchen"],sun:"no",water:"medium",freq:"About weekly; avoid wet crown",pot:"8–15 cm",height:"10–25 cm",girth:"15–30 cm",light:"Bright indirect",season:"Yes indoors",type:"Flowering",image:"peace"},
+{name:"Boston ivy",latin:"Parthenocissus tricuspidata",rooms:["Balcony"],sun:"yes",water:"medium",freq:"When top layer dries",pot:"25–40 cm",height:"2 m+ if supported",girth:"1–3 m spread",light:"Bright light to sun",season:"Yes; deciduous",type:"Vine",image:"pothos"}
+];
+
+// Additional edible/garden plants are kept in the A–Z reference so the room finder stays focused on realistic indoor/container choices.
+const az = [
+["Aloe vera","Aloe vera","6+ h","Yes","Spring–summer; year-round indoors","Sun-loving succulent; let mix dry."],
+["Apple","Malus domestica","6–8 h","No indoors","Winter dormancy / outdoor crop","Needs outdoor conditions and pollination; not a normal houseplant."],
+["Basil","Ocimum basilicum","6+ h","No, annual","Spring–summer; indoors warm year-round","Excellent kitchen herb with strong light."],
+["Bay laurel","Laurus nobilis","6+ h","Yes","Spring–autumn growth","Can be container-grown; likes sun."],
+["Beetroot","Beta vulgaris","6+ h","No","Autumn–spring outdoors in Melbourne","Possible in containers; needs light and root depth."],
+["Blueberry","Vaccinium spp.","6+ h","Yes","Winter–spring planting","Needs acidic mix, sun and pollination."],
+["Bromeliad","Bromeliaceae","Bright indirect","Yes indoors","Year-round indoors","Good tropical foliage; avoid harsh sun."],
+["Cactus","Cactaceae","6+ h","Yes","Spring–summer active growth","Very bright; water sparingly."],
+["Calathea","Goeppertia spp.","Bright indirect","Yes","Year-round indoors","Humidity-loving foliage."],
+["Capsicum","Capsicum annuum","6–8 h","No","Spring–summer","Can fruit in a very sunny window but usually easier outdoors."],
+["Carrot","Daucus carota","6+ h","No","Autumn–spring","Needs a deep container."],
+["Celery","Apium graveolens","6+ h","No","Autumn–spring","Needs consistent moisture."],
+["Chives","Allium schoenoprasum","4–6 h","Yes","Most of year","Excellent windowsill herb."],
+["Coriander","Coriandrum sativum","4–6 h","No, short-lived","Autumn–spring","Bolts in heat; succession sow."],
+["Cucumber","Cucumis sativus","6–8 h","No","Spring–summer","Needs sun, warmth and support."],
+["Dill","Anethum graveolens","6 h","No, annual","Spring–summer","Bright window; dislikes disturbance."],
+["Fiddle-leaf fig","Ficus lyrata","Bright indirect","Yes","Year-round indoors","Can become a large statement plant."],
+["Fern","Various","Bright indirect","Yes","Year-round indoors","Humidity and even moisture help."],
+["Fig","Ficus carica","6–8 h","No indoors","Winter–spring planting outdoors","Large outdoor container plant; not ideal as a houseplant."],
+["Gardenia","Gardenia jasminoides","4–6 h bright","Yes indoors if warm","Spring–summer flowering","High light, humidity and acidic conditions."],
+["Ginger","Zingiber officinale","Bright / 4–6 h","Yes","Spring–summer","Can be grown in a warm pot; needs moisture."],
+["Grape","Vitis vinifera","6–8 h","No indoors","Winter–spring","Needs a large outdoor space and support."],
+["Hoya","Hoya spp.","Bright indirect","Yes","Year-round indoors","Let mix partly dry between watering."],
+["Jade","Crassula ovata","6+ h","Yes","Spring–summer growth","Excellent sunny indoor succulent."],
+["Kale","Brassica oleracea","6+ h","No","Autumn–winter","Better in a balcony/yard container."],
+["Lavender","Lavandula spp.","6+ h","Yes","Autumn–spring planting","Needs strong sun and airflow."],
+["Lemon","Citrus limon","6–8 h","Yes indoors if very sunny","Spring–autumn","Possible in a large pot, but fruiting indoors is difficult."],
+["Lemongrass","Cymbopogon citratus","6+ h","Yes","Spring–summer","Warm, bright conditions."],
+["Lettuce","Lactuca sativa","4–6 h","No, cool-season crop","Autumn–spring","Good container crop near a sunny window."],
+["Mint","Mentha spp.","4–6 h","Yes","Most of year","Keep in its own pot; spreads aggressively."],
+["Monstera","Monstera deliciosa","Bright indirect","Yes","Year-round indoors","Warm, humid and spacious."],
+["Olive","Olea europaea","6–8 h","Yes","Winter–spring planting outdoors","Can be container-grown; indoors usually lacks light."],
+["Oregano","Origanum vulgare","6+ h","Yes","Spring–autumn","Sunny herb."],
+["Parsley","Petroselinum crispum","4–6 h","Yes","Most of year","Good container herb."],
+["Pea","Pisum sativum","6+ h","No","Autumn–winter","Needs support and is better outdoors."],
+["Pepper","Capsicum spp.","6–8 h","No","Spring–summer","Fruit production needs strong light."],
+["Philodendron","Philodendron spp.","Bright indirect","Yes","Year-round indoors","Easy foliage group; many varieties."],
+["Pothos","Epipremnum aureum","Low–bright indirect","Yes","Year-round indoors","Easy trailing plant."],
+["Rosemary","Salvia rosmarinus","6+ h","Yes","Most of year","Likes dry-down between watering."],
+["Rose","Rosa spp.","6–8 h","No indoors","Winter–spring planting","Needs outdoor sun and airflow."],
+["Snake plant","Dracaena trifasciata","Low–bright","Yes","Year-round indoors","Very forgiving; avoid overwatering."],
+["Spinach","Spinacia oleracea","4–6 h","No","Autumn–winter","Cool-season crop."],
+["Strawberry","Fragaria × ananassa","6–8 h","Yes","Autumn–spring","Possible in pots; fruiting needs strong light."],
+["Thyme","Thymus vulgaris","6+ h","Yes","Most of year","Excellent dry-loving herb."],
+["Tomato","Solanum lycopersicum","8+ h","No indoors normally","Spring–summer","Fruit production indoors needs very strong light."],
+["Tradescantia","Tradescantia spp.","Bright indirect","Yes","Year-round indoors","Very easy stem cuttings."],
+["Violet","Viola spp.","4–6 h","No outdoors preferred","Autumn–winter","Cool-season flowering plant."],
+["Zamioculcas / ZZ","Zamioculcas zamiifolia","Low–bright indirect","Yes","Year-round indoors","Slow-growing and drought tolerant."],
+["Lemon","Citrus limon","6–8 h","Yes, but best outdoors/patio","Spring–autumn planting","Sunny, free-draining citrus. Container-friendly; feed during active growth."],
+["Lime","Citrus × aurantiifolia","6–8 h","Yes, warm conditions","Spring–autumn planting","Needs strong light, warmth and good drainage. Protect from cold."],
+["Finger lime","Citrus australasica","6+ h","Yes, best in warm sheltered conditions","Spring–autumn planting","Australian native citrus; thorny, evergreen and suited to containers. Full sun and well-drained soil."],
+["Passionfruit","Passiflora edulis","6–8 h","No indoors normally","Spring–summer","Fast climbing vine. Needs a strong trellis, warmth, water and good sun for fruit."],
+["Kaffir / Makrut lime","Citrus hystrix","6–8 h","Yes, warm conditions","Spring–autumn planting","Grown for aromatic leaves and fruit. Sunny, sheltered position."],
+["Mandarin","Citrus reticulata","6–8 h","Yes, best outdoors/patio","Spring–autumn planting","Compact citrus suitable for large pots; strong light is essential."],
+["Orange","Citrus sinensis","6–8 h","No indoors normally","Spring–autumn planting","Needs lots of sun and a substantial root space for reliable fruiting."],
+["Strawberry","Fragaria × ananassa","6–8 h","Yes, if bright","Autumn–spring","Excellent container fruit; keep crown above the mix and give strong light."],
+["Zucchini","Cucurbita pepo","6–8 h","No indoors","Spring–summer","Needs space, sun and pollination; best in the garden."],
+["Potato","Solanum tuberosum","6+ h","No indoors normally","Late winter–spring","Use a deep container or potato bag; hill soil/mix around developing stems."],
+["Sweet potato","Ipomoea batatas","6+ h","No indoors normally","Spring–summer","Warm-season crop needing space and heat."],
+["Pumpkin","Cucurbita spp.","6–8 h","No indoors","Spring–summer","Vigorous vines requiring lots of room."],
+["Broccoli","Brassica oleracea var. italica","6+ h","No indoors","Autumn–winter","Cool-season vegetable; needs a sunny outdoor position."],
+["Cauliflower","Brassica oleracea var. botrytis","6+ h","No indoors","Autumn–winter","Cool-season crop; consistent moisture helps head development."],
+["Radish","Raphanus sativus","4–6 h","Yes, short-term","Most of year except extreme heat","Fast container crop; sow successionally."],
+["Spring onion","Allium fistulosum","4–6 h","Yes","Most of year","Excellent pot herb/vegetable."],
+["Rocket / arugula","Eruca vesicaria","4–6 h","Yes","Autumn–spring","Fast leafy crop; harvest young leaves."],
+["Passionfruit","Passiflora edulis","6–8 h","No indoors normally","Spring–summer","Strong climbing vine; provide trellis and good airflow." ]
+];
+
+const photoCache={};
+async function getPlantPhoto(query){
+  if(photoCache[query]) return photoCache[query];
+  try{
+    const r=await fetch('https://api.inaturalist.org/v1/taxa?q='+encodeURIComponent(query)+'&photos=true&per_page=1');
+    const j=await r.json();
+    const u=j.results?.[0]?.default_photo?.medium_url || j.results?.[0]?.default_photo?.square_url;
+    if(u){photoCache[query]=u; return u;}
+  }catch(e){}
+  return null;
+}
+async function loadPhotos(){
+  const els=[...document.querySelectorAll('.photo[data-query]')];
+  for(const el of els){
+    const q=el.dataset.query;
+    if(el.dataset.loaded==='1') continue;
+    el.dataset.loaded='1';
+    const u=await getPlantPhoto(q);
+    if(u) el.style.backgroundImage=`url("${u}")`;
+  }
+}
+
+
+const inspiration = {
+ "Living room":[
+   ["Monstera statement corner","monstera indoor living room interior plant"],
+   ["Pothos on shelving","pothos indoor living room shelf plants"],
+   ["Rubber plant beside sofa","rubber plant ficus elastica indoor living room"],
+   ["Layered plant corner","indoor plants living room monstera pothos snake plant"]
+ ],
+ "Bedroom":[
+   ["Snake plant bedside","snake plant indoor bedroom"],
+   ["Pothos on bedroom shelf","pothos indoor bedroom shelf"],
+   ["Peace lily accent","peace lily indoor bedroom"],
+   ["Calm green bedroom","indoor plants bedroom styling"]
+ ],
+ "Study":[
+   ["Desk greenery","indoor plants home office study desk"],
+   ["ZZ plant office corner","ZZ plant indoor home office"],
+   ["Pilea desk plant","pilea indoor desk home office"],
+   ["Bookshelf plants","pothos philodendron indoor study bookshelf"]
+ ],
+ "Bathroom":[
+   ["Boston fern by bath","Boston fern indoor bathroom"],
+   ["Humidity-loving foliage","indoor plants bathroom fern"],
+   ["Peace lily bathroom","peace lily indoor bathroom"],
+   ["Spa-style greenery","indoor bathroom plants styling"]
+ ],
+ "Basement":[
+   ["Grow-light plant corner","indoor plants basement grow light"],
+   ["ZZ plant low-light setup","ZZ plant indoor low light room"],
+   ["Snake plant low-light corner","snake plant indoor low light room"],
+   ["Basement plant shelf","houseplants basement grow lights shelf"]
+ ],
+ "Kitchen":[
+   ["Herbs on windowsill","indoor kitchen herbs windowsill basil rosemary"],
+   ["Pothos kitchen shelf","pothos indoor kitchen shelf"],
+   ["Basil in the kitchen","basil plant indoor kitchen window"],
+   ["Green kitchen styling","indoor plants kitchen styling"]
+ ],
+ "Dining room":[
+   ["Monstera beside dining table","monstera indoor dining room"],
+   ["Rubber plant dining corner","rubber plant indoor dining room"],
+   ["Statement floor plant","bird of paradise indoor dining room"],
+   ["Dining-room greenery","indoor plants dining room styling"]
+ ],
+ "Laundry":[
+   ["Fern in bright laundry","fern indoor laundry room"],
+   ["Pothos laundry shelf","pothos indoor laundry room"],
+   ["Spider plant utility room","spider plant indoor laundry room"],
+   ["Laundry greenery","indoor plants laundry room styling"]
+ ],
+ "Balcony":[
+   ["Sunny citrus in pots","potted lemon lime citrus balcony"],
+   ["Herb balcony","balcony herb garden rosemary basil thyme"],
+   ["Passionfruit trellis","passionfruit vine balcony trellis"],
+   ["Sunny plant collection","balcony container garden plants"]
+ ]
+};
+
+function renderInspiration(selected="all"){
+  const host=document.getElementById("inspirationRooms");
+  const tabs=document.getElementById("inspoTabs");
+  tabs.innerHTML='<button class="'+(selected==="all"?"active":"")+'" onclick="renderInspiration(\'all\')">All rooms</button>'+
+    Object.keys(inspiration).map(r=>`<button class="${selected===r?'active':''}" onclick="renderInspiration('${r}')">${r}</button>`).join("");
+  const entries=Object.entries(inspiration).filter(([r])=>selected==="all"||selected===r);
+  host.innerHTML=entries.map(([room,ideas])=>`
+    <div class="inspo-room">
+      <div class="inspo-room-head"><div><h3>${room}</h3><div class="note">${rooms[room]||""}</div></div>
+      <button onclick="pickRoom('${room}')" style="border:0;background:var(--green);color:white;padding:9px 12px;border-radius:999px;cursor:pointer">Find plants for this room →</button></div>
+      <div class="inspo-gallery">${ideas.map(([title,q],i)=>{
+        const seed=encodeURIComponent(room+"-"+title);
+        const url=`https://loremflickr.com/700/700/houseplant,interior,${encodeURIComponent(room)}/all?lock=${i+1}`;
+        return `<div class="inspo-shot" style="background-image:url('${url}')">
+          <div class="inspo-caption"><b>${title}</b>${room} inspiration</div>
+        </div>`;
+      }).join("")}
+      </div>
+    </div>`).join("");
+}
+
+function initDoctor(){
+ const d=document.getElementById("doctorPlant");
+ if(!d) return;
+ [...new Set(plants.map(p=>p.name))].sort().forEach(n=>d.insertAdjacentHTML("beforeend",`<option value="${n}">${n}</option>`));
+ diagnosePlant();
+}
+function diagnosePlant(){
+ const symptom=document.getElementById("doctorSymptom").value;
+ const soil=document.getElementById("doctorSoil").value;
+ const light=document.getElementById("doctorLight").value;
+ const plant=document.getElementById("doctorPlant").value;
+ const data={
+  yellow:["Yellow leaves","Common possibilities include excess water, poor drainage, normal ageing of older leaves, insufficient light, root stress or nutrient issues.","Check the root-zone moisture first. If the mix is wet and has stayed wet, do not add more water. Confirm the pot drains freely."],
+  brown:["Brown or crispy tips","Possible causes include letting the plant get too dry, harsh direct sun, low humidity in sensitive species, fertiliser/salt build-up or root stress.","Check whether the mix is dry, then look at the plant's distance from hot direct sun. Don't automatically increase watering unless the root zone supports that diagnosis."],
+  droop:["Drooping or wilting","Both thirst and root problems from prolonged wetness can cause wilting. Heat stress and transplant shock can also contribute.","Feel the soil. Dry + light pot suggests watering may be needed. Wet + droopy means adding more water may make things worse."],
+  curl:["Curling leaves","Often associated with moisture stress, heat, excessive sun, low humidity for sensitive plants or pests.","Inspect both sides of leaves, check soil moisture and review whether the plant recently moved into stronger light."],
+  spots:["Brown or black spots","Can be caused by physical damage, sun scorch, moisture-related disease, cold injury or pests depending on the appearance.","Remove badly damaged material if appropriate, keep foliage/airflow sensible, inspect for pests and review watering. Avoid diagnosing solely from one spot."],
+  drop:["Leaves falling off","Possible causes include sudden environmental change, watering stress, cold drafts, low light or normal shedding of older leaves.","Think about what changed recently: location, temperature, watering, repotting or season. Then check the soil."],
+  nogrowth:["No new growth","Growth can slow naturally in cool/dark periods. Other possibilities include insufficient light, depleted nutrition, being root-bound or general root stress.","Check season and light first. Don't compensate for slow winter growth by heavily watering or fertilising."],
+  mould:["Mould on the soil surface","Often encouraged by a persistently damp surface, organic material and limited airflow.","Allow appropriate surface drying, improve airflow and remove decaying debris. Review whether the pot is staying wet for too long."],
+  gnats:["Tiny flies / fungus gnats","Fungus gnats commonly breed in moist organic growing media.","Let the upper layer dry more where the plant permits, remove decaying material, and use appropriate gnat management if the population persists."],
+  webs:["Fine webbing / tiny moving dots","Spider mites are a possibility, particularly when fine webbing appears around leaves and stems.","Isolate the plant, inspect leaf undersides closely and treat promptly with an appropriate plant-safe pest method."],
+  sticky:["Sticky leaves / bumps","Sap-sucking pests such as scale, aphids or mealybugs can leave sticky honeydew.","Isolate the plant and inspect stems, nodes and leaf undersides. Identify the pest before choosing treatment."],
+  pale:["Pale or washed-out leaves","Possible causes include too much intense light, insufficient nutrients, root problems or species-specific chlorosis.","Review light exposure, root health and feeding history. Avoid adding fertiliser to a stressed or waterlogged plant."]
+ };
+ const x=data[symptom];
+ let extra="";
+ if(soil==="wet" && ["yellow","droop","drop","mould","gnats"].includes(symptom)) extra="<p><b>Your clue:</b> You selected <b>wet soil</b>. Prolonged wetness makes overwatering/poor aeration more important to investigate before giving the plant another drink.</p>";
+ if(soil==="dry" && ["brown","droop","curl","drop"].includes(symptom)) extra="<p><b>Your clue:</b> You selected <b>dry soil</b>. Check how deeply the pot has dried and whether the root ball needs a thorough watering.</p>";
+ if(light==="direct" && ["brown","curl","pale"].includes(symptom)) extra+="<p><b>Light clue:</b> You selected <b>direct sun</b>. Check whether this species actually tolerates that intensity and whether the damage is concentrated on the sun-facing side.</p>";
+ document.getElementById("doctorResult").innerHTML=`<div class="panel"><div class="eyebrow" style="color:var(--green)">Plant Doctor result</div><h2 style="font-size:28px">${x[0]}</h2><p><b>${plant==="general"?"Plant":"Selected plant"}:</b> ${plant==="general"?"Not specified":plant}</p><p>${x[1]}</p>${extra}<div class="tip"><b>First action:</b> ${x[2]}</div><p class="note">This is a troubleshooting guide, not a laboratory diagnosis. Multiple problems can create similar symptoms.</p></div>`;
+}
+
+function initRooms(){
+  const rf=document.getElementById('roomFilter');
+  Object.keys(rooms).forEach(r=>rf.insertAdjacentHTML('beforeend',`<option>${r}</option>`));
+  const rg=document.getElementById('roomGuide');
+  Object.entries(rooms).forEach(([r,d])=>rg.insertAdjacentHTML('beforeend',`<div class="room" onclick="pickRoom('${r}')"><div class="room-icon">${({'Living room':'🛋️','Bedroom':'🛏️','Study':'📚','Bathroom':'🛁','Basement':'🏚️','Kitchen':'🍳','Dining room':'🍽️','Laundry':'🧺','Balcony':'🌤️'})[r]||'🌿'}</div><h3>${r}</h3><small>${d}</small></div>`));
+}
+function pickRoom(r){document.querySelector('[data-tab="finder"]').click();document.getElementById('roomFilter').value=r;renderCards();}
+function renderCards(){
+  const room=document.getElementById('roomFilter').value, sun=document.getElementById('sunFilter').value, water=document.getElementById('waterFilter').value, q=document.getElementById('search').value.toLowerCase();
+  const out=plants.filter(p=>(room==='all'||p.rooms.includes(room))&&(sun==='all'||p.sun===sun)&&(water==='all'||p.water===water)&&(!q||(p.name+p.latin+p.type).toLowerCase().includes(q)));
+  document.getElementById('count').textContent=`${out.length} plant${out.length===1?'':'s'} match your conditions`;
+  document.getElementById('cards').innerHTML=out.map(p=>`<article class="card"><div class="card-img photo" data-query="${p.name} indoor houseplant in pot home interior" style="background-image:url('${img[p.image]}')"><span class="badge">${p.type}</span></div><div class="card-body"><h3>${p.name}</h3><div class="latin">${p.latin}</div><div class="meta"><div><b>Direct sun</b>${p.sun==='yes'?'Yes':'No / indirect preferred'}</div><div><b>Water</b>${p.freq}</div><div><b>Mature height</b>${p.height}</div><div><b>Spread / girth</b>${p.girth}</div><div><b>Starter pot</b>${p.pot}</div><div><b>All seasons</b>${p.season}</div></div><div class="tags">${p.rooms.map(r=>`<span class="tag">${r}</span>`).join('')}</div><p class="note"><b>Light:</b> ${p.light}</p></div></article>`).join(''); loadPhotos();
+}
+function renderAZ(letter='all'){
+ const q=document.getElementById('azSearch').value.toLowerCase();
+ const filtered=az.filter(p=>(letter==='all'||p[0][0].toUpperCase()===letter)&&(!q||p.join(' ').toLowerCase().includes(q)));
+ document.getElementById('azGrid').innerHTML=filtered.map(p=>`<div class="plant-row"><div class="az-photo photo" data-query="${p[0]} ${p[1]}"></div><strong>${p[0]}</strong> <span class="latin">${p[1]}</span><div class="small"><b>Sun:</b> ${p[2]} &nbsp; <b>All seasons indoors:</b> ${p[3]} &nbsp; <b>Plant:</b> ${p[4]}</div><div class="small">${p[5]}</div></div>`).join(''); loadPhotos();
+}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(b.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}));
+['roomFilter','sunFilter','waterFilter','search'].forEach(id=>document.getElementById(id).addEventListener('input',renderCards));
+document.getElementById('azSearch').addEventListener('input',()=>renderAZ());
+const letters=document.getElementById('letters');
+letters.insertAdjacentHTML('beforeend','<button onclick="renderAZ()">All</button>');
+'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(l=>letters.insertAdjacentHTML('beforeend',`<button onclick="renderAZ('${l}')">${l}</button>`));
+initRooms();renderCards();renderAZ();renderInspiration();initDoctor();
+</script>
+</body>
+</html>
