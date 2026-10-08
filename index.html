@@ -2,602 +2,2286 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Indoor Plant Bible</title>
-<meta name="description" content="A room-by-room indoor plant bible with light, watering, pot size, mature size, seasonal growing, A–Z plant index and propagation guide.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>Big Brightday Energy — Darts Scoreboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#f4f1e8; --paper:#fffdf7; --ink:#243128; --muted:#6b756b;
-  --green:#355b43; --sage:#8da58e; --leaf:#dce8d6; --gold:#c99a45;
-  --line:#d9ded2; --shadow:0 12px 35px rgba(37,50,39,.10);
-}
-*{box-sizing:border-box} html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-button,input,select{font:inherit}
-.hero{background:linear-gradient(135deg,#284735,#56745a);color:white;padding:58px 22px 46px}
-.hero-inner{max-width:1180px;margin:auto}
-.eyebrow{letter-spacing:.14em;text-transform:uppercase;font-size:12px;opacity:.8}
-h1{font-family:Georgia,serif;font-size:clamp(40px,6vw,72px);line-height:1;margin:10px 0 15px;font-weight:500}
-.hero p{max-width:720px;font-size:18px;opacity:.9}
-.nav{position:sticky;top:0;z-index:10;background:rgba(255,253,247,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
-.nav-inner{max-width:1180px;margin:auto;display:flex;gap:6px;overflow:auto;padding:8px 12px}
-.nav button{border:0;background:transparent;padding:9px 12px;border-radius:999px;color:var(--green);cursor:pointer;white-space:nowrap}
-.nav button:hover,.nav button.active{background:var(--leaf)}
-main{max-width:1180px;margin:auto;padding:30px 18px 80px}
-.section{display:none}.section.active{display:block}
-h2{font:500 36px Georgia,serif;margin:15px 0 8px}
-h3{margin:0 0 6px}
-.lead{color:var(--muted);max-width:800px}
-.panel{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow);margin:20px 0}
-.filters{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.field label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:5px}
-select,input{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:12px;background:white;color:var(--ink)}
-.result-count{margin:18px 0 10px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 8px 25px rgba(37,50,39,.06)}
-.card-img{height:190px;background-size:cover;background-position:center;position:relative}.photo{background-color:#e8eee4;background-size:cover;background-position:center}.az-photo{height:130px;border-radius:10px;margin-bottom:10px;background-size:cover;background-position:center}
-.inspo-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
-.inspo-tabs button{border:1px solid var(--line);background:white;border-radius:999px;padding:9px 13px;cursor:pointer;color:var(--green)}
-.inspo-tabs button.active,.inspo-tabs button:hover{background:var(--leaf)}
-.inspo-room{margin:28px 0 42px}
-.inspo-room-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:12px}
-.inspo-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.inspo-shot{min-height:245px;border-radius:17px;background:#e8eee4 center/cover no-repeat;position:relative;overflow:hidden;box-shadow:0 8px 25px rgba(37,50,39,.08)}
-.inspo-shot:after{content:"";position:absolute;inset:auto 0 0;background:linear-gradient(transparent,rgba(0,0,0,.68));height:55%}
-.inspo-caption{position:absolute;z-index:2;left:14px;right:14px;bottom:12px;color:white;font-size:13px}
-.inspo-caption b{display:block;font-size:15px}
-@media(max-width:850px){.inspo-gallery{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:550px){.inspo-gallery{grid-template-columns:1fr}}
-.badge{position:absolute;left:12px;top:12px;background:rgba(255,253,247,.92);padding:5px 9px;border-radius:999px;font-size:12px;color:var(--green)}
-.card-body{padding:16px}.latin{font-style:italic;color:var(--muted);font-size:13px}
-.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-.meta div{background:#f0f3eb;border-radius:10px;padding:8px}
-.meta b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
-.tag{background:var(--leaf);border-radius:999px;padding:4px 8px;font-size:11px}
-.room-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.room{padding:18px;border:1px solid var(--line);border-radius:17px;background:var(--paper);cursor:pointer;transition:.15s}
-.room:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-.room-icon{font-size:30px}.room small{color:var(--muted)}
-.az-controls{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
-.az button{border:1px solid var(--line);background:white;border-radius:9px;padding:7px 10px;cursor:pointer}
-.az button:hover{background:var(--leaf)}
-.az-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.plant-row{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px}
-.plant-row strong{font-size:17px}.plant-row .small{color:var(--muted);font-size:13px}
-.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.season{border-radius:16px;padding:18px;background:var(--leaf)}
-.season h3{font-family:Georgia,serif}
-.steps{counter-reset:step}.step{display:grid;grid-template-columns:45px 1fr;gap:15px;padding:18px 0;border-bottom:1px solid var(--line)}
-.step:before{counter-increment:step;content:counter(step);width:38px;height:38px;border-radius:50%;background:var(--green);color:white;display:grid;place-items:center;font-weight:700}
-.tip{border-left:4px solid var(--gold);background:#fbf3df;padding:13px 16px;border-radius:0 12px 12px 0}
-table{width:100%;border-collapse:collapse;background:var(--paper);border-radius:15px;overflow:hidden}
-th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line);vertical-align:top}
-th{background:#edf1e8;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
-.note{font-size:12px;color:var(--muted)}
-footer{max-width:1180px;margin:auto;padding:0 18px 50px;color:var(--muted);font-size:12px}
-@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.room-grid{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}.timeline{grid-template-columns:1fr 1fr}}
-@media(max-width:550px){.grid,.az-grid{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.room-grid{grid-template-columns:1fr 1fr}h2{font-size:30px}}
+  :root{
+    --cream:#F1E6CC;
+    --cream-dark:#E2D2A8;
+    --cream-darker:#D3BE8E;
+    --ink:#211A13;
+    --ink-soft:#4a3f32;
+    --red:#9C2B22;
+    --red-dark:#7A1F1A;
+    --green:#1F4034;
+    --green-dark:#153027;
+    --brass:#B5854A;
+    --brass-light:#DDB679;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0; height:100%;}
+  body{
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(255,255,255,0.05), transparent 55%),
+      repeating-linear-gradient(90deg,
+        #2c1a0f 0px, #35210f 18px, #2a1710 19px, #3a2415 55px,
+        #2e1a0d 56px, #402812 95px, #2c1a0f 96px, #34200f 140px),
+      linear-gradient(180deg, #241408, #1a0e05);
+    color:var(--ink);
+    font-family:'Crimson Pro', Georgia, serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:0;
+  }
+
+  .app-shell{
+    width:100%;
+    max-width:430px;
+    min-height:100vh;
+    background:var(--cream);
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    border-left:5px solid var(--brass);
+    border-right:5px solid var(--brass);
+    box-shadow:0 0 0 1px rgba(0,0,0,0.4), 0 18px 50px rgba(0,0,0,0.55);
+  }
+  .app-shell::before, .app-shell::after{
+    content:'';
+    position:absolute;
+    top:0; bottom:0;
+    width:10px;
+    background:repeating-linear-gradient(180deg, rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.18) 3px, transparent 3px, transparent 9px);
+    pointer-events:none;
+  }
+  .app-shell::before{left:-5px;}
+  .app-shell::after{right:-5px;}
+  @media (min-width:480px){
+    body{padding:26px 0;}
+    .app-shell{min-height:calc(100vh - 52px); border-radius:14px; overflow:hidden;
+      box-shadow:0 0 0 1px rgba(0,0,0,0.4), 0 24px 60px rgba(0,0,0,0.6);}
+  }
+  .display{font-family:'Bebas Neue', 'Arial Narrow', sans-serif; letter-spacing:0.03em;}
+
+  header{
+    width:100%;
+    background:var(--ink);
+    border-bottom:4px solid var(--brass);
+    padding:9px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+  }
+  header h1{
+    font-family:'Bebas Neue', sans-serif;
+    color:var(--cream);
+    font-size:1.7rem;
+    letter-spacing:0.05em;
+    margin:0;
+    line-height:1.15;
+    text-align:center;
+  }
+  header .dart-emoji{font-size:1.5rem;}
+  header .tagline{
+    color:var(--brass-light);
+    font-size:0.7rem;
+    letter-spacing:0.12em;
+    display:block;
+    text-align:center;
+    margin-top:2px;
+  }
+  .header-stack{display:flex;flex-direction:column;align-items:center;}
+
+  main{
+    width:100%;
+    padding:12px 14px 20px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .screen{display:none; flex-direction:column; gap:14px; animation:fadein 0.25s ease;}
+  .screen.active{display:flex;}
+  @keyframes fadein{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  h2.section-title{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:1.5rem;
+    letter-spacing:0.05em;
+    color:var(--ink);
+    margin:0 0 2px 0;
+    border-bottom:2px solid var(--brass);
+    padding-bottom:8px;
+  }
+  p.hint{margin:0; color:var(--ink-soft); font-size:0.95rem;}
+
+  .choice-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:10px;
+  }
+  .choice-grid.five{grid-template-columns:repeat(5, 1fr);}
+  .name-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:8px;
+  }
+
+  button{
+    font-family:'Crimson Pro', Georgia, serif;
+    font-size:1.05rem;
+    font-weight:600;
+    cursor:pointer;
+    border:2px solid var(--brass);
+    background:var(--cream-dark);
+    color:var(--ink);
+    border-radius:6px;
+    padding:14px 10px;
+    transition:background 0.12s, color 0.12s, transform 0.05s, border-color 0.12s;
+    min-height:50px;
+  }
+  button:active{transform:scale(0.97);}
+  button:hover{background:var(--cream-darker);}
+  button.selected{
+    background:var(--green);
+    color:var(--cream);
+    border-color:var(--brass-light);
+  }
+  button.selected:hover{background:var(--green-dark);}
+  button.primary{
+    background:var(--red);
+    color:var(--cream);
+    border-color:var(--brass-light);
+    font-family:'Bebas Neue', sans-serif;
+    letter-spacing:0.06em;
+    font-size:1.15rem;
+  }
+  button.primary:hover{background:var(--red-dark);}
+  button.primary:disabled{
+    background:#b8a98c; border-color:#b8a98c; color:#8a7c62; cursor:not-allowed;
+  }
+  button.ghost{
+    background:transparent;
+    border-color:var(--ink-soft);
+    color:var(--ink-soft);
+  }
+  button.ghost:hover{background:rgba(0,0,0,0.05);}
+  button.small{padding:9px 8px; font-size:0.85rem; min-height:38px;}
+
+  .row{display:flex; gap:10px;}
+  .row > *{flex:1;}
+
+  .toggle-line{
+    display:flex; align-items:center; gap:10px;
+    background:var(--cream-dark);
+    border:2px solid var(--brass);
+    border-radius:6px;
+    padding:12px 14px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .toggle-line input{width:20px; height:20px; accent-color:var(--green);}
+  .toggle-line span{font-size:0.95rem;}
+
+  /* --- Player picker (setup screen) --- */
+  .player-progress{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:1.05rem;
+    letter-spacing:0.06em;
+    color:var(--brass);
+  }
+  .custom-name-row{
+    display:none;
+    gap:8px;
+    margin-top:8px;
+  }
+  .custom-name-row.show{display:flex;}
+  .custom-name-row input{
+    flex:1;
+    padding:12px;
+    font-family:'Crimson Pro', serif;
+    font-size:1rem;
+    border:2px solid var(--brass);
+    border-radius:6px;
+    background:var(--cream);
+    color:var(--ink);
+  }
+
+  .roster-pills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:8px;
+    min-height:20px;
+  }
+  .roster-pill{
+    background:var(--green);
+    color:var(--cream);
+    border-radius:14px;
+    padding:6px 8px 6px 14px;
+    display:flex;
+    align-items:center;
+    gap:4px;
+    font-size:0.9rem;
+    font-weight:600;
+  }
+  .roster-pill-info{
+    display:flex;
+    flex-direction:column;
+    line-height:1.2;
+  }
+  .roster-pill-nickname{
+    font-size:0.62rem;
+    font-weight:500;
+    font-style:italic;
+    opacity:0.85;
+  }
+  .roster-pill button{
+    background:none;
+    border:none;
+    color:var(--cream);
+    font-size:1.1rem;
+    line-height:1;
+    cursor:pointer;
+    padding:2px 6px;
+    min-height:auto;
+  }
+
+  .nickname-tag{
+    font-family:'Crimson Pro', serif;
+    font-style:italic;
+    font-size:0.7rem;
+    font-weight:500;
+    opacity:0.8;
+    margin-top:1px;
+  }
+
+  .nickname-board-row{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:8px 0;
+    border-bottom:1px solid var(--brass);
+  }
+  .nickname-board-row:last-child{border-bottom:none;}
+  .nickname-board-icon{font-size:1.3rem; line-height:1.2;}
+  .nickname-board-info{flex:1; font-size:0.88rem; line-height:1.3;}
+  .nickname-board-reason{color:var(--ink-soft); font-size:0.78rem;}
+  .nickname-board-holder{
+    font-family:'Bebas Neue', sans-serif;
+    letter-spacing:0.04em;
+    font-size:1rem;
+    color:var(--red);
+    white-space:nowrap;
+  }
+
+  .version-badge{
+    display:inline-block;
+    margin-top:3px;
+    font-family:'Bebas Neue', sans-serif;
+    font-size:0.62rem;
+    letter-spacing:0.1em;
+    color:var(--ink);
+    background:var(--brass-light);
+    padding:2px 8px;
+    border-radius:10px;
+  }
+
+  #top-winners-wrap{
+    background:var(--green);
+    border:3px solid var(--brass);
+    border-radius:10px;
+    padding:14px 16px;
+    color:var(--cream);
+  }
+  #top-winners-wrap .section-title{
+    color:var(--cream);
+    border-bottom-color:var(--brass-light);
+    margin-bottom:6px;
+  }
+  .top-winner-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:6px 0;
+    font-size:1rem;
+  }
+  .top-winner-row + .top-winner-row{border-top:1px solid rgba(241,230,204,0.15);}
+  .top-winner-medal{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:1.1rem;
+    width:26px;
+    text-align:center;
+  }
+  .top-winner-name{flex:1; font-weight:600;}
+  .top-winner-count{
+    font-family:'Bebas Neue', sans-serif;
+    letter-spacing:0.04em;
+    color:var(--brass-light);
+  }
+  .top-winners-empty{
+    font-size:0.9rem;
+    color:var(--cream-darker);
+    padding:4px 0;
+  }
+
+
+  /* ---------- FX: animations + banter banners ---------- */
+  #fx-layer{position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:999;}
+  .fx-confetti{
+    position:absolute; top:-16px; width:9px; height:15px; border-radius:2px;
+    animation:fx-fall var(--dur,3s) linear forwards;
+  }
+  @keyframes fx-fall{
+    0%{transform:translate3d(0,0,0) rotate(0deg); opacity:1;}
+    100%{transform:translate3d(var(--dx,0px),112vh,0) rotate(var(--rot,600deg)); opacity:1;}
+  }
+  .fx-flash{
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 50% 42%, var(--fxc,rgba(255,205,90,0.8)), transparent 68%);
+    animation:fx-flash 0.95s ease-out forwards;
+  }
+  @keyframes fx-flash{0%{opacity:0;} 14%{opacity:1;} 100%{opacity:0;}}
+  .fx-ring{
+    position:absolute; left:50%; top:42%; width:60px; height:60px; margin:-30px 0 0 -30px;
+    border:6px solid #d9453a; border-radius:50%;
+    box-shadow:0 0 18px rgba(217,69,58,0.8), inset 0 0 14px rgba(217,69,58,0.6);
+    opacity:0; animation:fx-ring 1.15s ease-out forwards;
+  }
+  @keyframes fx-ring{
+    0%{transform:scale(0.2); opacity:0.95;}
+    100%{transform:scale(7.5); opacity:0;}
+  }
+  .fx-emoji{
+    position:absolute; font-size:var(--sz,2rem); line-height:1; opacity:0;
+    animation:fx-rise var(--dur,2s) ease-out forwards;
+  }
+  @keyframes fx-rise{
+    0%{transform:translate3d(0,0,0) scale(0.5) rotate(0deg); opacity:0;}
+    15%{opacity:1;}
+    100%{transform:translate3d(var(--dx,0px),var(--dy,-60vh),0) scale(1.15) rotate(var(--rot,0deg)); opacity:0;}
+  }
+
+  #fx-banner{
+    position:fixed; left:50%; top:12%;
+    transform:translate(-50%,-20px) scale(0.8);
+    width:max-content; max-width:min(420px,92vw);
+    padding:14px 22px; border-radius:12px; border:3px solid var(--brass-light);
+    font-family:'Bebas Neue', 'Arial Narrow', sans-serif;
+    font-size:1.5rem; line-height:1.2; letter-spacing:0.03em; text-align:center;
+    white-space:pre-line; overflow-wrap:anywhere; opacity:0; pointer-events:none; z-index:1000;
+    box-shadow:0 12px 34px rgba(0,0,0,0.55);
+  }
+  #fx-banner.good{background:var(--green); color:var(--cream);}
+  #fx-banner.bad{background:var(--red); color:var(--cream); border-color:var(--ink);}
+  #fx-banner.epic{background:linear-gradient(135deg,#f6d77a,#c8962f); color:var(--ink); border-color:var(--ink);}
+  #fx-banner.nick{background:var(--ink); color:var(--cream);}
+  #fx-banner.show{animation:fx-banner-in 0.38s cubic-bezier(0.2,1.5,0.4,1) forwards;}
+  #fx-banner.hide{animation:fx-banner-out 0.3s ease-in forwards;}
+  @keyframes fx-banner-in{
+    from{opacity:0; transform:translate(-50%,-24px) scale(0.75);}
+    to{opacity:1; transform:translate(-50%,0) scale(1);}
+  }
+  @keyframes fx-banner-out{
+    from{opacity:1; transform:translate(-50%,0) scale(1);}
+    to{opacity:0; transform:translate(-50%,-16px) scale(0.95);}
+  }
+
+  .fx-shake{animation:fx-shake 0.65s ease-in-out;}
+  @keyframes fx-shake{
+    10%,90%{transform:translateX(-3px);} 20%,80%{transform:translateX(6px);}
+    30%,50%,70%{transform:translateX(-9px);} 40%,60%{transform:translateX(9px);}
+  }
+  .fx-wobble{animation:fx-wobble 0.95s ease-in-out;}
+  @keyframes fx-wobble{
+    0%,100%{transform:rotate(0) translateY(0);} 20%{transform:rotate(-3deg) translateY(4px);}
+    40%{transform:rotate(3deg) translateY(6px);} 60%{transform:rotate(-2deg) translateY(3px);}
+    80%{transform:rotate(1deg);}
+  }
+  .fx-fire{animation:fx-fire 1.6s ease-out;}
+  @keyframes fx-fire{
+    0%{transform:scale(1); text-shadow:0 0 10px rgba(241,230,204,0.25);}
+    15%{transform:scale(1.22); text-shadow:0 -4px 10px #ffb300, 0 -10px 22px #ff6a00, 0 -18px 34px #d62800;}
+    35%{transform:scale(1.12); text-shadow:0 -6px 14px #ffb300, 0 -14px 26px #ff4500, 0 -22px 40px #b81d00;}
+    60%{transform:scale(1.16); text-shadow:0 -4px 10px #ffb300, 0 -10px 22px #ff6a00, 0 -18px 34px #d62800;}
+    100%{transform:scale(1); text-shadow:0 0 10px rgba(241,230,204,0.25);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .fx-shake,.fx-wobble,.fx-fire{animation:none !important;}
+  }
+
+  /* --- Game screen --- */
+  .scoreboard{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding-bottom:4px;
+  }
+  .player-card{
+    flex:0 0 auto;
+    min-width:98px;
+    background:var(--cream-dark);
+    border:2px solid var(--brass);
+    border-radius:6px;
+    padding:8px 10px;
+    text-align:center;
+    position:relative;
+  }
+  .player-card.active{
+    background:var(--green);
+    color:var(--cream);
+    border-color:var(--red);
+    border-top:4px solid var(--red);
+  }
+  .player-card .p-name{
+    font-size:0.78rem;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    opacity:0.85;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .player-card .p-score{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:1.7rem;
+    line-height:1.1;
+  }
+  .player-card .p-avg{font-size:0.68rem; opacity:0.75;}
+
+  .turn-panel{
+    background:var(--green);
+    border:3px solid var(--brass);
+    border-radius:10px;
+    padding:12px 16px;
+    text-align:center;
+    color:var(--cream);
+  }
+  .turn-panel .turn-who{
+    font-family:'Bebas Neue', sans-serif;
+    letter-spacing:0.08em;
+    font-size:1rem;
+    color:var(--brass-light);
+    margin-bottom:0;
+  }
+  .turn-panel .turn-remaining{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:2.9rem;
+    line-height:1;
+    text-shadow:0 0 10px rgba(241,230,204,0.25);
+  }
+  .turn-panel .turn-sub{font-size:0.8rem; color:var(--cream-darker); margin-top:2px;}
+
+  .dart-slots{
+    display:flex;
+    gap:8px;
+    justify-content:center;
+    margin-top:10px;
+  }
+  .dart-slot{
+    width:60px;
+    height:42px;
+    border:2px dashed rgba(241,230,204,0.5);
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Bebas Neue', sans-serif;
+    font-size:1.1rem;
+    color:var(--cream);
+  }
+  .dart-slot.filled{
+    border-style:solid;
+    border-color:var(--brass-light);
+    background:rgba(241,230,204,0.08);
+  }
+
+  .turn-message{
+    margin-top:12px;
+    font-family:'Bebas Neue', sans-serif;
+    letter-spacing:0.06em;
+    font-size:1.3rem;
+    padding:8px;
+    border-radius:6px;
+    display:none;
+  }
+  .turn-message.show{display:block;}
+  .turn-message.bust{background:var(--red); color:var(--cream);}
+  .turn-message.win{background:var(--brass); color:var(--ink);}
+
+  .turn-actions{display:flex; gap:8px; margin-top:12px; align-items:stretch;}
+  .next-player-btn{display:none; flex:1;}
+  .next-player-btn.show{display:inline-block;}
+  .undo-ghost{
+    flex:0 0 auto;
+    background:transparent;
+    border:2px solid var(--brass-light);
+    color:var(--cream);
+    font-size:0.9rem;
+    padding:10px 14px;
+    min-height:auto;
+  }
+  .undo-ghost:hover:not(:disabled){background:rgba(241,230,204,0.1);}
+  .undo-ghost:disabled{opacity:0.35; cursor:not-allowed;}
+  .bust-ghost{border-color:var(--red);}
+  .bust-ghost:hover:not(:disabled){background:rgba(156,43,34,0.25);}
+
+  .mode-row{display:flex; gap:8px;}
+  .mode-row button{flex:1; font-family:'Bebas Neue', sans-serif; letter-spacing:0.05em; font-size:0.95rem;}
+
+  #dartbydart-panel, #quick-panel{display:flex; flex-direction:column; gap:12px;}
+  .hidden-panel{display:none !important;}
+
+  .mult-row{display:flex; gap:8px;}
+  .mult-row button{flex:1; font-family:'Bebas Neue', sans-serif; letter-spacing:0.05em;}
+
+  .quick-chips{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:8px;
+  }
+  .quick-chips button{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:1.05rem;
+    padding:10px 4px;
+    min-height:42px;
+    background:var(--cream);
+  }
+  .quick-display{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Bebas Neue', sans-serif;
+    font-size:2.6rem;
+    text-align:center;
+    border-radius:8px;
+    padding:10px;
+    letter-spacing:0.04em;
+    border:2px solid var(--brass);
+  }
+  .quick-keypad{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:8px;
+  }
+  .quick-keypad button{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:1.4rem;
+    min-height:50px;
+  }
+  .quick-keypad button.func{
+    background:var(--cream-darker);
+  }
+  #finish-double-row{margin-top:2px;}
+  .quick-hint{
+    font-size:0.82rem;
+    color:var(--ink-soft);
+    text-align:center;
+    min-height:1.1em;
+  }
+  .confirm-row{display:none; gap:10px;}
+  .confirm-row.show{display:flex;}
+
+  .pad{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:7px;
+  }
+  .pad button{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:1.2rem;
+    padding:10px 4px;
+    min-height:42px;
+  }
+  .pad button.wide{grid-column:span 1; font-size:0.85rem; font-family:'Crimson Pro',serif; font-weight:700;}
+
+  .undo-row{display:flex; gap:10px;}
+
+  details.history{
+    background:var(--cream-dark);
+    border:2px solid var(--brass);
+    border-radius:6px;
+    padding:10px 14px;
+  }
+  details.history summary{
+    cursor:pointer;
+    font-family:'Bebas Neue', sans-serif;
+    letter-spacing:0.05em;
+    font-size:1rem;
+  }
+  .hist-player{margin-top:10px;}
+  .hist-player h4{
+    margin:8px 0 4px;
+    font-size:0.95rem;
+    border-bottom:1px solid var(--brass);
+    padding-bottom:2px;
+  }
+  .hist-player ul{margin:0; padding-left:18px; font-size:0.85rem;}
+  .hist-player li.bust{color:var(--red); font-weight:700;}
+
+  .top-bar{display:flex; justify-content:space-between; align-items:center;}
+  .top-bar button{padding:8px 12px; min-height:auto;}
+
+  /* --- winner screen --- */
+  .winner-card{
+    background:var(--green);
+    color:var(--cream);
+    border:3px solid var(--brass-light);
+    border-radius:12px;
+    padding:28px 20px;
+    text-align:center;
+  }
+  .winner-card .trophy{font-size:2.6rem;}
+  .winner-card h2{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:2.4rem;
+    letter-spacing:0.05em;
+    margin:6px 0 2px;
+  }
+  .winner-card p{margin:2px 0; color:var(--cream-darker);}
+  .stats-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+    font-size:0.9rem;
+  }
+  .stats-table th, .stats-table td{
+    padding:8px 6px;
+    border-bottom:1px solid var(--brass);
+    text-align:left;
+  }
+  .stats-table th{color:var(--brass-light); font-weight:600;}
+
+  footer{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:0.75rem;
+    padding:10px 0 24px;
+    opacity:0.7;
+  }
+
+  @media (max-width:380px){
+    header h1{font-size:1.4rem;}
+    .turn-panel .turn-remaining{font-size:2.9rem;}
+    .dart-slot{width:54px; height:46px; font-size:1rem;}
+    .player-card{min-width:86px;}
+  }
 </style>
 </head>
 <body>
-<header class="hero">
-<div class="hero-inner">
-<div class="eyebrow">The first-home plant project</div>
-<h1>The Indoor Plant Bible</h1>
-<p>Pick a room. Tell the bible whether it gets direct sun. Then discover plants that actually fit the space — with watering, pot size, mature size, seasons and propagation all in one place.</p>
-</div>
+
+<div class="app-shell">
+
+<header>
+  <div class="header-stack">
+    <h1><span class="dart-emoji">🎯</span> BIG BRIGHTDAY ENERGY</h1>
+    <span class="tagline">DARTS SCOREBOARD</span>
+    <span class="version-badge">v2.0</span>
+  </div>
 </header>
 
-<nav class="nav"><div class="nav-inner">
-<button class="active" data-tab="finder">🌿 Plant Finder</button>
-<button data-tab="az">🔤 A–Z Bible</button>
-<button data-tab="inspiration">✨ Room Inspiration</button>
-<button data-tab="seasons">☀️ Australian Seasons</button>
-<button data-tab="propagation">✂️ Propagation</button>
-<button data-tab="lawn">🌱 Lawn & Garden</button>
-<button data-tab="doctor">🩺 Plant Doctor</button>
-<button data-tab="watering">💧 Watering Bible</button>
-<button data-tab="care">🪴 Care Guide</button>
-</div></nav>
-
 <main>
-<section id="finder" class="section active">
-<h2>Find a plant for your room</h2>
-<p class="lead">Start with the room and the light. “Direct sun” means the plant will receive actual sunbeams through a window. Bright indirect light is different — the room can be bright without sun hitting the leaves.</p>
-<div class="panel">
-<div class="filters">
-<div class="field"><label>Room</label><select id="roomFilter"><option value="all">Any room</option></select></div>
-<div class="field"><label>Direct sun?</label><select id="sunFilter"><option value="all">Either</option><option value="yes">Yes</option><option value="no">No</option></select></div>
-<div class="field"><label>Watering</label><select id="waterFilter"><option value="all">Any</option><option value="low">Low maintenance</option><option value="medium">Moderate</option><option value="high">Frequent</option></select></div>
-<div class="field"><label>Search</label><input id="search" placeholder="e.g. fern, herb, palm"></div>
-</div>
-</div>
-<div class="result-count" id="count"></div>
-<div class="grid" id="cards"></div>
-</section>
 
-<section id="az" class="section">
-<h2>A–Z Plant Bible</h2>
-<p class="lead">A broader reference including houseplants plus herbs, vegetables, fruit and useful garden plants. Indoor growing is not equally practical for every entry — use the notes as a reality check.</p>
-<div class="panel">
-<input id="azSearch" placeholder="Search the A–Z list...">
-<div class="az-controls" id="letters"></div>
-</div>
-<div class="az-grid" id="azGrid"></div>
-</section>
+  <!-- SCREEN 1: SETUP -->
+  <section class="screen active" id="screen-setup">
+    <div id="top-winners-wrap">
+      <h2 class="section-title">🏆 Top Winners</h2>
+      <div id="top-winners-list"></div>
+    </div>
 
+    <div>
+      <h2 class="section-title">Starting score</h2>
+      <div class="choice-grid" id="start-score-grid"></div>
+    </div>
 
-<section id="inspiration" class="section">
-<h2>Room-by-room plant inspiration</h2>
-<p class="lead">See plants in a real indoor context before choosing them. <b>Internet access is required for the inspiration photography.</b> Every room in the Plant Finder is included below, with several layout ideas and suggested plants. The photos in this section deliberately search for <b>plants styled inside the room</b>, rather than isolated nursery specimens.</p>
-<div class="panel">
-<h3>Choose a room</h3>
-<div class="inspo-tabs" id="inspoTabs"></div>
-<div class="tip">Use these images for placement and styling inspiration, then use the Plant Finder to check whether the plant actually matches the light in your own room. A beautiful dark corner is still a dark corner.</div>
-</div>
-<div id="inspirationRooms"></div>
-</section>
+    <label class="toggle-line">
+      <input type="checkbox" id="double-out-toggle" checked>
+      <span>Finish on a double (standard rules)</span>
+    </label>
 
-<section id="seasons" class="section">
-<h2>Growing through the Australian seasons</h2>
-<p class="lead">These are broad Southern Hemisphere guidelines. Your indoor microclimate matters: Melbourne winter light and temperature are very different from a warm Queensland room.</p>
-<div class="timeline">
-<div class="season"><h3>🌱 Spring</h3><p>Sep–Nov</p><b>Best for:</b><br>Propagation, repotting, new growth, herbs, seedlings and gradually increasing watering.</div>
-<div class="season"><h3>☀️ Summer</h3><p>Dec–Feb</p><b>Best for:</b><br>Fast growth, tropical plants, cuttings and outdoor sun-loving crops if you have suitable space.</div>
-<div class="season"><h3>🍂 Autumn</h3><p>Mar–May</p><b>Best for:</b><br>Reducing watering as growth slows, harvesting herbs and bringing sensitive plants away from cold windows.</div>
-<div class="season"><h3>❄️ Winter</h3><p>Jun–Aug</p><b>Best for:</b><br>Bright windows, careful watering and avoiding cold drafts. Many plants need less water than summer.</div>
-</div>
-<div class="panel">
-<h3>What “survive all seasons” means</h3>
-<p>A plant marked <b>Yes</b> in the A–Z section can generally remain indoors year-round in a normal home if its light, temperature and watering needs are met. It does <em>not</em> mean it grows at the same speed all year.</p>
-<div class="tip">Rule of thumb: don't water because the calendar says it is watering day. Check the pot/soil first. Many houseplants suffer more from excess water than from a slightly late drink.</div>
-</div>
-</section>
+    <div>
+      <h2 class="section-title">Who's playing?</h2>
+      <p class="hint">Tap everyone playing, then start the game.</p>
+      <div class="name-grid" id="player-select-grid"></div>
+      <button class="ghost small" id="add-custom-btn" style="margin-top:8px; width:100%;">+ Add a custom name</button>
+      <div class="custom-name-row" id="custom-name-row">
+        <input type="text" id="custom-name-input" placeholder="Type a name…" maxlength="16">
+        <button class="primary small" id="custom-name-add">Add</button>
+      </div>
+    </div>
 
-<section id="propagation" class="section">
-<h2>How to make new plants from old plants</h2>
-<p class="lead">Propagation is one of the best parts of owning plants: one healthy plant can become a collection, gifts for friends, or plants for every room.</p>
-<div class="steps">
-<div class="step"><div><h3>Choose healthy material</h3><p>Pick a healthy, pest-free stem. For stem cuttings, a piece around 8–10 cm with 2–3 leaves is a useful starting point. Clean your scissors or secateurs first.</p></div></div>
-<div class="step"><div><h3>Cut just below a node</h3><p>The node is where a leaf joins the stem. Remove the lower leaves so the node can sit in water or propagation mix.</p></div></div>
-<div class="step"><div><h3>Root it in water or mix</h3><p>Easy plants such as pothos, tradescantia and many philodendrons can root in water. Alternatively use a free-draining propagation mix.</p></div></div>
-<div class="step"><div><h3>Bright, warm, but not scorching</h3><p>Place cuttings in bright indirect light. Avoid strong direct sun while roots are forming. Keep the medium moist, not saturated.</p></div></div>
-<div class="step"><div><h3>Wait for roots</h3><p>Many easy stem cuttings can root in roughly 3–4 weeks, though species vary. Water-rooted cuttings should have a useful root system before potting up.</p></div></div>
-<div class="step"><div><h3>Pot into a small container</h3><p>Use a small pot with drainage. Don't jump straight into a huge pot: excess wet mix around a small root system can encourage rot.</p></div></div>
-</div>
-<div class="panel">
-<h3>Propagation cheat sheet</h3>
-<table><tr><th>Plant</th><th>Method</th><th>Beginner tip</th></tr>
-<tr><td>Pothos</td><td>Stem cutting</td><td>Water-root a node, then pot up.</td></tr>
-<tr><td>Monstera</td><td>Stem cutting</td><td>Each cutting needs a node; a leaf alone won't make a new vine.</td></tr>
-<tr><td>Spider plant</td><td>Plantlets</td><td>Root the baby plants produced on runners.</td></tr>
-<tr><td>Snake plant</td><td>Leaf cutting / division</td><td>Let leaf sections callus before planting; division is faster.</td></tr>
-<tr><td>Succulents</td><td>Leaf / stem</td><td>Allow fresh cuts to callus before placing in mix.</td></tr>
-<tr><td>Herbs</td><td>Stem cuttings</td><td>Basil, mint and rosemary can be propagated from suitable fresh growth.</td></tr>
-</table>
-</div>
-</section>
+    <div id="roster-wrap">
+      <span class="player-progress">PLAYERS (<span id="roster-count">0</span>)</span>
+      <div class="roster-pills" id="roster-pills"></div>
+    </div>
 
-<section id="lawn" class="section">
-<h2>🌱 Lawn & Garden Care</h2>
-<p class="lead">A new-house section for getting the lawn established and keeping the garden healthy through the year. The exact mowing and watering rhythm depends on your grass species, soil, drainage and Melbourne weather.</p>
-<div class="panel"><h3>First identify your lawn</h3><p>Common warm-season lawns include <b>buffalo, couch and kikuyu</b>. Cool-season grasses such as <b>fescue and ryegrass</b> behave differently. If you are unsure, take a close photo of the blades and use a plant-identification app or nursery/garden-centre advice before changing fertiliser or watering.</p></div>
-<div class="grid">
-<article class="card"><div class="card-img lawn-img photo" data-query="buffalo grass lawn"></div><div class="card-body"><h3>Buffalo</h3><p>Generally broad-bladed, shade-tolerant compared with many warm-season grasses. Mow high rather than scalping it.</p><div class="meta"><div><b>Sun</b>Full sun–part shade</div><div><b>Water</b>Deeply, then allow surface to dry</div><div><b>Mow</b>Keep a healthy leaf height</div><div><b>Best use</b>Family lawns / moderate shade</div></div></div></article>
-<article class="card"><div class="card-img lawn-img photo" data-query="kikuyu grass lawn"></div><div class="card-body"><h3>Kikuyu</h3><p>Fast-growing warm-season grass. It can recover quickly but needs regular mowing in active growth.</p><div class="meta"><div><b>Sun</b>Full sun preferred</div><div><b>Water</b>Deep watering when needed</div><div><b>Mow</b>Regularly during growth</div><div><b>Best use</b>Hard-wearing lawns</div></div></div></article>
-<article class="card"><div class="card-img lawn-img photo" data-query="couch grass lawn"></div><div class="card-body"><h3>Couch</h3><p>Fine-textured warm-season grass that likes strong sunlight and can form a dense lawn when actively growing.</p><div class="meta"><div><b>Sun</b>Full sun</div><div><b>Water</b>Deeply rather than little-and-often</div><div><b>Mow</b>Regularly</div><div><b>Best use</b>Sunny lawns</div></div></div></article>
-</div>
-<div class="panel"><h3>Seasonal lawn calendar — Melbourne</h3><table><tr><th>Season</th><th>What to do</th></tr><tr><td>🌱 Spring</td><td>Increase mowing as growth returns. Repair thin areas, check irrigation and consider fertilising according to your grass type and soil test.</td></tr><tr><td>☀️ Summer</td><td>Prioritise deep watering when needed rather than frequent shallow watering. Mow without removing too much leaf at once. Watch for heat stress and pests.</td></tr><tr><td>🍂 Autumn</td><td>Growth usually slows. Reduce mowing frequency, remove excessive leaf litter and repair damaged patches while conditions remain suitable.</td></tr><tr><td>❄️ Winter</td><td>Warm-season grasses can become dormant or slow considerably. Avoid unnecessary watering and mowing when the lawn is wet.</td></tr></table></div>
-<div class="panel"><h3>Simple lawn checklist</h3><div class="steps"><div class="step"><div><h3>Check the soil</h3><p>Compacted soil, poor drainage and unsuitable pH can cause problems that fertiliser will not fix. A soil test is useful before major amendments.</p></div></div><div class="step"><div><h3>Water deeply</h3><p>Watering should encourage a useful root system rather than keeping the top few millimetres permanently wet. Follow local water restrictions and your grass's needs.</p></div></div><div class="step"><div><h3>Mow little and often</h3><p>Avoid removing a huge amount of leaf in one cut. Sharp blades give a cleaner cut and reduce ragged leaf damage.</p></div></div><div class="step"><div><h3>Feed based on need</h3><p>Use a fertiliser appropriate to the grass and season. More fertiliser is not automatically better; excessive nutrients can cause weak growth and runoff.</p></div></div><div class="step"><div><h3>Repair bare spots</h3><p>Find the cause first — shade, traffic, drainage, pests or poor soil — then seed, patch or re-turf at the appropriate time for your grass.</p></div></div></div></div>
-<div class="tip">For a Melbourne home, the next useful upgrade would be a dedicated lawn diagnostic: enter your grass type, lawn size, hours of sun and irrigation setup, and the bible can generate a seasonal mowing/watering/feeding checklist.</div>
-</section>
+    <button class="primary" id="setup-continue" disabled>Start game →</button>
+    <button class="ghost" id="leaderboard-btn">🏆 View leaderboard</button>
+  </section>
 
+  <!-- SCREEN 2: LEADERBOARD -->
+  <section class="screen" id="screen-leaderboard">
+    <div class="top-bar">
+      <span class="player-progress">🏆 LEADERBOARD</span>
+      <button class="ghost small" id="leaderboard-back">← Back</button>
+    </div>
+    <div>
+      <h2 class="section-title">Current Nicknames</h2>
+      <p class="hint">Exactly one nickname is up for grabs at the end of every game — it sticks with its holder until someone else earns it.</p>
+      <div id="nicknames-content"></div>
+    </div>
+    <div id="leaderboard-content"></div>
+    <button class="ghost small" id="leaderboard-reset">Reset all stats</button>
+    <div class="row confirm-row" id="lb-reset-confirm-row">
+      <button class="primary small" id="lb-reset-yes">Yes, reset stats</button>
+      <button class="ghost small" id="lb-reset-no">Cancel</button>
+    </div>
+  </section>
 
-<section id="doctor" class="section">
-<h2>What is wrong with my plant?</h2>
-<p class="lead">Choose the symptom you can see. The Plant Doctor will give you the most common causes, what to check next, and the safest first actions. Symptoms can have more than one cause, so diagnose before automatically adding water or fertiliser.</p>
+  <!-- SCREEN 3: GAME -->
+  <section class="screen" id="screen-game">
+    <div class="top-bar">
+      <span class="player-progress" id="game-title">501 · DOUBLE OUT</span>
+      <button class="ghost small" id="restart-btn">New game</button>
+    </div>
+    <div class="row confirm-row" id="restart-confirm-row">
+      <button class="primary small" id="restart-yes">Yes, start over</button>
+      <button class="ghost small" id="restart-no">Cancel</button>
+    </div>
 
-<div class="panel">
-<div class="filters">
-<div class="field"><label>Plant</label>
-<select id="doctorPlant"><option value="general">Any / not sure</option></select></div>
-<div class="field"><label>Symptom</label>
-<select id="doctorSymptom">
-<option value="yellow">Yellow leaves</option>
-<option value="brown">Brown/crispy tips</option>
-<option value="droop">Drooping/wilting</option>
-<option value="curl">Curling leaves</option>
-<option value="spots">Brown/black spots</option>
-<option value="drop">Leaves falling off</option>
-<option value="nogrowth">No new growth</option>
-<option value="mould">Mould on soil</option>
-<option value="gnats">Tiny flies / fungus gnats</option>
-<option value="webs">Fine webs / tiny mites</option>
-<option value="sticky">Sticky leaves / bumps</option>
-<option value="pale">Pale or washed-out leaves</option>
-</select></div>
-<div class="field"><label>Soil right now</label>
-<select id="doctorSoil"><option value="unknown">Not sure</option><option value="wet">Wet / stays wet</option><option value="moist">Moist</option><option value="dry">Dry</option></select></div>
-<div class="field"><label>Light</label>
-<select id="doctorLight"><option value="unknown">Not sure</option><option value="low">Low light</option><option value="indirect">Bright indirect</option><option value="direct">Direct sun</option></select></div>
-</div>
-<button onclick="diagnosePlant()" style="margin-top:16px;border:0;background:var(--green);color:white;padding:12px 18px;border-radius:999px;cursor:pointer">Diagnose my plant</button>
-</div>
-<div id="doctorResult"></div>
+    <div class="scoreboard" id="scoreboard"></div>
 
-<div class="panel">
-<h3>🚨 Check these first</h3>
-<table>
-<tr><th>Clue</th><th>Possible problem</th><th>What to do first</th></tr>
-<tr><td>Yellow + wet soil</td><td>Too much water / poor drainage</td><td>Stop watering, check drainage and let the mix dry appropriately.</td></tr>
-<tr><td>Droopy + bone-dry soil</td><td>Thirst</td><td>Water thoroughly and let excess drain.</td></tr>
-<tr><td>Brown crispy edges</td><td>Dryness, hot sun, low humidity or salt build-up</td><td>Check soil moisture and whether leaves are being scorched.</td></tr>
-<tr><td>Long weak growth</td><td>Insufficient light</td><td>Move gradually to brighter appropriate light.</td></tr>
-<tr><td>Fine webbing</td><td>Spider mites</td><td>Isolate the plant and inspect leaf undersides.</td></tr>
-<tr><td>Sticky leaves / bumps</td><td>Scale or other sap-sucking pest</td><td>Isolate and inspect stems and leaf undersides closely.</td></tr>
-</table>
-</div>
-</section>
+    <div class="turn-panel">
+      <div class="turn-who" id="turn-who">TAYLOR'S TURN</div>
+      <div class="turn-remaining" id="turn-remaining">501</div>
+      <div class="turn-sub" id="turn-sub">Turn total: 0</div>
+      <div class="dart-slots" id="dart-slots-wrap">
+        <div class="dart-slot" id="dart-slot-0">1</div>
+        <div class="dart-slot" id="dart-slot-1">2</div>
+        <div class="dart-slot" id="dart-slot-2">3</div>
+      </div>
+      <div class="turn-message" id="turn-message"></div>
+      <div class="turn-actions">
+        <button class="undo-ghost" id="undo-btn" disabled>↩ Undo</button>
+        <button class="undo-ghost bust-ghost" id="bust-btn">Bust →</button>
+        <button class="primary next-player-btn" id="next-player-btn">Next player →</button>
+      </div>
+    </div>
 
-<section id="watering" class="section">
-<h2>The Watering Bible</h2>
-<p class="lead">The best watering schedule is usually not a schedule. Light, temperature, pot size, pot material, soil mix, plant size and season all change how quickly a plant drinks. Use the calendar as a reminder to <em>check</em> the plant.</p>
+    <div class="mode-row" id="mode-row">
+      <button class="selected" data-mode="dart">Dart by dart</button>
+      <button data-mode="quick">Quick total</button>
+    </div>
 
-<div class="panel">
-<h3>💧 The 5-step watering method</h3>
-<div class="steps">
-<div class="step"><div><h3>Check before watering</h3><p>Push a finger into the potting mix. For many tropical foliage plants, check roughly the upper 2–5 cm. Succulents and drought-tolerant plants generally need substantially more drying between drinks.</p></div></div>
-<div class="step"><div><h3>Learn the pot's weight</h3><p>Lift smaller pots after watering and again when dry. A dry pot can be dramatically lighter. Over time this becomes one of the quickest moisture tests.</p></div></div>
-<div class="step"><div><h3>Water the whole root ball</h3><p>Pour slowly over the growing medium rather than giving a tiny splash. Aim to evenly moisten the root zone.</p></div></div>
-<div class="step"><div><h3>Let excess water escape</h3><p>Use drainage holes. Let excess water run out, then empty the saucer or decorative outer pot so roots are not sitting in water.</p></div></div>
-<div class="step"><div><h3>Check again — don't automatically repeat</h3><p>A reminder saying “water Monstera” should really mean “check Monstera”. If the mix is still appropriately moist, wait.</p></div></div>
-</div>
-</div>
+    <div id="dartbydart-panel">
+      <div class="mult-row" id="mult-row">
+        <button class="selected" data-mult="1">SINGLE</button>
+        <button data-mult="2">DOUBLE</button>
+        <button data-mult="3">TRIPLE</button>
+      </div>
 
-<div class="panel">
-<h3>Watering by plant type</h3>
-<table>
-<tr><th>Plant group</th><th>When to consider watering</th><th>Typical mistake</th></tr>
-<tr><td>Tropical foliage<br><span class="note">Monstera, philodendron, pothos</span></td><td>When the upper layer has dried; don't keep permanently saturated.</td><td>Watering every few days regardless of soil.</td></tr>
-<tr><td>Moisture lovers<br><span class="note">Ferns, calathea</span></td><td>Before the root ball becomes completely dry; aim for more even moisture.</td><td>Letting them repeatedly become bone dry.</td></tr>
-<tr><td>Drought tolerant<br><span class="note">Snake plant, ZZ</span></td><td>Allow substantial drying before watering again.</td><td>Treating them like tropical ferns.</td></tr>
-<tr><td>Succulents & cacti</td><td>Let the growing medium dry well between drinks.</td><td>Small, frequent splashes.</td></tr>
-<tr><td>Indoor herbs</td><td>Check frequently because small sunny pots can dry quickly.</td><td>Allowing leafy herbs such as basil to repeatedly wilt badly.</td></tr>
-<tr><td>Citrus in containers</td><td>Check moisture regularly in warm weather; water thoroughly when needed.</td><td>Either permanent wetness or letting the entire root ball repeatedly dry out.</td></tr>
-</table>
-</div>
+      <div class="pad" id="number-pad"></div>
+    </div>
 
-<div class="panel">
-<h3>🧠 Useful watering tricks</h3>
-<div class="room-grid">
-<div class="room"><div class="room-icon">☝️</div><h3>Finger test</h3><small>Feel below the surface rather than judging by the colour of the top alone.</small></div>
-<div class="room"><div class="room-icon">🏋️</div><h3>Lift test</h3><small>Learn how heavy the pot feels wet versus dry.</small></div>
-<div class="room"><div class="room-icon">🥢</div><h3>Wooden skewer</h3><small>For deeper pots, insert a clean wooden skewer into the mix. Damp mix tends to leave the skewer darker or with particles attached.</small></div>
-<div class="room"><div class="room-icon">🚿</div><h3>Sink or shower</h3><small>For manageable pots, water thoroughly in a sink or shower and allow them to drain before returning them to their decorative pot.</small></div>
-<div class="room"><div class="room-icon">🪴</div><h3>Drainage holes</h3><small>Keep plants in draining nursery pots inside decorative cachepots if the decorative pot has no hole.</small></div>
-<div class="room"><div class="room-icon">🌧️</div><h3>Season matters</h3><small>Cooler, darker winter conditions often mean slower drying than bright summer conditions.</small></div>
-<div class="room"><div class="room-icon">☀️</div><h3>Window matters</h3><small>A sunny, warm window can dry a pot much faster than the same plant across the room.</small></div>
-<div class="room"><div class="room-icon">📓</div><h3>Track observations</h3><small>Write down when you checked and watered. You'll quickly learn each plant's rhythm without blindly following dates.</small></div>
-</div>
-</div>
+    <div id="quick-panel" class="hidden-panel">
+      <div class="quick-chips" id="quick-chips"></div>
+      <div class="quick-display" id="quick-display">0</div>
+      <div class="quick-keypad" id="quick-keypad"></div>
+      <label class="toggle-line" id="finish-double-row" style="display:none;">
+        <input type="checkbox" id="finish-double-check">
+        <span>Finished on a double</span>
+      </label>
+      <div class="quick-hint" id="quick-hint"></div>
+      <button class="primary" id="quick-submit">Score this visit</button>
+    </div>
 
-<div class="panel">
-<h3>Signs you may be watering too much vs too little</h3>
-<table>
-<tr><th>Too much water / too little oxygen around roots</th><th>Too little water</th></tr>
-<tr><td>Mix remains wet for a long time; yellowing; soft tissue; musty smell; declining roots.</td><td>Very dry/light pot; wilting; crispy edges; shrinking or pulling-away potting mix.</td></tr>
-<tr><td colspan="2"><b>Important:</b> some symptoms overlap. Always check the soil/root zone instead of diagnosing from leaf colour alone.</td></tr>
-</table>
-</div>
+    <details class="history">
+      <summary>Leg history</summary>
+      <div id="history-content"></div>
+    </details>
+  </section>
 
-<div class="tip"><b>Best rule in the whole Bible:</b> don't give a thirsty-looking plant water until you've checked whether its root zone is actually dry. A plant with damaged, waterlogged roots can wilt even while sitting in wet soil.</div>
-</section>
+  <!-- SCREEN 4: WINNER -->
+  <section class="screen" id="screen-winner">
+    <div class="winner-card">
+      <div class="trophy">🏆</div>
+      <h2 id="winner-name">TAYLOR WINS!</h2>
+      <p id="winner-checkout">Checked out on D20</p>
+      <table class="stats-table" id="stats-table"></table>
+    </div>
+    <div class="row">
+      <button class="primary" id="new-leg-btn">Rematch, same players</button>
+    </div>
+    <button class="ghost" id="new-match-btn">Start over with new players</button>
+    <button class="ghost" id="winner-leaderboard-btn">🏆 View leaderboard</button>
+  </section>
 
-<section id="care" class="section">
-<h2>The houseplant survival guide</h2>
-<div class="panel">
-<h3>Light</h3>
-<p><b>Full/direct sun:</b> several hours of actual sun on leaves. Great for many succulents and some herbs/fruiting plants.</p>
-<p><b>Bright indirect:</b> lots of daylight but no harsh beam on the leaves. This suits a huge range of foliage plants.</p>
-<p><b>Low light:</b> a bright room away from windows. “Low light” does not mean darkness. No plant can thrive indefinitely in a completely windowless room without suitable grow lighting.</p>
-</div>
-<div class="panel">
-<h3>Water</h3>
-<p>Check the growing medium before watering. Water thoroughly until some drains from the bottom, then empty standing water. Plants in cool rooms generally need less water than plants in warm, bright rooms.</p>
-<div class="tip">Yellow leaves do not automatically mean “needs water”. Overwatering can also cause yellowing, leaf drop and root problems.</div>
-</div>
-<div class="panel">
-<h3>Pot size</h3>
-<p>Choose a pot with a drainage hole. A useful beginner approach is to pot up only modestly — often one pot size larger when the roots have filled the existing container. Decorative cachepots are fine, but don't let the inner pot sit permanently in water.</p>
-</div>
-<div class="panel">
-<h3>Room-by-room logic</h3>
-<div class="room-grid" id="roomGuide"></div>
-</div>
-</section>
 </main>
 
-<footer>Built as a first-home plant reference. Plant sizes and watering intervals are estimates; cultivar, potting mix, light, temperature, humidity and season can change them. Always check the individual plant when buying.</footer>
+<footer>Grab your darts and bring the energy. Good luck at the oche.</footer>
+
+</div>
+
+<div id="fx-layer" aria-hidden="true"></div>
+<div id="fx-banner" role="status" aria-live="polite"></div>
 
 <script>
-const img = {
-  monstera:"https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=900&q=80",
-  pothos:"https://images.unsplash.com/photo-1614594895305-fe619b8f9b9f?auto=format&fit=crop&w=900&q=80",
-  snake:"https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?auto=format&fit=crop&w=900&q=80",
-  zz:"https://images.unsplash.com/photo-1614594895305-fe619b8f9b9f?auto=format&fit=crop&w=900&q=80",
-  fern:"https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=900&q=80",
-  peace:"https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?auto=format&fit=crop&w=900&q=80",
-  herb:"https://images.unsplash.com/photo-1603905179139-db12ab5350ba?auto=format&fit=crop&w=900&q=80",
-  succulent:"https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=900&q=80"
-};
-const rooms = {
- "Living room":"Bright/medium light, often good floor space. Choose plants based on window distance.",
- "Bedroom":"Prioritise plants that tolerate steady indoor conditions and don't require constantly wet soil.",
- "Study":"Usually ideal for compact desk plants; light is the deciding factor.",
- "Bathroom":"Humidity can suit tropical foliage, but a window or grow light is still needed.",
- "Basement":"Only suitable if there is meaningful daylight or a grow light.",
- "Kitchen":"Excellent for herbs near a bright window; humidity is often higher.",
- "Dining room":"Good for statement plants if there is enough indirect light.",
- "Laundry":"Humidity can be helpful, but low light can be the limiting factor.",
- "Balcony":"Not truly indoor; use this for plants needing much stronger direct light."
-};
-const plants = [
-{name:"Monstera deliciosa",latin:"Monstera deliciosa",rooms:["Living room","Study","Dining room","Bathroom"],sun:"no",water:"medium",freq:"Every 1–2 weeks",pot:"20–30 cm starter",height:"1.5–3 m indoors",girth:"0.8–1.5 m spread",light:"Bright indirect; tolerates gentle morning sun",season:"Yes",type:"Foliage",image:"monstera"},
-{name:"Golden pothos",latin:"Epipremnum aureum",rooms:["Living room","Bedroom","Study","Bathroom","Kitchen","Laundry"],sun:"no",water:"low",freq:"Every 1–2 weeks",pot:"12–20 cm",height:"1–3 m vine",girth:"30–100+ cm trailing",light:"Low to bright indirect",season:"Yes",type:"Foliage",image:"pothos"},
-{name:"Snake plant",latin:"Dracaena trifasciata",rooms:["Living room","Bedroom","Study","Basement","Dining room"],sun:"no",water:"low",freq:"Every 2–4 weeks",pot:"15–25 cm",height:"0.4–1.2 m",girth:"30–60 cm",light:"Low to bright; some direct sun",season:"Yes",type:"Succulent foliage",image:"snake"},
-{name:"ZZ plant",latin:"Zamioculcas zamiifolia",rooms:["Living room","Bedroom","Study","Basement","Dining room"],sun:"no",water:"low",freq:"Every 2–3 weeks",pot:"15–25 cm",height:"0.5–1.2 m",girth:"40–80 cm",light:"Low to bright indirect",season:"Yes",type:"Foliage",image:"zz"},
-{name:"Peace lily",latin:"Spathiphyllum",rooms:["Bathroom","Bedroom","Living room","Study"],sun:"no",water:"high",freq:"About weekly; check soil",pot:"15–25 cm",height:"0.4–1 m",girth:"40–80 cm",light:"Medium to bright indirect",season:"Yes",type:"Flowering foliage",image:"peace"},
-{name:"Boston fern",latin:"Nephrolepis exaltata",rooms:["Bathroom","Laundry","Kitchen"],sun:"no",water:"high",freq:"1–2 times weekly in warm periods",pot:"15–25 cm hanging",height:"0.4–0.9 m",girth:"0.6–1.2 m",light:"Bright indirect",season:"Yes indoors",type:"Fern",image:"fern"},
-{name:"Spider plant",latin:"Chlorophytum comosum",rooms:["Bedroom","Bathroom","Kitchen","Study","Living room"],sun:"no",water:"medium",freq:"Every 1–2 weeks",pot:"12–20 cm",height:"30–60 cm",girth:"50–90 cm",light:"Bright indirect to medium",season:"Yes",type:"Foliage",image:"fern"},
-{name:"Rubber plant",latin:"Ficus elastica",rooms:["Living room","Study","Dining room"],sun:"no",water:"medium",freq:"Every 1–2 weeks",pot:"20–30 cm",height:"1.5–3 m indoors",girth:"0.8–1.5 m",light:"Bright indirect; gentle direct sun",season:"Yes",type:"Tree/foliage",image:"monstera"},
-{name:"Bird of paradise",latin:"Strelitzia reginae",rooms:["Living room","Dining room","Study"],sun:"yes",water:"medium",freq:"About weekly in active growth",pot:"25–35 cm",height:"1.5–3 m indoors",girth:"1–2 m",light:"Very bright; several hours sun",season:"Yes indoors",type:"Tropical",image:"monstera"},
-{name:"Jade plant",latin:"Crassula ovata",rooms:["Study","Living room","Kitchen","Dining room"],sun:"yes",water:"low",freq:"Every 2–4 weeks",pot:"12–25 cm",height:"0.3–1.5 m",girth:"0.3–1 m",light:"Several hours direct sun preferred",season:"Yes indoors",type:"Succulent",image:"succulent"},
-{name:"Aloe vera",latin:"Aloe vera",rooms:["Kitchen","Study","Living room"],sun:"yes",water:"low",freq:"Every 2–4 weeks",pot:"15–25 cm",height:"30–60 cm",girth:"30–60 cm",light:"Bright light, some direct sun",season:"Yes indoors",type:"Succulent",image:"succulent"},
-{name:"Basil",latin:"Ocimum basilicum",rooms:["Kitchen"],sun:"yes",water:"high",freq:"When surface dries; often every few days",pot:"15–20 cm",height:"30–60 cm",girth:"20–40 cm",light:"6+ hours bright sun ideal",season:"No — annual; can grow indoors while warm",type:"Herb",image:"herb"},
-{name:"Mint",latin:"Mentha spp.",rooms:["Kitchen"],sun:"yes",water:"high",freq:"Every few days when warm",pot:"15–25 cm",height:"30–60 cm",girth:"30–60 cm",light:"4–6+ hours bright light",season:"Yes; may slow in winter",type:"Herb",image:"herb"},
-{name:"Rosemary",latin:"Salvia rosmarinus",rooms:["Kitchen","Study","Balcony"],sun:"yes",water:"low",freq:"When mix dries",pot:"20–30 cm",height:"0.5–1.5 m",girth:"0.5–1 m",light:"6+ hours direct sun",season:"Yes",type:"Herb",image:"herb"},
-{name:"Thyme",latin:"Thymus vulgaris",rooms:["Kitchen","Balcony"],sun:"yes",water:"low",freq:"When mix dries",pot:"15–20 cm",height:"15–30 cm",girth:"20–40 cm",light:"6+ hours direct sun",season:"Yes",type:"Herb",image:"herb"},
-{name:"Lavender",latin:"Lavandula spp.",rooms:["Kitchen","Balcony","Living room"],sun:"yes",water:"low",freq:"When dry",pot:"20–30 cm",height:"30–80 cm indoors",girth:"30–80 cm",light:"6+ hours direct sun",season:"Yes, but best with strong light and airflow",type:"Herb/flower",image:"herb"},
-{name:"Calathea",latin:"Goeppertia spp.",rooms:["Bathroom","Bedroom"],sun:"no",water:"high",freq:"About weekly; keep evenly moist",pot:"15–25 cm",height:"30–90 cm",girth:"30–70 cm",light:"Medium to bright indirect",season:"Yes indoors",type:"Tropical foliage",image:"fern"},
-{name:"Philodendron",latin:"Philodendron spp.",rooms:["Living room","Bedroom","Study","Bathroom"],sun:"no",water:"medium",freq:"Every 1–2 weeks",pot:"15–25 cm",height:"0.5–2 m+",girth:"0.5–1.5 m",light:"Low to bright indirect",season:"Yes",type:"Foliage",image:"pothos"},
-{name:"Chinese money plant",latin:"Pilea peperomioides",rooms:["Study","Bedroom","Kitchen","Living room"],sun:"no",water:"medium",freq:"About weekly to fortnightly",pot:"12–20 cm",height:"30–45 cm",girth:"30–45 cm",light:"Bright indirect",season:"Yes",type:"Foliage",image:"pothos"},
-{name:"Peperomia",latin:"Peperomia spp.",rooms:["Study","Bedroom","Kitchen","Bathroom"],sun:"no",water:"low",freq:"Every 1–2 weeks",pot:"10–15 cm",height:"15–40 cm",girth:"20–40 cm",light:"Bright indirect",season:"Yes",type:"Foliage",image:"succulent"},
-{name:"String of pearls",latin:"Curio rowleyanus",rooms:["Study","Living room"],sun:"yes",water:"low",freq:"Every 2–3 weeks",pot:"10–15 cm hanging",height:"10–20 cm",girth:"60–120+ cm trailing",light:"Bright light with some sun",season:"Yes indoors",type:"Succulent",image:"succulent"},
-{name:"Orchid",latin:"Phalaenopsis",rooms:["Bathroom","Bedroom","Living room"],sun:"no",water:"medium",freq:"About weekly; allow roots/mix to approach dry",pot:"12–15 cm",height:"30–60 cm",girth:"30–50 cm",light:"Bright indirect",season:"Yes indoors",type:"Flowering",image:"peace"},
-{name:"African violet",latin:"Streptocarpus sect. Saintpaulia",rooms:["Bedroom","Study","Kitchen"],sun:"no",water:"medium",freq:"About weekly; avoid wet crown",pot:"8–15 cm",height:"10–25 cm",girth:"15–30 cm",light:"Bright indirect",season:"Yes indoors",type:"Flowering",image:"peace"},
-{name:"Boston ivy",latin:"Parthenocissus tricuspidata",rooms:["Balcony"],sun:"yes",water:"medium",freq:"When top layer dries",pot:"25–40 cm",height:"2 m+ if supported",girth:"1–3 m spread",light:"Bright light to sun",season:"Yes; deciduous",type:"Vine",image:"pothos"}
-];
+const NAME_OPTIONS = ["Taylor","Max","Michael","Nathan","Andrew","Anders","Chanelle","Rose","Pat","Caillin","Tom","Jeep","Kate","Ethan","Scott"];
 
-// Additional edible/garden plants are kept in the A–Z reference so the room finder stays focused on realistic indoor/container choices.
-const az = [
-["Aloe vera","Aloe vera","6+ h","Yes","Spring–summer; year-round indoors","Sun-loving succulent; let mix dry."],
-["Apple","Malus domestica","6–8 h","No indoors","Winter dormancy / outdoor crop","Needs outdoor conditions and pollination; not a normal houseplant."],
-["Basil","Ocimum basilicum","6+ h","No, annual","Spring–summer; indoors warm year-round","Excellent kitchen herb with strong light."],
-["Bay laurel","Laurus nobilis","6+ h","Yes","Spring–autumn growth","Can be container-grown; likes sun."],
-["Beetroot","Beta vulgaris","6+ h","No","Autumn–spring outdoors in Melbourne","Possible in containers; needs light and root depth."],
-["Blueberry","Vaccinium spp.","6+ h","Yes","Winter–spring planting","Needs acidic mix, sun and pollination."],
-["Bromeliad","Bromeliaceae","Bright indirect","Yes indoors","Year-round indoors","Good tropical foliage; avoid harsh sun."],
-["Cactus","Cactaceae","6+ h","Yes","Spring–summer active growth","Very bright; water sparingly."],
-["Calathea","Goeppertia spp.","Bright indirect","Yes","Year-round indoors","Humidity-loving foliage."],
-["Capsicum","Capsicum annuum","6–8 h","No","Spring–summer","Can fruit in a very sunny window but usually easier outdoors."],
-["Carrot","Daucus carota","6+ h","No","Autumn–spring","Needs a deep container."],
-["Celery","Apium graveolens","6+ h","No","Autumn–spring","Needs consistent moisture."],
-["Chives","Allium schoenoprasum","4–6 h","Yes","Most of year","Excellent windowsill herb."],
-["Coriander","Coriandrum sativum","4–6 h","No, short-lived","Autumn–spring","Bolts in heat; succession sow."],
-["Cucumber","Cucumis sativus","6–8 h","No","Spring–summer","Needs sun, warmth and support."],
-["Dill","Anethum graveolens","6 h","No, annual","Spring–summer","Bright window; dislikes disturbance."],
-["Fiddle-leaf fig","Ficus lyrata","Bright indirect","Yes","Year-round indoors","Can become a large statement plant."],
-["Fern","Various","Bright indirect","Yes","Year-round indoors","Humidity and even moisture help."],
-["Fig","Ficus carica","6–8 h","No indoors","Winter–spring planting outdoors","Large outdoor container plant; not ideal as a houseplant."],
-["Gardenia","Gardenia jasminoides","4–6 h bright","Yes indoors if warm","Spring–summer flowering","High light, humidity and acidic conditions."],
-["Ginger","Zingiber officinale","Bright / 4–6 h","Yes","Spring–summer","Can be grown in a warm pot; needs moisture."],
-["Grape","Vitis vinifera","6–8 h","No indoors","Winter–spring","Needs a large outdoor space and support."],
-["Hoya","Hoya spp.","Bright indirect","Yes","Year-round indoors","Let mix partly dry between watering."],
-["Jade","Crassula ovata","6+ h","Yes","Spring–summer growth","Excellent sunny indoor succulent."],
-["Kale","Brassica oleracea","6+ h","No","Autumn–winter","Better in a balcony/yard container."],
-["Lavender","Lavandula spp.","6+ h","Yes","Autumn–spring planting","Needs strong sun and airflow."],
-["Lemon","Citrus limon","6–8 h","Yes indoors if very sunny","Spring–autumn","Possible in a large pot, but fruiting indoors is difficult."],
-["Lemongrass","Cymbopogon citratus","6+ h","Yes","Spring–summer","Warm, bright conditions."],
-["Lettuce","Lactuca sativa","4–6 h","No, cool-season crop","Autumn–spring","Good container crop near a sunny window."],
-["Mint","Mentha spp.","4–6 h","Yes","Most of year","Keep in its own pot; spreads aggressively."],
-["Monstera","Monstera deliciosa","Bright indirect","Yes","Year-round indoors","Warm, humid and spacious."],
-["Olive","Olea europaea","6–8 h","Yes","Winter–spring planting outdoors","Can be container-grown; indoors usually lacks light."],
-["Oregano","Origanum vulgare","6+ h","Yes","Spring–autumn","Sunny herb."],
-["Parsley","Petroselinum crispum","4–6 h","Yes","Most of year","Good container herb."],
-["Pea","Pisum sativum","6+ h","No","Autumn–winter","Needs support and is better outdoors."],
-["Pepper","Capsicum spp.","6–8 h","No","Spring–summer","Fruit production needs strong light."],
-["Philodendron","Philodendron spp.","Bright indirect","Yes","Year-round indoors","Easy foliage group; many varieties."],
-["Pothos","Epipremnum aureum","Low–bright indirect","Yes","Year-round indoors","Easy trailing plant."],
-["Rosemary","Salvia rosmarinus","6+ h","Yes","Most of year","Likes dry-down between watering."],
-["Rose","Rosa spp.","6–8 h","No indoors","Winter–spring planting","Needs outdoor sun and airflow."],
-["Snake plant","Dracaena trifasciata","Low–bright","Yes","Year-round indoors","Very forgiving; avoid overwatering."],
-["Spinach","Spinacia oleracea","4–6 h","No","Autumn–winter","Cool-season crop."],
-["Strawberry","Fragaria × ananassa","6–8 h","Yes","Autumn–spring","Possible in pots; fruiting needs strong light."],
-["Thyme","Thymus vulgaris","6+ h","Yes","Most of year","Excellent dry-loving herb."],
-["Tomato","Solanum lycopersicum","8+ h","No indoors normally","Spring–summer","Fruit production indoors needs very strong light."],
-["Tradescantia","Tradescantia spp.","Bright indirect","Yes","Year-round indoors","Very easy stem cuttings."],
-["Violet","Viola spp.","4–6 h","No outdoors preferred","Autumn–winter","Cool-season flowering plant."],
-["Zamioculcas / ZZ","Zamioculcas zamiifolia","Low–bright indirect","Yes","Year-round indoors","Slow-growing and drought tolerant."],
-["Lemon","Citrus limon","6–8 h","Yes, but best outdoors/patio","Spring–autumn planting","Sunny, free-draining citrus. Container-friendly; feed during active growth."],
-["Lime","Citrus × aurantiifolia","6–8 h","Yes, warm conditions","Spring–autumn planting","Needs strong light, warmth and good drainage. Protect from cold."],
-["Finger lime","Citrus australasica","6+ h","Yes, best in warm sheltered conditions","Spring–autumn planting","Australian native citrus; thorny, evergreen and suited to containers. Full sun and well-drained soil."],
-["Passionfruit","Passiflora edulis","6–8 h","No indoors normally","Spring–summer","Fast climbing vine. Needs a strong trellis, warmth, water and good sun for fruit."],
-["Kaffir / Makrut lime","Citrus hystrix","6–8 h","Yes, warm conditions","Spring–autumn planting","Grown for aromatic leaves and fruit. Sunny, sheltered position."],
-["Mandarin","Citrus reticulata","6–8 h","Yes, best outdoors/patio","Spring–autumn planting","Compact citrus suitable for large pots; strong light is essential."],
-["Orange","Citrus sinensis","6–8 h","No indoors normally","Spring–autumn planting","Needs lots of sun and a substantial root space for reliable fruiting."],
-["Strawberry","Fragaria × ananassa","6–8 h","Yes, if bright","Autumn–spring","Excellent container fruit; keep crown above the mix and give strong light."],
-["Zucchini","Cucurbita pepo","6–8 h","No indoors","Spring–summer","Needs space, sun and pollination; best in the garden."],
-["Potato","Solanum tuberosum","6+ h","No indoors normally","Late winter–spring","Use a deep container or potato bag; hill soil/mix around developing stems."],
-["Sweet potato","Ipomoea batatas","6+ h","No indoors normally","Spring–summer","Warm-season crop needing space and heat."],
-["Pumpkin","Cucurbita spp.","6–8 h","No indoors","Spring–summer","Vigorous vines requiring lots of room."],
-["Broccoli","Brassica oleracea var. italica","6+ h","No indoors","Autumn–winter","Cool-season vegetable; needs a sunny outdoor position."],
-["Cauliflower","Brassica oleracea var. botrytis","6+ h","No indoors","Autumn–winter","Cool-season crop; consistent moisture helps head development."],
-["Radish","Raphanus sativus","4–6 h","Yes, short-term","Most of year except extreme heat","Fast container crop; sow successionally."],
-["Spring onion","Allium fistulosum","4–6 h","Yes","Most of year","Excellent pot herb/vegetable."],
-["Rocket / arugula","Eruca vesicaria","4–6 h","Yes","Autumn–spring","Fast leafy crop; harvest young leaves."],
-["Passionfruit","Passiflora edulis","6–8 h","No indoors normally","Spring–summer","Strong climbing vine; provide trellis and good airflow." ]
-];
+let startScore = 501;
+let doubleOut = true;
 
-const photoCache={};
-async function getPlantPhoto(query){
-  if(photoCache[query]) return photoCache[query];
+let players = [];        // {name, score, dartsThrown, totalScored, turns:[]}
+let currentPlayerIndex = 0;
+let turnDarts = [];      // {label, points}
+let turnStartScore = 0;
+let turnEnded = false;
+let pendingOutcome = null;   // null | 'bust' | 'win' | 'normal' — the outcome awaiting confirmation
+let selectedMult = 1;
+let entryMode = 'dart';   // 'dart' or 'quick'
+let quickValue = '0';
+const QUICK_CHIPS = [26,41,45,60,81,85,96,100,140,180];
+
+let selectedPlayers = [];  // ordered list of names chosen on the setup screen
+let winnerInfo = null;     // {name, finalDart}
+let currentScreenId = 'screen-setup';
+const SAVE_KEY = 'darts-oche-state';
+const LB_KEY = 'darts-oche-leaderboard';
+let leaderboard = {};      // { name: {wins, doubles, triples, bullseyes} }
+
+// ---------- STORAGE HELPER ----------
+// Prefer Claude's artifact storage (window.storage) when this runs inside a
+// Claude preview. When the file is downloaded and opened directly in a
+// regular browser, that API doesn't exist, so fall back to localStorage —
+// this is what makes saving work in actual real-world use at the pub.
+const hasArtifactStorage = (typeof window !== 'undefined' &&
+    window.storage && typeof window.storage.get === 'function' && typeof window.storage.set === 'function');
+
+async function storageGet(key, shared){
+  shared = !!shared;
+  if (hasArtifactStorage){
+    try{ return await window.storage.get(key, shared); }catch(e){ return null; }
+  }
   try{
-    const r=await fetch('https://api.inaturalist.org/v1/taxa?q='+encodeURIComponent(query)+'&photos=true&per_page=1');
-    const j=await r.json();
-    const u=j.results?.[0]?.default_photo?.medium_url || j.results?.[0]?.default_photo?.square_url;
-    if(u){photoCache[query]=u; return u;}
-  }catch(e){}
+    const raw = localStorage.getItem(key);
+    return raw !== null ? { value: raw } : null;
+  }catch(e){ return null; }
+}
+
+function storageSet(key, value, shared){
+  shared = !!shared;
+  if (hasArtifactStorage){
+    try{ window.storage.set(key, value, shared).catch(() => {}); }catch(e){ /* ignore */ }
+    return;
+  }
+  try{ localStorage.setItem(key, value); }catch(e){ /* ignore — storage unavailable */ }
+}
+
+// ---------- SAVE / LOAD (current game) ----------
+function saveState(){
+  const snapshot = {
+    screen: currentScreenId,
+    startScore, doubleOut,
+    selectedPlayers,
+    players, currentPlayerIndex,
+    entryMode, winnerInfo
+  };
+  storageSet(SAVE_KEY, JSON.stringify(snapshot));
+}
+
+async function loadState(){
+  let s = null;
+  try{
+    const result = await storageGet(SAVE_KEY);
+    if (result && result.value) s = JSON.parse(result.value);
+  }catch(e){ s = null; }
+  if (!s) return false;
+
+  startScore = s.startScore || 501;
+  doubleOut = s.doubleOut !== false;
+  selectedPlayers = s.selectedPlayers || [];
+  players = s.players || [];
+  currentPlayerIndex = s.currentPlayerIndex || 0;
+  entryMode = s.entryMode || 'dart';
+  winnerInfo = s.winnerInfo || null;
+
+  document.getElementById('double-out-toggle').checked = doubleOut;
+  buildSetupScreen();
+
+  if (s.screen === 'screen-game' && players.length){
+    buildNumberPad();
+    buildQuickPanel();
+    document.querySelectorAll('#mode-row button').forEach(b => {
+      b.classList.toggle('selected', b.dataset.mode === entryMode);
+    });
+    document.getElementById('dartbydart-panel').classList.toggle('hidden-panel', entryMode !== 'dart');
+    document.getElementById('quick-panel').classList.toggle('hidden-panel', entryMode !== 'quick');
+    document.getElementById('dart-slots-wrap').style.display = entryMode === 'dart' ? 'flex' : 'none';
+    document.getElementById('game-title').textContent =
+        `${startScore} · ${doubleOut ? 'DOUBLE OUT' : 'OPEN FINISH'}`;
+    beginTurn();
+    showScreen('screen-game');
+  } else if (s.screen === 'screen-winner' && winnerInfo){
+    buildNumberPad();
+    buildQuickPanel();
+    renderWinnerScreen(winnerInfo.name, winnerInfo.finalDart);
+  } else {
+    showScreen('screen-setup');
+  }
+  return true;
+}
+
+// ---------- LEADERBOARD (persists across games, syncs across devices) ----------
+// Uses shared storage: when this file is opened via the same Claude artifact
+// link, stats sync across everyone's phones. When opened as a standalone
+// downloaded file there's no server involved, so it falls back to this
+// device's own storage only (see storageGet/storageSet above).
+async function loadLeaderboard(){
+  try{
+    const result = await storageGet(LB_KEY, true);
+    if (result && result.value) leaderboard = JSON.parse(result.value);
+  }catch(e){ leaderboard = {}; }
+}
+function saveLeaderboard(){
+  storageSet(LB_KEY, JSON.stringify(leaderboard), true);
+}
+function realPlayerNames(){
+  return Object.keys(leaderboard).filter(k => k !== '__nicknames__');
+}
+function ensureLbEntry(name){
+  if (!leaderboard[name]){
+    leaderboard[name] = {
+      wins: 0, doubles: 0, triples: 0, bullseyes: 0,
+      busts: 0, totalScored: 0, totalDartsThrown: 0,
+      bestTurnScore: 0, bigCheckouts: 0, lastUpdated: 0
+    };
+  }
+  return leaderboard[name];
+}
+
+// Records career totals used by the "Most Wins / Doubles / Triples / Bullseyes"
+// category lists on the leaderboard screen. outcome is 'normal' | 'bust' | 'win'.
+function recordVisitStats(name, dartLabels, scoredSoFar, outcome){
+  const entry = ensureLbEntry(name);
+  dartLabels.forEach(label => {
+    if (/^D\d+$/.test(label)) entry.doubles++;
+    else if (/^T\d+$/.test(label)) entry.triples++;
+    else if (label === 'BULL') entry.bullseyes++;
+  });
+  entry.totalDartsThrown += (dartLabels.length || 3);
+  entry.totalScored += (scoredSoFar || 0);
+  if ((scoredSoFar || 0) > entry.bestTurnScore) entry.bestTurnScore = scoredSoFar;
+  if (outcome === 'bust') entry.busts++;
+  if (outcome === 'win'){
+    entry.wins++;
+    if ((scoredSoFar || 0) >= 96) entry.bigCheckouts++;
+  }
+  entry.lastUpdated = Date.now();
+  saveLeaderboard();
+}
+
+// ---------- NICKNAME ENGINE ----------
+// Exactly one nickname changes hands per finished game — that's what keeps
+// it interesting. Each nickname is its own "belt": whoever last won it holds
+// it (leaderboard.__nicknames__[id]) until either someone else earns that
+// same belt in a later game, or (display-wise) the player already holds a
+// higher-priority belt so this one doesn't show for them.
+const NICKNAMES = [
+  { id: 'golden-dart', name: 'The Golden Dart', icon: '👑', reason: 'Won the most recent game' },
+  { id: 'runner-up', name: 'Born to Runner Up', icon: '🥈', reason: 'Closest to winning without actually winning' },
+  { id: 'bust-master', name: 'Bust Master', icon: '💀', reason: 'Came last in the most recent game' },
+  { id: 'nuke', name: 'The Nuke', icon: '☢️', reason: 'Highest scoring average that game' },
+  { id: 'vader', name: 'Dart Vader', icon: '🖤', reason: 'Most busts in that game' },
+  { id: 'bull', name: 'The Bull', icon: '🔴', reason: 'Hit a bullseye that game' },
+  { id: 'cool-hand', name: 'Cool Hand', icon: '🃏', reason: 'Most doubles hit that game' },
+  { id: 'triple-threat', name: 'Triple Threat', icon: '🎯', reason: 'Most triples hit that game' },
+  { id: 'iron-sights', name: 'Iron Sights', icon: '🔫', reason: 'Landed the biggest single visit (60+)' },
+  { id: 'closer', name: 'The Closer', icon: '💰', reason: 'Won with a big (96+) checkout' },
+  { id: 'iceman', name: 'Iceman', icon: '🧊', reason: 'Zero busts across a solid game' }
+];
+
+function getNickname(name){
+  const holders = leaderboard.__nicknames__ || {};
+  for (let i = 0; i < NICKNAMES.length; i++){
+    if (holders[NICKNAMES[i].id] === name) return NICKNAMES[i];
+  }
   return null;
 }
-async function loadPhotos(){
-  const els=[...document.querySelectorAll('.photo[data-query]')];
-  for(const el of els){
-    const q=el.dataset.query;
-    if(el.dataset.loaded==='1') continue;
-    el.dataset.loaded='1';
-    const u=await getPlantPhoto(q);
-    if(u) el.style.backgroundImage=`url("${u}")`;
+
+function nicknameTagHtml(name){
+  const nk = getNickname(name);
+  if (!nk) return '';
+  return `<div class="nickname-tag">${nk.icon} ${escapeHtml(nk.name)}</div>`;
+}
+
+// Called once, right when a game is won. Looks at everyone's turns from
+// THIS game only, works out which nicknames were actually earned, and
+// hands out exactly one of them (picked at random among the ones earned)
+// so the same belt doesn't get re-awarded every single game.
+function awardGameNickname(winnerName){
+  if (!leaderboard.__nicknames__) leaderboard.__nicknames__ = {};
+  if (!players || players.length === 0) return null;
+
+  const stats = players.map(pl => {
+    let doubles = 0, triples = 0, bullseyes = 0, busts = 0, bestTurn = 0;
+    pl.turns.forEach(t => {
+      (t.darts || []).forEach(label => {
+        if (/^D\d+$/.test(label)) doubles++;
+        else if (/^T\d+$/.test(label)) triples++;
+        else if (label === 'BULL') bullseyes++;
+      });
+      if (t.bust) busts++;
+      if (typeof t.total === 'number' && t.total > bestTurn) bestTurn = t.total;
+    });
+    const turnsPlayed = pl.turns.length;
+    const avg = pl.dartsThrown > 0 ? (pl.totalScored / pl.dartsThrown * 3) : 0;
+    return { name: pl.name, doubles, triples, bullseyes, busts, bestTurn, turnsPlayed, avg, finalScore: pl.score };
+  });
+
+  const candidates = [];
+  candidates.push({ id: 'golden-dart', playerName: winnerName });
+
+  const others = stats.filter(s => s.name !== winnerName);
+  if (others.length){
+    const closest = others.slice().sort((a,b) => a.finalScore - b.finalScore)[0];
+    const farthest = others.slice().sort((a,b) => b.finalScore - a.finalScore)[0];
+    candidates.push({ id: 'runner-up', playerName: closest.name });
+    candidates.push({ id: 'bust-master', playerName: farthest.name });
+  }
+
+  const avgEligible = stats.filter(s => s.turnsPlayed >= 2);
+  if (avgEligible.length){
+    const top = avgEligible.slice().sort((a,b) => b.avg - a.avg)[0];
+    if (top.avg > 0) candidates.push({ id: 'nuke', playerName: top.name });
+  }
+
+  const bustTop = stats.slice().sort((a,b) => b.busts - a.busts)[0];
+  if (bustTop && bustTop.busts >= 1) candidates.push({ id: 'vader', playerName: bustTop.name });
+
+  const bullTop = stats.slice().sort((a,b) => b.bullseyes - a.bullseyes)[0];
+  if (bullTop && bullTop.bullseyes >= 1) candidates.push({ id: 'bull', playerName: bullTop.name });
+
+  const dblTop = stats.slice().sort((a,b) => b.doubles - a.doubles)[0];
+  if (dblTop && dblTop.doubles >= 1) candidates.push({ id: 'cool-hand', playerName: dblTop.name });
+
+  const tplTop = stats.slice().sort((a,b) => b.triples - a.triples)[0];
+  if (tplTop && tplTop.triples >= 1) candidates.push({ id: 'triple-threat', playerName: tplTop.name });
+
+  const bestTop = stats.slice().sort((a,b) => b.bestTurn - a.bestTurn)[0];
+  if (bestTop && bestTop.bestTurn >= 60) candidates.push({ id: 'iron-sights', playerName: bestTop.name });
+
+  const winnerPlayer = players.find(pl => pl.name === winnerName);
+  const winningTurn = winnerPlayer && winnerPlayer.turns[winnerPlayer.turns.length - 1];
+  if (winningTurn && typeof winningTurn.total === 'number' && winningTurn.total >= 96){
+    candidates.push({ id: 'closer', playerName: winnerName });
+  }
+
+  const icemanEligible = stats.filter(s => s.turnsPlayed >= 3 && s.busts === 0)
+      .sort((a,b) => b.turnsPlayed - a.turnsPlayed);
+  if (icemanEligible.length) candidates.push({ id: 'iceman', playerName: icemanEligible[0].name });
+
+  if (candidates.length === 0) return null;
+  const chosen = candidates[Math.floor(Math.random() * candidates.length)];
+  leaderboard.__nicknames__[chosen.id] = chosen.playerName;
+  saveLeaderboard();
+  return chosen;
+}
+
+function renderNicknamesBoard(){
+  const wrap = document.getElementById('nicknames-content');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  const holders = leaderboard.__nicknames__ || {};
+  let any = false;
+  NICKNAMES.forEach(nk => {
+    const holder = holders[nk.id];
+    if (!holder) return;
+    any = true;
+    const row = document.createElement('div');
+    row.className = 'nickname-board-row';
+    row.innerHTML = `<span class="nickname-board-icon">${nk.icon}</span>
+      <span class="nickname-board-info"><strong>${escapeHtml(nk.name)}</strong><br>
+      <span class="nickname-board-reason">${escapeHtml(nk.reason)}</span></span>
+      <span class="nickname-board-holder">${escapeHtml(holder)}</span>`;
+    wrap.appendChild(row);
+  });
+  if (!any){
+    wrap.innerHTML = '<p class="hint">No nicknames claimed yet — finish a game to hand one out.</p>';
   }
 }
 
+function renderTopWinners(){
+  const wrap = document.getElementById('top-winners-list');
+  if (!wrap) return;
+  const top = realPlayerNames()
+      .map(n => ({ name: n, wins: leaderboard[n].wins || 0 }))
+      .filter(e => e.wins > 0)
+      .sort((a,b) => b.wins - a.wins)
+      .slice(0,3);
 
-const inspiration = {
- "Living room":[
-   ["Monstera statement corner","monstera indoor living room interior plant"],
-   ["Pothos on shelving","pothos indoor living room shelf plants"],
-   ["Rubber plant beside sofa","rubber plant ficus elastica indoor living room"],
-   ["Layered plant corner","indoor plants living room monstera pothos snake plant"]
- ],
- "Bedroom":[
-   ["Snake plant bedside","snake plant indoor bedroom"],
-   ["Pothos on bedroom shelf","pothos indoor bedroom shelf"],
-   ["Peace lily accent","peace lily indoor bedroom"],
-   ["Calm green bedroom","indoor plants bedroom styling"]
- ],
- "Study":[
-   ["Desk greenery","indoor plants home office study desk"],
-   ["ZZ plant office corner","ZZ plant indoor home office"],
-   ["Pilea desk plant","pilea indoor desk home office"],
-   ["Bookshelf plants","pothos philodendron indoor study bookshelf"]
- ],
- "Bathroom":[
-   ["Boston fern by bath","Boston fern indoor bathroom"],
-   ["Humidity-loving foliage","indoor plants bathroom fern"],
-   ["Peace lily bathroom","peace lily indoor bathroom"],
-   ["Spa-style greenery","indoor bathroom plants styling"]
- ],
- "Basement":[
-   ["Grow-light plant corner","indoor plants basement grow light"],
-   ["ZZ plant low-light setup","ZZ plant indoor low light room"],
-   ["Snake plant low-light corner","snake plant indoor low light room"],
-   ["Basement plant shelf","houseplants basement grow lights shelf"]
- ],
- "Kitchen":[
-   ["Herbs on windowsill","indoor kitchen herbs windowsill basil rosemary"],
-   ["Pothos kitchen shelf","pothos indoor kitchen shelf"],
-   ["Basil in the kitchen","basil plant indoor kitchen window"],
-   ["Green kitchen styling","indoor plants kitchen styling"]
- ],
- "Dining room":[
-   ["Monstera beside dining table","monstera indoor dining room"],
-   ["Rubber plant dining corner","rubber plant indoor dining room"],
-   ["Statement floor plant","bird of paradise indoor dining room"],
-   ["Dining-room greenery","indoor plants dining room styling"]
- ],
- "Laundry":[
-   ["Fern in bright laundry","fern indoor laundry room"],
-   ["Pothos laundry shelf","pothos indoor laundry room"],
-   ["Spider plant utility room","spider plant indoor laundry room"],
-   ["Laundry greenery","indoor plants laundry room styling"]
- ],
- "Balcony":[
-   ["Sunny citrus in pots","potted lemon lime citrus balcony"],
-   ["Herb balcony","balcony herb garden rosemary basil thyme"],
-   ["Passionfruit trellis","passionfruit vine balcony trellis"],
-   ["Sunny plant collection","balcony container garden plants"]
- ]
+  if (top.length === 0){
+    wrap.innerHTML = '<p class="top-winners-empty">No games recorded yet — play a leg to get on the board.</p>';
+    return;
+  }
+  const medals = ['🥇','🥈','🥉'];
+  wrap.innerHTML = '';
+  top.forEach((e, i) => {
+    const row = document.createElement('div');
+    row.className = 'top-winner-row';
+    row.innerHTML = `<span class="top-winner-medal">${medals[i]}</span>
+                      <span class="top-winner-name">${escapeHtml(e.name)}${nicknameTagHtml(e.name)}</span>
+                      <span class="top-winner-count">${e.wins} win${e.wins === 1 ? '' : 's'}</span>`;
+    wrap.appendChild(row);
+  });
+}
+
+function renderLeaderboard(){
+  renderNicknamesBoard();
+  const wrap = document.getElementById('leaderboard-content');
+  wrap.innerHTML = '';
+  const names = realPlayerNames();
+  if (names.length === 0){
+    wrap.innerHTML = '<p class="hint">No games recorded yet — play a leg to start the leaderboard.</p>';
+    return;
+  }
+  const categories = [
+    { key: 'wins', label: 'Most Wins', icon: '🏆' },
+    { key: 'doubles', label: 'Most Doubles', icon: '🎯' },
+    { key: 'triples', label: 'Most Triples', icon: '🎯' },
+    { key: 'bullseyes', label: 'Most Bullseyes', icon: '🔴' }
+  ];
+  categories.forEach(cat => {
+    const sorted = names
+        .map(n => ({ name: n, value: leaderboard[n][cat.key] || 0 }))
+        .filter(e => e.value > 0)
+        .sort((a,b) => b.value - a.value)
+        .slice(0,5);
+    const block = document.createElement('div');
+    block.className = 'hist-player';
+    const h = document.createElement('h4');
+    h.textContent = `${cat.icon} ${cat.label}`;
+    block.appendChild(h);
+    const ul = document.createElement('ul');
+    if (sorted.length === 0){
+      const li = document.createElement('li');
+      li.style.opacity = '0.6';
+      li.textContent = 'No data yet';
+      ul.appendChild(li);
+    } else {
+      sorted.forEach((e, i) => {
+        const li = document.createElement('li');
+        li.textContent = `${i+1}. ${e.name} — ${e.value}`;
+        ul.appendChild(li);
+      });
+    }
+    block.appendChild(ul);
+    wrap.appendChild(block);
+  });
+}
+
+let leaderboardReturnScreen = 'screen-setup';
+document.getElementById('leaderboard-btn').addEventListener('click', () => {
+  leaderboardReturnScreen = 'screen-setup';
+  renderLeaderboard();
+  showScreen('screen-leaderboard');
+});
+document.getElementById('winner-leaderboard-btn').addEventListener('click', () => {
+  leaderboardReturnScreen = 'screen-winner';
+  renderLeaderboard();
+  showScreen('screen-leaderboard');
+});
+document.getElementById('leaderboard-back').addEventListener('click', () => {
+  showScreen(leaderboardReturnScreen);
+});
+document.getElementById('leaderboard-reset').addEventListener('click', () => {
+  document.getElementById('lb-reset-confirm-row').classList.add('show');
+});
+document.getElementById('lb-reset-yes').addEventListener('click', () => {
+  document.getElementById('lb-reset-confirm-row').classList.remove('show');
+  leaderboard = {};
+  saveLeaderboard();
+  renderLeaderboard();
+  renderTopWinners();
+});
+document.getElementById('lb-reset-no').addEventListener('click', () => {
+  document.getElementById('lb-reset-confirm-row').classList.remove('show');
+});
+
+// ---------- SCREEN SWITCHING ----------
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+  currentScreenId = id;
+  saveState();
+}
+
+// ---------- SETUP SCREEN (starting score + player picker, all on one page) ----------
+function buildSetupScreen(){
+  const ssGrid = document.getElementById('start-score-grid');
+  ssGrid.innerHTML = '';
+  [301,501,701].forEach(n => {
+    const b = document.createElement('button');
+    b.textContent = n;
+    b.className = n === startScore ? 'selected' : '';
+    b.addEventListener('click', () => { startScore = n; buildSetupScreen(); saveState(); });
+    ssGrid.appendChild(b);
+  });
+
+  const pGrid = document.getElementById('player-select-grid');
+  pGrid.innerHTML = '';
+  NAME_OPTIONS.forEach(name => {
+    const b = document.createElement('button');
+    b.textContent = name;
+    if (selectedPlayers.includes(name)) b.classList.add('selected');
+    b.addEventListener('click', () => {
+      const idx = selectedPlayers.indexOf(name);
+      if (idx >= 0) selectedPlayers.splice(idx, 1);
+      else selectedPlayers.push(name);
+      buildSetupScreen();
+      saveState();
+    });
+    pGrid.appendChild(b);
+  });
+
+  renderRoster();
+  renderTopWinners();
+}
+
+function renderRoster(){
+  const wrap = document.getElementById('roster-pills');
+  wrap.innerHTML = '';
+  selectedPlayers.forEach((name, i) => {
+    const pill = document.createElement('div');
+    pill.className = 'roster-pill';
+    const info = document.createElement('div');
+    info.className = 'roster-pill-info';
+    const span = document.createElement('span');
+    span.textContent = name;
+    info.appendChild(span);
+    const nk = getNickname(name);
+    if (nk){
+      const nkSpan = document.createElement('span');
+      nkSpan.className = 'roster-pill-nickname';
+      nkSpan.textContent = `${nk.icon} ${nk.name}`;
+      info.appendChild(nkSpan);
+    }
+    pill.appendChild(info);
+    const rm = document.createElement('button');
+    rm.textContent = '×';
+    rm.setAttribute('aria-label', `Remove ${name}`);
+    rm.addEventListener('click', () => {
+      selectedPlayers.splice(i, 1);
+      buildSetupScreen();
+      saveState();
+    });
+    pill.appendChild(rm);
+    wrap.appendChild(pill);
+  });
+  document.getElementById('roster-count').textContent = selectedPlayers.length;
+  document.getElementById('setup-continue').disabled = selectedPlayers.length === 0;
+}
+
+document.getElementById('double-out-toggle').addEventListener('change', e => {
+  doubleOut = e.target.checked;
+  saveState();
+});
+
+document.getElementById('add-custom-btn').addEventListener('click', () => {
+  const row = document.getElementById('custom-name-row');
+  row.classList.toggle('show');
+  if (row.classList.contains('show')) document.getElementById('custom-name-input').focus();
+});
+
+function addCustomName(){
+  const input = document.getElementById('custom-name-input');
+  const val = input.value.trim();
+  if (!val) return;
+  selectedPlayers.push(val);
+  input.value = '';
+  buildSetupScreen();
+  saveState();
+}
+document.getElementById('custom-name-add').addEventListener('click', addCustomName);
+document.getElementById('custom-name-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter'){ e.preventDefault(); addCustomName(); }
+});
+
+document.getElementById('setup-continue').addEventListener('click', () => {
+  if (selectedPlayers.length === 0) return;
+  startGame();
+});
+
+// ---------- GAME SETUP ----------
+function startGame(){
+  players = selectedPlayers.map(name => ({
+    name: name,
+    score: startScore,
+    dartsThrown: 0,
+    totalScored: 0,
+    turns: [],
+    bustCount: 0,
+    nextRoastAt: pickRoastGap()
+  }));
+  currentPlayerIndex = 0;
+  document.getElementById('game-title').textContent =
+      `${startScore} · ${doubleOut ? 'DOUBLE OUT' : 'OPEN FINISH'}`;
+  buildNumberPad();
+  buildQuickPanel();
+  beginTurn();
+  showScreen('screen-game');
+}
+
+function beginTurn(){
+  turnCounter++;
+  turnDarts = [];
+  turnStartScore = players[currentPlayerIndex].score;
+  turnEnded = false;
+  pendingOutcome = null;
+  selectedMult = 1;
+  quickValue = '0';
+  document.querySelectorAll('#mult-row button').forEach(b => {
+    b.classList.toggle('selected', b.dataset.mult === '1');
+  });
+  document.getElementById('finish-double-check').checked = false;
+  document.getElementById('finish-double-row').style.display = 'none';
+  document.getElementById('turn-message').className = 'turn-message';
+  document.getElementById('turn-message').textContent = '';
+  document.getElementById('next-player-btn').classList.remove('show');
+  setPadEnabled(true);
+  updateUndoButtonState();
+  document.getElementById('bust-btn').disabled = false;
+  updateQuickDisplay();
+  render();
+}
+
+// ---------- NUMBER PAD ----------
+function buildNumberPad(){
+  const pad = document.getElementById('number-pad');
+  pad.innerHTML = '';
+  for (let n = 1; n <= 20; n++){
+    const b = document.createElement('button');
+    b.textContent = n;
+    b.addEventListener('click', () => throwDart(n, 'number'));
+    pad.appendChild(b);
+  }
+  const bull25 = document.createElement('button');
+  bull25.textContent = '25';
+  bull25.className = 'wide';
+  bull25.addEventListener('click', () => throwDart(25, 'bull25'));
+  pad.appendChild(bull25);
+
+  const bull50 = document.createElement('button');
+  bull50.textContent = 'BULL 50';
+  bull50.className = 'wide';
+  bull50.addEventListener('click', () => throwDart(50, 'bull50'));
+  pad.appendChild(bull50);
+
+  const miss = document.createElement('button');
+  miss.textContent = 'MISS';
+  miss.className = 'wide';
+  miss.addEventListener('click', () => throwDart(0, 'miss'));
+  pad.appendChild(miss);
+}
+
+document.querySelectorAll('#mult-row button').forEach(b => {
+  b.addEventListener('click', () => {
+    selectedMult = parseInt(b.dataset.mult, 10);
+    document.querySelectorAll('#mult-row button').forEach(x => x.classList.remove('selected'));
+    b.classList.add('selected');
+  });
+});
+
+function setPadEnabled(enabled){
+  document.querySelectorAll('#number-pad button, #mult-row button').forEach(b => {
+    b.disabled = !enabled;
+  });
+  document.querySelectorAll('#quick-chips button, #quick-keypad button').forEach(b => {
+    b.disabled = !enabled;
+  });
+  document.getElementById('finish-double-check').disabled = !enabled;
+  updateQuickSubmitState();
+}
+
+function updateUndoButtonState(){
+  document.getElementById('undo-btn').disabled = turnDarts.length === 0;
+}
+
+// ---------- MODE TOGGLE ----------
+document.querySelectorAll('#mode-row button').forEach(b => {
+  b.addEventListener('click', () => {
+    entryMode = b.dataset.mode;
+    document.querySelectorAll('#mode-row button').forEach(x => x.classList.remove('selected'));
+    b.classList.add('selected');
+    document.getElementById('dartbydart-panel').classList.toggle('hidden-panel', entryMode !== 'dart');
+    document.getElementById('quick-panel').classList.toggle('hidden-panel', entryMode !== 'quick');
+    document.getElementById('dart-slots-wrap').style.display = entryMode === 'dart' ? 'flex' : 'none';
+    // switching mode mid-visit clears any unentered progress for this turn
+    turnDarts = [];
+    pendingOutcome = null;
+    turnEnded = false;
+    quickValue = '0';
+    document.getElementById('turn-message').className = 'turn-message';
+    document.getElementById('turn-message').textContent = '';
+    document.getElementById('next-player-btn').classList.remove('show');
+    setPadEnabled(true);
+    updateUndoButtonState();
+    document.getElementById('bust-btn').disabled = false;
+    render();
+    updateQuickDisplay();
+  });
+});
+
+// ---------- QUICK SCORE PANEL ----------
+function buildQuickPanel(){
+  const chips = document.getElementById('quick-chips');
+  chips.innerHTML = '';
+  QUICK_CHIPS.forEach(v => {
+    const b = document.createElement('button');
+    b.textContent = v;
+    b.addEventListener('click', () => {
+      if (turnEnded) return;
+      quickValue = String(v);
+      updateQuickDisplay();
+    });
+    chips.appendChild(b);
+  });
+
+  const keypad = document.getElementById('quick-keypad');
+  keypad.innerHTML = '';
+  const keys = ['1','2','3','4','5','6','7','8','9','C','0','⌫'];
+  keys.forEach(k => {
+    const b = document.createElement('button');
+    b.textContent = k;
+    if (k === 'C' || k === '⌫') b.classList.add('func');
+    b.addEventListener('click', () => {
+      if (turnEnded) return;
+      if (k === 'C'){
+        quickValue = '0';
+      } else if (k === '⌫'){
+        quickValue = quickValue.length > 1 ? quickValue.slice(0, -1) : '0';
+      } else {
+        const candidate = (quickValue === '0' ? '' : quickValue) + k;
+        if (candidate.length <= 3 && parseInt(candidate, 10) <= 180){
+          quickValue = candidate;
+        }
+      }
+      updateQuickDisplay();
+    });
+    keypad.appendChild(b);
+  });
+}
+
+function updateQuickDisplay(){
+  document.getElementById('quick-display').textContent = quickValue;
+  const val = parseInt(quickValue, 10) || 0;
+  const player = players[currentPlayerIndex];
+  const remainingIfScored = player ? player.score - val : 0;
+  const showFinishCheck = doubleOut && remainingIfScored === 0;
+  const row = document.getElementById('finish-double-row');
+  row.style.display = showFinishCheck ? 'flex' : 'none';
+  if (!showFinishCheck) document.getElementById('finish-double-check').checked = false;
+  updateQuickSubmitState();
+}
+
+function updateQuickSubmitState(){
+  const btn = document.getElementById('quick-submit');
+  const hint = document.getElementById('quick-hint');
+  if (!btn) return;
+  if (turnEnded){ btn.disabled = true; hint.textContent = ''; return; }
+  const val = parseInt(quickValue, 10) || 0;
+  const player = players[currentPlayerIndex];
+  if (!player){ btn.disabled = true; return; }
+  const remainingIfScored = player.score - val;
+  const needsDoubleConfirm = doubleOut && remainingIfScored === 0;
+  const checked = document.getElementById('finish-double-check').checked;
+  if (needsDoubleConfirm && !checked){
+    btn.disabled = true;
+    hint.textContent = "Tick 'Finished on a double' to check out";
+  } else {
+    btn.disabled = false;
+    hint.textContent = '';
+  }
+}
+
+document.getElementById('finish-double-check').addEventListener('change', updateQuickSubmitState);
+
+document.getElementById('quick-submit').addEventListener('click', () => {
+  if (turnEnded) return;
+  const val = parseInt(quickValue, 10) || 0;
+  const finishedOnDouble = document.getElementById('finish-double-check').checked;
+  turnDarts = [{ label: val + ' pts', points: val, isDouble: finishedOnDouble }];
+  evaluateTurnState();
+});
+
+// ---------- FX: BANTER + ANIMATIONS ----------
+const FX_REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+const FX = { queue: [], showing: false, lastLine: {}, bags: {}, visitBanner: false, t1: null, t2: null };
+
+const LINES = {
+  // --- everyday lines ---
+  win: [
+    "FUCK YEAH! {name} takes the leg!",
+    "Absolute legend. Someone get {name} a beer.",
+    "Game shot! The crowd goes fucking mental!",
+    "{name} wins! Deal closed, champagne's on you.",
+    "That's game, and that's {name}'s ego growing another size.",
+    "{name} just closed the biggest deal of the night.",
+    "Ring the bell! {name} wins the leg!",
+    "Holy shit, {name} actually did it.",
+    "{name}: 1. Everyone else: absolutely fuck all.",
+    "Take a bow, {name}. You've earned it, you cocky bastard.",
+    "Game over. {name} wins. Go cry about it, everyone else.",
+    "{name} takes it home. Sign the contract, it's done.",
+    "Winner winner, chicken dinner for {name}!",
+    "And {name} walks away with the leg. Fucking class.",
+    "The double went in! {name} is a goddamn assassin.",
+    "{name} wins and nobody can do shit about it.",
+    "Pack it up, everyone. {name} has this one.",
+    "{name} just ended that like it's a Friday afternoon pipeline review.",
+    "Dead-eye {name}. Cold, clinical, and a bit of a prick about it.",
+    "{name} is insufferable now. Brilliant. Well played."
+  ],
+  bull: [
+    "BULLSEYE! Right in the fuckin' middle!",
+    "Dead centre, baby. {name} is feeling it.",
+    "{name} just ate that bull for breakfast.",
+    "Bullseye! Somebody check the board for damage.",
+    "That's a bullseye, and {name} knows it.",
+    "Right in the red! Fuck me, {name}.",
+    "Bull! {name} is playing like they've got money on it.",
+    "Straight through the bullseye. Absolute filth.",
+    "Bullseye! {name} wasn't even looking, I swear.",
+    "Dead on. That bull never stood a chance.",
+    "{name} hit the bull. Pay the man.",
+    "Bullseye! If only {name} was that accurate at cold calling.",
+    "The bull has been slaughtered. Thank you, {name}.",
+    "Fifty points and a lot of ego. Nice one, {name}.",
+    "Centre of the board, centre of attention. {name} loves it.",
+    "{name} just found the bullseye. The G-spot of darts.",
+    "Bull! Don't let it go to your head, {name}. Too late.",
+    "Bullseye, you beautiful bastard.",
+    "Ohhhh, right in the bull. {name} is on one.",
+    "Bullseye! {name}, your dad would be proud of that one."
+  ],
+  triple: [
+    "TRIPLE! Look at {name} showing off.",
+    "Triple top! Who taught you that?",
+    "That's a proper fuckin' triple.",
+    "Triple! {name} is on fire.",
+    "Look at the size of that triple, {name}.",
+    "Triple! Three times the points and ten times the ego.",
+    "{name} hit that triple like it owed them money.",
+    "Treble trouble! {name} is cooking.",
+    "Triple! Fuck yeah, {name}.",
+    "Right in the thin bit! {name} doesn't miss.",
+    "{name} hit the triple. Somebody call the press.",
+    "That's what we call a money shot.",
+    "Triple! {name} has been practising behind our backs.",
+    "{name} went triple, no apologies.",
+    "Triple! Absolutely fucking surgical.",
+    "In the tiny ring! How, {name}? HOW?",
+    "Big triple energy from {name}.",
+    "Three times the points. {name} is selling like it's end of quarter.",
+    "Triple! {name} is making the rest of us look shit.",
+    "{name} hit the triple like it's the last slice of pizza. Greedy and perfect."
+  ],
+  double: [
+    "Nice double. Clinical as hell.",
+    "Double trouble, {name}!",
+    "Double! {name} is getting dangerous.",
+    "That's a cheeky little double.",
+    "Double top! Pretty fucking tidy.",
+    "{name} hit the double. Easy as that.",
+    "Double! {name} knows exactly what they're doing.",
+    "Look at {name} finding the double like a pro.",
+    "Right on the wire! Lovely double.",
+    "Double! Fuck me, that's neat.",
+    "{name} just doubled down and it paid off.",
+    "Double! Somebody's been practising.",
+    "Smooth double, {name}. Smooth as a politician.",
+    "That's a double, and it's hot.",
+    "Doubles are where winners are made. {name} is paying attention.",
+    "Wire to wire double. {name} is ice cold.",
+    "Double! Don't make it weird, {name}.",
+    "Another double for {name}. Absolutely cooking.",
+    "That double had {name}'s name on it.",
+    "Double! {name} is scaring the shit out of everyone."
+  ],
+  big: [
+    "That's a ton. Somebody's been practising.",
+    "{name} just dropped the hammer.",
+    "ONE HUNDRED AND... something. Fucking good anyway.",
+    "A ton! {name} is taking this seriously.",
+    "100+! {name} didn't come to play, they came to win.",
+    "That's a proper visit, {name}. Tidy.",
+    "Triple figures! {name} is flying.",
+    "{name} just put up a ton like it was nothing.",
+    "Big numbers from {name}. Somebody call the bank.",
+    "That's a ton. Time for everyone else to start sweating.",
+    "{name} is hitting numbers like it's end of quarter.",
+    "Over a hundred. {name} is on a different level.",
+    "Fuck me, {name}, that's a big visit.",
+    "{name} came out swinging with a ton.",
+    "Heavy scoring from {name}. The board is crying.",
+    "That's a hundred-plus and a lot of confidence.",
+    "{name} just earned their commission on that one.",
+    "Triple figures, baby!",
+    "Look at those numbers, {name}. Get in.",
+    "A ton! {name} is scaring the competition."
+  ],
+  one80: [
+    "ONE HUNDRED AND EIGHTY! Holy shit!",
+    "ONE HUNDRED AND EIGHTY! {name} just dropped the hammer.",
+    "Brightday Energy boooooooooyyyyyyyyyyyy",
+    "180! {name}, you absolute fucking maniac!",
+    "MAXIMUM! That's the best visit you can throw, {name}!",
+    "Three in the bed! {name} just hit 180!",
+    "ONE HUNDRED AND EIGHTY! The crowd goes wild!",
+    "Max score, {name}! Perfect visit!",
+    "180! Somebody get this person a medal.",
+    "{name} hit three triple twenties. That's just rude.",
+    "180! I bet {name}'s dad is crying right now.",
+    "That's a 180 and I'm not even mad, {name}.",
+    "180! {name} is fucking unstoppable.",
+    "Perfect visit! {name} is a goddamn wizard.",
+    "ONE HUNDRED AND EIGHTYYYYY! Get {name} in the hall of fame.",
+    "180! Do you even know how hard that is, {name}?! Jesus.",
+    "Triple twenty, triple twenty, triple twenty. {name} is a legend.",
+    "180! Quit your job, {name}. Go pro.",
+    "{name} hit the max. The max! Fuck off, that's unreal.",
+    "180! {name} has peaked tonight. It's all downhill from here."
+  ],
+  bust: [
+    "Ohhhh booooo. Bust.",
+    "Wow {name}, you really dropped the ball today.",
+    "That's a bust. Pathetic. Love it."
+  ],
+  maxbust: [
+    "Woooah what are you German?"
+  ],
+  miss: [
+    "Missed the board? Were you aiming at the wall?",
+    "Even the wall's embarrassed for you."
+  ],
+  nick: [
+    "New nickname unlocked. Wear it with pride (or shame)."
+  ],
+  // --- unhinged: only for really great shots ---
+  pumpup: [
+    "Absolute unit. I bet you get all the bitches.",
+    "That's the hottest thing {name} has ever done.",
+    "Someone check {name}'s pulse, that was fucking filthy.",
+    "{name}, you magnificent bastard.",
+    "Marry me, {name}. Right now.",
+    "Finally, something your dad can be proud of.",
+    "Quota smashed, darts smashed. {name} is just smashing everything today.",
+    "Put that on the board, and on the commission sheet.",
+    "Closer energy. {name} just signed that shot.",
+    "Who sold you your soul, {name}, and where do I sign?",
+    "{name}! {name}! {name}! Someone start the chant.",
+    "{name} woke up and chose violence.",
+    "Ladies and gentlemen, {name} has entered the chat.",
+    "Sit down, everyone else. {name} is working.",
+    "{name}, you absolute fucking weapon.",
+    "Brightday Energy boooooooooyyyyyyyyyyyy",
+    "Wooooahh settle down tripod",
+    "Big Dick Playerrrrrrrrrr",
+    "Absolute Fucking Legend",
+    "Get it Grrlllll",
+    "That girl got cake"
+  ],
+  // --- unhinged: bust puns, mostly for when someone's stuck trying to hit a double ---
+  endbust: [
+    "Remember that band... Busted?",
+    "Bust a move, {name}. Not a nut. Jesus.",
+    "{name} just busted a nut all over that board.",
+    "Busted again. {name} finishes early, just like in bed.",
+    "Premature bust. That's {name}'s whole personality, honestly.",
+    "Two minutes on the oche and {name}'s already done. Classic.",
+    "Bust, bust, bust. {name} is a one-pump chump.",
+    "Performance anxiety, {name}? It happens to loads of guys.",
+    "Bust a move, bust a nut, bust your own balls. {name} does it all.",
+    "{name} couldn't find the double if it came with GPS.",
+    "Can't hit a double, can't hit quota, can't hit the G-spot either.",
+    "Someone get {name} some Viagra. The double just won't go in.",
+    "{name} brought a small dart to a big double fight.",
+    "Busted. Like {name}'s browser history.",
+    "Who you gonna call? Not {name}. Bustin' doesn't make them feel good.",
+    "Somebody check {name}'s balls. They've dropped everything else.",
+    "{name} is the type of guy who busts before the bell. Every. Single. Time.",
+    "That's another bust. Maybe the problem isn't the board, {name}.",
+    "{name}'s double finish is like their sex life. Everyone's heard about it, nobody's seen it.",
+    "Hit a double? {name} can't even hit a deadline.",
+    "Hands up, {name}. You're busted, and you've been busted all night."
+  ],
+  // --- unhinged: only for really terrible shots ---
+  slander: [
+    "Wow, no wonder she left you.",
+    "Jesus, maybe try a different game.",
+    "{name} has the hand-eye coordination of a drunk labrador.",
+    "My nan throws better than that, and she's got arthritis.",
+    "That wasn't a dart, that was a cry for help.",
+    "That explains your sales numbers, {name}.",
+    "Is this how you handle your pipeline too?",
+    "Even your mum's embarrassed, and she loves you.",
+    "Pack it in, {name}. Go home and think about what you've done.",
+    "{name} couldn't hit the board if it was the only thing in the room.",
+    "{name} threw that like they're not paying for the darts.",
+    "Somebody take {name}'s darts away before they hurt someone.",
+    "{name}, mate, it's a board, not a suggestion.",
+    "Is {name} even trying, or is this a bit?",
+    "HR called, {name}. They want a word about that throw.",
+    "Weak-ass MF. Grow a spine, {name}."
+  ]
 };
 
-function renderInspiration(selected="all"){
-  const host=document.getElementById("inspirationRooms");
-  const tabs=document.getElementById("inspoTabs");
-  tabs.innerHTML='<button class="'+(selected==="all"?"active":"")+'" onclick="renderInspiration(\'all\')">All rooms</button>'+
-    Object.keys(inspiration).map(r=>`<button class="${selected===r?'active':''}" onclick="renderInspiration('${r}')">${r}</button>`).join("");
-  const entries=Object.entries(inspiration).filter(([r])=>selected==="all"||selected===r);
-  host.innerHTML=entries.map(([room,ideas])=>`
-    <div class="inspo-room">
-      <div class="inspo-room-head"><div><h3>${room}</h3><div class="note">${rooms[room]||""}</div></div>
-      <button onclick="pickRoom('${room}')" style="border:0;background:var(--green);color:white;padding:9px 12px;border-radius:999px;cursor:pointer">Find plants for this room →</button></div>
-      <div class="inspo-gallery">${ideas.map(([title,q],i)=>{
-        const seed=encodeURIComponent(room+"-"+title);
-        const url=`https://loremflickr.com/700/700/houseplant,interior,${encodeURIComponent(room)}/all?lock=${i+1}`;
-        return `<div class="inspo-shot" style="background-image:url('${url}')">
-          <div class="inspo-caption"><b>${title}</b>${room} inspiration</div>
-        </div>`;
-      }).join("")}
-      </div>
-    </div>`).join("");
+// Unhinged lines are rare on purpose: never two turns in a row, and busts only
+// roast a player every 3rd / 5th / 7th time (re-rolled after each roast).
+let turnCounter = 0;
+let unhingedLastTurn = -99;
+function unhingedReady(){ return (turnCounter - unhingedLastTurn) >= 2; }
+function markUnhinged(){ unhingedLastTurn = turnCounter; }
+function pickRoastGap(){ return [3, 3, 5, 7][Math.floor(Math.random() * 4)]; }
+
+// Shuffle-bag: every line in a pool gets used once before any repeats, so
+// with 20 lines per pool it never feels like the same comment twice.
+function fxLine(pool, name){
+  const arr = LINES[pool] || [];
+  if (!arr.length) return '';
+  let bag = FX.bags[pool];
+  if (!bag || !bag.length){
+    bag = arr.map((_, i) => i);
+    for (let i = bag.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [bag[i], bag[j]] = [bag[j], bag[i]];
+    }
+    if (bag.length > 1 && bag[bag.length - 1] === FX.lastLine[pool]){
+      const k = Math.floor(Math.random() * (bag.length - 1));
+      [bag[bag.length - 1], bag[k]] = [bag[k], bag[bag.length - 1]];
+    }
+    FX.bags[pool] = bag;
+  }
+  const idx = bag.pop();
+  FX.lastLine[pool] = idx;
+  return arr[idx].replace(/\{name\}/g, name);
 }
 
-function initDoctor(){
- const d=document.getElementById("doctorPlant");
- if(!d) return;
- [...new Set(plants.map(p=>p.name))].sort().forEach(n=>d.insertAdjacentHTML("beforeend",`<option value="${n}">${n}</option>`));
- diagnosePlant();
+function fxRand(a, b){ return a + Math.random() * (b - a); }
+function fxAdd(el, ms){
+  const layer = document.getElementById('fx-layer');
+  if (!layer) return;
+  layer.appendChild(el);
+  setTimeout(() => el.remove(), ms);
 }
-function diagnosePlant(){
- const symptom=document.getElementById("doctorSymptom").value;
- const soil=document.getElementById("doctorSoil").value;
- const light=document.getElementById("doctorLight").value;
- const plant=document.getElementById("doctorPlant").value;
- const data={
-  yellow:["Yellow leaves","Common possibilities include excess water, poor drainage, normal ageing of older leaves, insufficient light, root stress or nutrient issues.","Check the root-zone moisture first. If the mix is wet and has stayed wet, do not add more water. Confirm the pot drains freely."],
-  brown:["Brown or crispy tips","Possible causes include letting the plant get too dry, harsh direct sun, low humidity in sensitive species, fertiliser/salt build-up or root stress.","Check whether the mix is dry, then look at the plant's distance from hot direct sun. Don't automatically increase watering unless the root zone supports that diagnosis."],
-  droop:["Drooping or wilting","Both thirst and root problems from prolonged wetness can cause wilting. Heat stress and transplant shock can also contribute.","Feel the soil. Dry + light pot suggests watering may be needed. Wet + droopy means adding more water may make things worse."],
-  curl:["Curling leaves","Often associated with moisture stress, heat, excessive sun, low humidity for sensitive plants or pests.","Inspect both sides of leaves, check soil moisture and review whether the plant recently moved into stronger light."],
-  spots:["Brown or black spots","Can be caused by physical damage, sun scorch, moisture-related disease, cold injury or pests depending on the appearance.","Remove badly damaged material if appropriate, keep foliage/airflow sensible, inspect for pests and review watering. Avoid diagnosing solely from one spot."],
-  drop:["Leaves falling off","Possible causes include sudden environmental change, watering stress, cold drafts, low light or normal shedding of older leaves.","Think about what changed recently: location, temperature, watering, repotting or season. Then check the soil."],
-  nogrowth:["No new growth","Growth can slow naturally in cool/dark periods. Other possibilities include insufficient light, depleted nutrition, being root-bound or general root stress.","Check season and light first. Don't compensate for slow winter growth by heavily watering or fertilising."],
-  mould:["Mould on the soil surface","Often encouraged by a persistently damp surface, organic material and limited airflow.","Allow appropriate surface drying, improve airflow and remove decaying debris. Review whether the pot is staying wet for too long."],
-  gnats:["Tiny flies / fungus gnats","Fungus gnats commonly breed in moist organic growing media.","Let the upper layer dry more where the plant permits, remove decaying material, and use appropriate gnat management if the population persists."],
-  webs:["Fine webbing / tiny moving dots","Spider mites are a possibility, particularly when fine webbing appears around leaves and stems.","Isolate the plant, inspect leaf undersides closely and treat promptly with an appropriate plant-safe pest method."],
-  sticky:["Sticky leaves / bumps","Sap-sucking pests such as scale, aphids or mealybugs can leave sticky honeydew.","Isolate the plant and inspect stems, nodes and leaf undersides. Identify the pest before choosing treatment."],
-  pale:["Pale or washed-out leaves","Possible causes include too much intense light, insufficient nutrients, root problems or species-specific chlorosis.","Review light exposure, root health and feeding history. Avoid adding fertiliser to a stressed or waterlogged plant."]
- };
- const x=data[symptom];
- let extra="";
- if(soil==="wet" && ["yellow","droop","drop","mould","gnats"].includes(symptom)) extra="<p><b>Your clue:</b> You selected <b>wet soil</b>. Prolonged wetness makes overwatering/poor aeration more important to investigate before giving the plant another drink.</p>";
- if(soil==="dry" && ["brown","droop","curl","drop"].includes(symptom)) extra="<p><b>Your clue:</b> You selected <b>dry soil</b>. Check how deeply the pot has dried and whether the root ball needs a thorough watering.</p>";
- if(light==="direct" && ["brown","curl","pale"].includes(symptom)) extra+="<p><b>Light clue:</b> You selected <b>direct sun</b>. Check whether this species actually tolerates that intensity and whether the damage is concentrated on the sun-facing side.</p>";
- document.getElementById("doctorResult").innerHTML=`<div class="panel"><div class="eyebrow" style="color:var(--green)">Plant Doctor result</div><h2 style="font-size:28px">${x[0]}</h2><p><b>${plant==="general"?"Plant":"Selected plant"}:</b> ${plant==="general"?"Not specified":plant}</p><p>${x[1]}</p>${extra}<div class="tip"><b>First action:</b> ${x[2]}</div><p class="note">This is a troubleshooting guide, not a laboratory diagnosis. Multiple problems can create similar symptoms.</p></div>`;
+function fxVibrate(pattern){
+  try{ if (navigator.vibrate) navigator.vibrate(pattern); }catch(e){ /* not supported */ }
+}
+function fxClassPulse(el, cls, ms){
+  if (!el || FX_REDUCED) return;
+  el.classList.remove(cls);
+  void el.offsetWidth;
+  el.classList.add(cls);
+  setTimeout(() => el.classList.remove(cls), ms);
+}
+function fxConfetti(count){
+  if (FX_REDUCED) return;
+  const colors = ['#F1E6CC', '#E04B3C', '#2F8F5B', '#E7B94E', '#ffffff'];
+  for (let i = 0; i < count; i++){
+    const d = document.createElement('div');
+    d.className = 'fx-confetti';
+    d.style.left = fxRand(0, 100) + 'vw';
+    d.style.background = colors[i % colors.length];
+    d.style.setProperty('--dur', fxRand(2.2, 4.2) + 's');
+    d.style.setProperty('--dx', fxRand(-140, 140) + 'px');
+    d.style.setProperty('--rot', fxRand(360, 1100) + 'deg');
+    d.style.animationDelay = fxRand(0, 0.9) + 's';
+    fxAdd(d, 5600);
+  }
+}
+function fxFlash(color){
+  if (FX_REDUCED) return;
+  const f = document.createElement('div');
+  f.className = 'fx-flash';
+  f.style.setProperty('--fxc', color);
+  fxAdd(f, 1100);
+}
+function fxRings(){
+  if (FX_REDUCED) return;
+  for (let i = 0; i < 3; i++){
+    const r = document.createElement('div');
+    r.className = 'fx-ring';
+    r.style.animationDelay = (i * 0.18) + 's';
+    fxAdd(r, 1800);
+  }
+}
+// mode: 'rise' (up from the bottom), 'fall' (down from the top), 'burst' (out from the middle)
+function fxEmoji(emoji, count, mode){
+  if (FX_REDUCED) return;
+  for (let i = 0; i < count; i++){
+    const e = document.createElement('div');
+    e.className = 'fx-emoji';
+    e.textContent = emoji;
+    e.style.setProperty('--sz', fxRand(1.5, 2.8) + 'rem');
+    e.style.setProperty('--dur', fxRand(1.5, 2.6) + 's');
+    e.style.setProperty('--rot', fxRand(-50, 50) + 'deg');
+    e.style.animationDelay = fxRand(0, 0.5) + 's';
+    if (mode === 'rise'){
+      e.style.left = fxRand(4, 94) + 'vw';
+      e.style.bottom = '-30px';
+      e.style.setProperty('--dx', fxRand(-50, 50) + 'px');
+      e.style.setProperty('--dy', '-' + fxRand(55, 95) + 'vh');
+    } else if (mode === 'fall'){
+      e.style.left = fxRand(4, 94) + 'vw';
+      e.style.top = '-30px';
+      e.style.setProperty('--dx', fxRand(-50, 50) + 'px');
+      e.style.setProperty('--dy', fxRand(80, 112) + 'vh');
+    } else {
+      e.style.left = '50%';
+      e.style.top = '40%';
+      e.style.setProperty('--dx', fxRand(-150, 150) + 'px');
+      e.style.setProperty('--dy', fxRand(-150, 130) + 'px');
+    }
+    fxAdd(e, 4000);
+  }
 }
 
-function initRooms(){
-  const rf=document.getElementById('roomFilter');
-  Object.keys(rooms).forEach(r=>rf.insertAdjacentHTML('beforeend',`<option>${r}</option>`));
-  const rg=document.getElementById('roomGuide');
-  Object.entries(rooms).forEach(([r,d])=>rg.insertAdjacentHTML('beforeend',`<div class="room" onclick="pickRoom('${r}')"><div class="room-icon">${({'Living room':'🛋️','Bedroom':'🛏️','Study':'📚','Bathroom':'🛁','Basement':'🏚️','Kitchen':'🍳','Dining room':'🍽️','Laundry':'🧺','Balcony':'🌤️'})[r]||'🌿'}</div><h3>${r}</h3><small>${d}</small></div>`));
+// A new banner replaces whatever's showing straight away (so a line never
+// turns up late for a shot that's already old news). The one exception is a
+// follow-up (the nickname after a win), which waits for the banner before it.
+function showBanner(text, kind, ms, followUp){
+  const item = { text, kind: kind || 'good', ms: ms || 2800 };
+  if (followUp && FX.showing){ FX.queue.push(item); return; }
+  FX.queue = [];
+  playBanner(item);
 }
-function pickRoom(r){document.querySelector('[data-tab="finder"]').click();document.getElementById('roomFilter').value=r;renderCards();}
-function renderCards(){
-  const room=document.getElementById('roomFilter').value, sun=document.getElementById('sunFilter').value, water=document.getElementById('waterFilter').value, q=document.getElementById('search').value.toLowerCase();
-  const out=plants.filter(p=>(room==='all'||p.rooms.includes(room))&&(sun==='all'||p.sun===sun)&&(water==='all'||p.water===water)&&(!q||(p.name+p.latin+p.type).toLowerCase().includes(q)));
-  document.getElementById('count').textContent=`${out.length} plant${out.length===1?'':'s'} match your conditions`;
-  document.getElementById('cards').innerHTML=out.map(p=>`<article class="card"><div class="card-img photo" data-query="${p.name} indoor houseplant in pot home interior" style="background-image:url('${img[p.image]}')"><span class="badge">${p.type}</span></div><div class="card-body"><h3>${p.name}</h3><div class="latin">${p.latin}</div><div class="meta"><div><b>Direct sun</b>${p.sun==='yes'?'Yes':'No / indirect preferred'}</div><div><b>Water</b>${p.freq}</div><div><b>Mature height</b>${p.height}</div><div><b>Spread / girth</b>${p.girth}</div><div><b>Starter pot</b>${p.pot}</div><div><b>All seasons</b>${p.season}</div></div><div class="tags">${p.rooms.map(r=>`<span class="tag">${r}</span>`).join('')}</div><p class="note"><b>Light:</b> ${p.light}</p></div></article>`).join(''); loadPhotos();
+function showVisitBanner(text, kind, ms){
+  FX.visitBanner = true;
+  showBanner(text, kind, ms);
 }
-function renderAZ(letter='all'){
- const q=document.getElementById('azSearch').value.toLowerCase();
- const filtered=az.filter(p=>(letter==='all'||p[0][0].toUpperCase()===letter)&&(!q||p.join(' ').toLowerCase().includes(q)));
- document.getElementById('azGrid').innerHTML=filtered.map(p=>`<div class="plant-row"><div class="az-photo photo" data-query="${p[0]} ${p[1]}"></div><strong>${p[0]}</strong> <span class="latin">${p[1]}</span><div class="small"><b>Sun:</b> ${p[2]} &nbsp; <b>All seasons indoors:</b> ${p[3]} &nbsp; <b>Plant:</b> ${p[4]}</div><div class="small">${p[5]}</div></div>`).join(''); loadPhotos();
+function playBanner(item){
+  const b = document.getElementById('fx-banner');
+  if (!b) return;
+  clearTimeout(FX.t1); clearTimeout(FX.t2);
+  FX.showing = true;
+  b.className = item.kind;
+  b.textContent = item.text;
+  void b.offsetWidth;
+  b.classList.add('show');
+  FX.t1 = setTimeout(() => {
+    b.classList.remove('show');
+    b.classList.add('hide');
+    FX.t2 = setTimeout(() => {
+      b.classList.remove('hide');
+      FX.showing = false;
+      const next = FX.queue.shift();
+      if (next) playBanner(next);
+    }, 330);
+  }, item.ms);
 }
-document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(b.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}));
-['roomFilter','sunFilter','waterFilter','search'].forEach(id=>document.getElementById(id).addEventListener('input',renderCards));
-document.getElementById('azSearch').addEventListener('input',()=>renderAZ());
-const letters=document.getElementById('letters');
-letters.insertAdjacentHTML('beforeend','<button onclick="renderAZ()">All</button>');
-'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(l=>letters.insertAdjacentHTML('beforeend',`<button onclick="renderAZ('${l}')">${l}</button>`));
-initRooms();renderCards();renderAZ();renderInspiration();initDoctor();
+
+// ---- triggers ----
+// Single dart: bullseye, high triple (15+), high double (16+), second miss in a visit.
+function fxOnDart(kind, value, mult, quiet){
+  const p = players[currentPlayerIndex];
+  if (!p) return;
+  if (kind === 'bull50'){
+    fxRings();
+    fxFlash('rgba(217,69,58,0.5)');
+    fxVibrate(50);
+    if (!quiet) showBanner(fxLine('bull', p.name), 'epic', 2600);
+  } else if (kind === 'number' && mult === 3 && value >= 15){
+    fxClassPulse(document.getElementById('turn-remaining'), 'fx-fire', 1600);
+    fxEmoji('🔥', 10, 'rise');
+    fxVibrate(30);
+    if (!quiet) showBanner(fxLine('triple', p.name), 'good', 2400);
+  } else if (kind === 'number' && mult === 2 && value >= 16){
+    fxEmoji('✨', 10, 'burst');
+    if (!quiet && Math.random() < 0.6) showBanner(fxLine('double', p.name), 'good', 2200);
+  } else if (kind === 'miss'){
+    const misses = turnDarts.filter(d => d.label === 'MISS').length;
+    if (misses === 2 && !quiet) showBanner(fxLine('miss', p.name), 'bad', 2400);
+  }
+}
+
+// A finished, non-bust visit: 100+, 140+, 180, or three misses.
+function fxOnVisit(p, total){
+  const remEl = document.getElementById('turn-remaining');
+  const allMiss = (entryMode === 'quick')
+      ? total === 0
+      : (turnDarts.length >= 3 && turnDarts.every(d => d.label === 'MISS'));
+
+  if (total === 180){
+    fxConfetti(90);
+    fxFlash('rgba(255,205,90,0.85)');
+    fxEmoji('🔥', 18, 'rise');
+    fxClassPulse(remEl, 'fx-fire', 1600);
+    fxVibrate([80, 40, 80, 40, 160]);
+    if (unhingedReady()){ markUnhinged(); showVisitBanner(fxLine('pumpup', p.name), 'epic', 3800); }
+    else showVisitBanner(fxLine('one80', p.name), 'epic', 3200);
+  } else if (total >= 140){
+    fxConfetti(45);
+    fxFlash('rgba(255,205,90,0.6)');
+    fxEmoji('🔥', 12, 'rise');
+    fxClassPulse(remEl, 'fx-fire', 1600);
+    fxVibrate([60, 40, 100]);
+    if (unhingedReady()){ markUnhinged(); showVisitBanner(fxLine('pumpup', p.name), 'epic', 3600); }
+    else showVisitBanner(fxLine('big', p.name), 'epic', 2800);
+  } else if (total >= 100){
+    fxEmoji('🔥', 8, 'rise');
+    fxClassPulse(remEl, 'fx-fire', 1600);
+    fxVibrate(50);
+    showVisitBanner(fxLine('big', p.name), 'good', 2600);
+  } else if (allMiss){
+    fxEmoji('💀', 6, 'fall');
+    if (unhingedReady()){ markUnhinged(); showVisitBanner(fxLine('slander', p.name), 'bad', 3600); }
+    else showVisitBanner(fxLine('miss', p.name), 'bad', 2600);
+  }
+}
+
+// A bust. Everyone gets the shake; only every 3rd/5th/7th bust gets roasted.
+function fxOnBust(p){
+  fxClassPulse(document.querySelector('.app-shell'), 'fx-shake', 700);
+  fxClassPulse(document.querySelector('.turn-panel'), 'fx-wobble', 1000);
+  fxFlash('rgba(156,43,34,0.6)');
+  fxEmoji('💀', 8, 'fall');
+  fxVibrate([70, 40, 140]);
+  const count = (p.bustCount || 0) + 1;
+  const stuckOnDouble = turnStartScore <= 50;   // in checkout range, this is the "can't hit the double" grind
+  if (count >= (p.nextRoastAt || 3) && unhingedReady()){
+    markUnhinged();
+    p.nextRoastAt = count + pickRoastGap();
+    const pool = (stuckOnDouble || Math.random() < 0.35) ? 'endbust' : 'slander';
+    showVisitBanner(fxLine(pool, p.name), 'bad', 3800);
+  } else if (String(p.name).trim().toLowerCase() === 'max' && Math.random() < 0.6){
+    showVisitBanner(fxLine('maxbust', p.name), 'bad', 2800);
+  } else if (Math.random() < (stuckOnDouble ? 0.45 : 0.7)){
+    showVisitBanner(fxLine('bust', p.name), 'bad', 2600);
+  }
+}
+
+// Winning the leg: the big one, plus the nickname that was just handed out.
+function fxOnWin(p, finalLabel, total, awarded){
+  setTimeout(() => {
+    fxConfetti(160);
+    fxFlash('rgba(255,205,90,0.85)');
+    fxEmoji('🎉', 16, 'burst');
+    fxEmoji('🍺', 6, 'rise');
+    fxVibrate([100, 50, 100, 50, 250]);
+    if ((total >= 100 || finalLabel === 'BULL') && unhingedReady()){
+      markUnhinged();
+      showBanner(fxLine('pumpup', p.name), 'epic', 3800);
+    } else {
+      showBanner(fxLine('win', p.name), 'epic', 3400);
+    }
+    if (awarded){
+      const nk = NICKNAMES.find(n => n.id === awarded.id);
+      if (nk){
+        showBanner(`${nk.icon} ${nk.name}\n${awarded.playerName}: ${fxLine('nick', awarded.playerName)}`, 'nick', 4200, true);
+      }
+    }
+  }, 250);
+}
+
+// ---------- THROW LOGIC ----------
+function throwDart(value, kind){
+  if (turnEnded) return;
+
+  let points, label;
+  if (kind === 'number'){
+    points = value * selectedMult;
+    label = (selectedMult === 1 ? 'S' : selectedMult === 2 ? 'D' : 'T') + value;
+  } else if (kind === 'bull25'){
+    points = 25; label = '25';
+  } else if (kind === 'bull50'){
+    points = 50; label = 'BULL';
+  } else {
+    points = 0; label = 'MISS';
+  }
+
+  const isDouble = (kind === 'number' && selectedMult === 2) || kind === 'bull50';
+  turnDarts.push({label, points, isDouble});
+  FX.visitBanner = false;
+  evaluateTurnState();
+  // if the visit just ended, its own banner speaks for this dart
+  fxOnDart(kind, value, selectedMult, FX.visitBanner || pendingOutcome === 'win');
+}
+
+// Evaluate the current (uncommitted) visit and decide whether it's still in
+// progress, or has reached a bust/win/normal-end state awaiting confirmation.
+// Nothing is written to the player's score/history until commitCurrentTurn()
+// runs — this is what lets Undo correct the last dart at any point, including
+// right after the 3rd dart or a bust/checkout.
+function evaluateTurnState(){
+  const scoredSoFar = turnDarts.reduce((s,d) => s + d.points, 0);
+  const remaining = turnStartScore - scoredSoFar;
+  const lastDart = turnDarts[turnDarts.length - 1];
+
+  let outcome = null;
+  if (remaining < 0){
+    outcome = 'bust';
+  } else if (remaining === 0){
+    outcome = (doubleOut && lastDart && !lastDart.isDouble) ? 'bust' : 'win';
+  } else if (remaining === 1 && doubleOut){
+    outcome = 'bust';
+  } else if (turnDarts.length >= 3 || entryMode === 'quick'){
+    outcome = 'normal';
+  }
+
+  pendingOutcome = outcome;
+  const msg = document.getElementById('turn-message');
+  const nextBtn = document.getElementById('next-player-btn');
+
+  if (outcome){
+    turnEnded = true;
+    setPadEnabled(false);
+    if (outcome === 'bust'){
+      msg.textContent = `BUST! Stays on ${turnStartScore}`;
+      msg.className = 'turn-message show bust';
+      nextBtn.textContent = 'Next player →';
+    } else if (outcome === 'win'){
+      msg.textContent = `Checkout! ${scoredSoFar} scored`;
+      msg.className = 'turn-message show win';
+      nextBtn.textContent = 'See results →';
+    } else {
+      msg.textContent = `Turn total: ${scoredSoFar}`;
+      msg.className = 'turn-message show';
+      nextBtn.textContent = 'Next player →';
+    }
+    nextBtn.classList.add('show');
+  } else {
+    turnEnded = false;
+    msg.className = 'turn-message';
+    msg.textContent = '';
+    nextBtn.classList.remove('show');
+  }
+  updateUndoButtonState();
+  document.getElementById('bust-btn').disabled = (outcome === 'win');
+  FX.visitBanner = false;
+  const fxPlayer = players[currentPlayerIndex];
+  if (outcome === 'bust') fxOnBust(fxPlayer);
+  else if (outcome === 'normal') fxOnVisit(fxPlayer, scoredSoFar);
+  render();
+}
+
+function commitCurrentTurn(){
+  const p = players[currentPlayerIndex];
+  const scoredSoFar = turnDarts.reduce((s,d) => s + d.points, 0);
+  const dartLabels = turnDarts.map(d => d.label);
+
+  if (pendingOutcome === 'bust'){
+    recordVisitStats(p.name, dartLabels, scoredSoFar, 'bust');
+    p.bustCount = (p.bustCount || 0) + 1;
+    p.dartsThrown += turnDarts.length;
+    p.turns.push({ darts: dartLabels, remaining: turnStartScore, bust: true, win: false, total: scoredSoFar });
+    currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+    beginTurn();
+  } else if (pendingOutcome === 'win'){
+    recordVisitStats(p.name, dartLabels, scoredSoFar, 'win');
+    p.score = 0;
+    p.dartsThrown += turnDarts.length;
+    p.totalScored += scoredSoFar;
+    p.turns.push({ darts: dartLabels, remaining: 0, bust: false, win: true, total: scoredSoFar });
+    const awarded = awardGameNickname(p.name);
+    const finalLabel = dartLabels[dartLabels.length - 1];
+    render();
+    showWinner(finalLabel);
+    fxOnWin(p, finalLabel, scoredSoFar, awarded);
+  } else if (pendingOutcome === 'normal'){
+    recordVisitStats(p.name, dartLabels, scoredSoFar, 'normal');
+    p.score = turnStartScore - scoredSoFar;
+    p.dartsThrown += turnDarts.length;
+    p.totalScored += scoredSoFar;
+    p.turns.push({ darts: dartLabels, remaining: p.score, bust: false, win: false, total: scoredSoFar });
+    currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+    beginTurn();
+  }
+}
+
+document.getElementById('next-player-btn').addEventListener('click', () => {
+  commitCurrentTurn();
+});
+
+document.getElementById('undo-btn').addEventListener('click', () => {
+  if (turnDarts.length === 0) return;
+  turnDarts.pop();
+  pendingOutcome = null;
+  turnEnded = false;
+  document.getElementById('turn-message').className = 'turn-message';
+  document.getElementById('turn-message').textContent = '';
+  document.getElementById('next-player-btn').classList.remove('show');
+  setPadEnabled(true);
+  if (entryMode === 'quick'){
+    quickValue = '0';
+    document.getElementById('finish-double-check').checked = false;
+    updateQuickDisplay();
+  }
+  updateUndoButtonState();
+  render();
+});
+
+// Manual override — mark the visit a bust and skip straight to the next
+// player, whatever's been entered so far (or nothing at all).
+document.getElementById('bust-btn').addEventListener('click', () => {
+  if (pendingOutcome === 'win') return; // don't let a stray tap cancel a checkout
+  const p = players[currentPlayerIndex];
+  const dartLabels = turnDarts.map(d => d.label);
+  const scoredSoFar = turnDarts.reduce((s,d) => s + d.points, 0);
+  recordVisitStats(p.name, dartLabels, scoredSoFar, 'bust');
+  const dartsCount = turnDarts.length > 0 ? turnDarts.length : 3;
+  if (pendingOutcome !== 'bust') fxOnBust(p);   // already played if the bust was auto-detected
+  p.bustCount = (p.bustCount || 0) + 1;
+  p.dartsThrown += dartsCount;
+  p.turns.push({ darts: dartLabels.length ? dartLabels : ['BUST'], remaining: turnStartScore, bust: true, win: false, total: scoredSoFar });
+  currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+  beginTurn();
+});
+
+document.getElementById('restart-btn').addEventListener('click', () => {
+  document.getElementById('restart-confirm-row').classList.add('show');
+});
+document.getElementById('restart-yes').addEventListener('click', () => {
+  document.getElementById('restart-confirm-row').classList.remove('show');
+  resetToSetup();
+});
+document.getElementById('restart-no').addEventListener('click', () => {
+  document.getElementById('restart-confirm-row').classList.remove('show');
+});
+
+// ---------- RENDER ----------
+function render(){
+  const board = document.getElementById('scoreboard');
+  board.innerHTML = '';
+  players.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'player-card' + (i === currentPlayerIndex ? ' active' : '');
+    const avg = p.dartsThrown > 0 ? (p.totalScored / p.dartsThrown * 3).toFixed(1) : '0.0';
+    card.innerHTML = `<div class="p-name">${escapeHtml(p.name)}</div>
+                       ${nicknameTagHtml(p.name)}
+                       <div class="p-score">${p.score}</div>
+                       <div class="p-avg">avg ${avg}</div>`;
+    board.appendChild(card);
+  });
+
+  const cur = players[currentPlayerIndex];
+  document.getElementById('turn-who').innerHTML =
+      `${escapeHtml(cur.name.toUpperCase())}'S TURN${nicknameTagHtml(cur.name)}`;
+
+  const scoredSoFar = turnDarts.reduce((s,d) => s + d.points, 0);
+  const liveRemaining = pendingOutcome === 'bust' ? turnStartScore : turnStartScore - scoredSoFar;
+  document.getElementById('turn-remaining').textContent = liveRemaining;
+  document.getElementById('turn-sub').textContent = `Turn total: ${scoredSoFar}`;
+
+  for (let i = 0; i < 3; i++){
+    const slot = document.getElementById('dart-slot-' + i);
+    if (turnDarts[i]){
+      slot.textContent = turnDarts[i].label;
+      slot.classList.add('filled');
+    } else {
+      slot.textContent = i + 1;
+      slot.classList.remove('filled');
+    }
+  }
+
+  renderHistory();
+  saveState();
+}
+
+function renderHistory(){
+  const wrap = document.getElementById('history-content');
+  wrap.innerHTML = '';
+  players.forEach(p => {
+    const block = document.createElement('div');
+    block.className = 'hist-player';
+    const h = document.createElement('h4');
+    h.textContent = p.name;
+    block.appendChild(h);
+    const ul = document.createElement('ul');
+    if (p.turns.length === 0){
+      const li = document.createElement('li');
+      li.textContent = 'No turns yet';
+      li.style.opacity = '0.6';
+      ul.appendChild(li);
+    } else {
+      p.turns.forEach((t, idx) => {
+        const li = document.createElement('li');
+        if (t.win){
+          li.textContent = `Turn ${idx+1}: ${t.darts.join(', ')} — CHECKOUT!`;
+        } else if (t.bust){
+          li.className = 'bust';
+          li.textContent = `Turn ${idx+1}: ${t.darts.join(', ')} — BUST, stays ${t.remaining}`;
+        } else {
+          li.textContent = `Turn ${idx+1}: ${t.darts.join(', ')} — ${t.remaining} left`;
+        }
+        ul.appendChild(li);
+      });
+    }
+    block.appendChild(ul);
+    wrap.appendChild(block);
+  });
+}
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+// ---------- WINNER SCREEN ----------
+function showWinner(finalDart){
+  const p = players[currentPlayerIndex];
+  winnerInfo = { name: p.name, finalDart };
+  renderWinnerScreen(p.name, finalDart);
+}
+
+function renderWinnerScreen(winnerName, finalDart){
+  document.getElementById('winner-name').innerHTML =
+      `${escapeHtml(winnerName.toUpperCase())} WINS!${nicknameTagHtml(winnerName)}`;
+  document.getElementById('winner-checkout').textContent = `Checked out on ${finalDart}`;
+
+  const table = document.getElementById('stats-table');
+  let rows = `<tr><th>Player</th><th>Darts</th><th>Avg (3-dart)</th></tr>`;
+  players.forEach(pl => {
+    const avg = pl.dartsThrown > 0 ? (pl.totalScored / pl.dartsThrown * 3).toFixed(1) : '0.0';
+    rows += `<tr><td>${escapeHtml(pl.name)}${pl.name === winnerName ? ' 🏆' : ''}</td><td>${pl.dartsThrown}</td><td>${avg}</td></tr>`;
+  });
+  table.innerHTML = rows;
+
+  showScreen('screen-winner');
+}
+
+document.getElementById('new-leg-btn').addEventListener('click', () => {
+  players.forEach(p => { p.score = startScore; p.dartsThrown = 0; p.totalScored = 0; p.turns = []; p.bustCount = 0; p.nextRoastAt = pickRoastGap(); });
+  currentPlayerIndex = 0;
+  winnerInfo = null;
+  beginTurn();
+  showScreen('screen-game');
+});
+
+document.getElementById('new-match-btn').addEventListener('click', resetToSetup);
+
+function resetToSetup(){
+  players = [];
+  selectedPlayers = [];
+  currentPlayerIndex = 0;
+  winnerInfo = null;
+  buildSetupScreen();
+  showScreen('screen-setup');
+}
+
+// ---------- INIT ----------
+(async () => {
+  await loadLeaderboard();
+  const restored = await loadState();
+  if (!restored){
+    buildSetupScreen();
+    showScreen('screen-setup');
+  }
+})();
 </script>
 </body>
 </html>
